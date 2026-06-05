@@ -1,0 +1,9 @@
+from pelicanconf import *
+
+PUBLISH = True
+SITEURL = "https://viethoa.nguyez.com"
+SITEURL_MAIN = SITEURL
+CANONICAL_URL = SITEURL
+FEED_DOMAIN = SITEURL
+RELATIVE_URLS = False
+DELETE_OUTPUT_DIRECTORY = True

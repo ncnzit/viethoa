@@ -1,0 +1,25 @@
+{% if DEFAULT_PAGINATION %}
+{% set first_page = articles_paginator.page(1) %}
+{% set last_page = articles_paginator.page(articles_paginator.num_pages) %}
+<nav class="pagination-container" aria-label="Sayfalama">
+    <ul class="pagination">
+        {% if articles_page.has_previous() %}
+        <li><a href="{{ SITEURL }}/{{ first_page.url }}" role="button" class="secondary outline" aria-label="İlk Sayfa"><svg class="icon"><use href="/theme/images/icons.svg#angles-left"></use></svg></a></li>
+        <li><a href="{{ SITEURL }}/{{ articles_previous_page.url }}" role="button" class="secondary outline" aria-label="Önceki Sayfa"><svg class="icon"><use href="/theme/images/icons.svg#angle-left"></use></svg></a></li>
+        {% else %}
+        <li><span role="button" class="secondary outline disabled" aria-label="İlk Sayfa"><svg class="icon"><use href="/theme/images/icons.svg#angles-left"></use></svg></span></li>
+        <li><span role="button" class="secondary outline disabled" aria-label="Önceki Sayfa"><svg class="icon"><use href="/theme/images/icons.svg#angle-left"></use></svg></span></li>
+        {% endif %}
+
+        <li><span role="button" class="secondary outline disabled">{{ articles_page.number }} / {{ articles_paginator.num_pages }}</span></li>
+
+        {% if articles_page.has_next() %}
+        <li><a href="{{ SITEURL }}/{{ articles_next_page.url }}" role="button" class="secondary outline" aria-label="Sonraki Sayfa"><svg class="icon"><use href="/theme/images/icons.svg#angle-right"></use></svg></a></li>
+        <li><a href="{{ SITEURL }}/{{ last_page.url }}" role="button" class="secondary outline" aria-label="Son Sayfa"><svg class="icon"><use href="/theme/images/icons.svg#angles-right"></use></svg></a></li>
+        {% else %}
+        <li><span role="button" class="secondary outline disabled" aria-label="Sonraki Sayfa"><svg class="icon"><use href="/theme/images/icons.svg#angle-right"></use></svg></span></li>
+        <li><span role="button" class="secondary outline disabled" aria-label="Son Sayfa"><svg class="icon"><use href="/theme/images/icons.svg#angles-right"></use></svg></span></li>
+        {% endif %}
+    </ul>
+</nav>
+{% endif %}

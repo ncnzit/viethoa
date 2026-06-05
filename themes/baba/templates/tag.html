@@ -1,0 +1,73 @@
+{% extends "base.html" %} {% block title %}#{{ tag }} {{ _('Etiketli Yazılar') }} - {{ SITENAME }}{% endblock title %} {% block seo
+%}
+<meta
+    name="description"
+    content="#{{ tag }} etiketi ile ilgili tüm yazılar ve rehberler. Bu etikette toplam {{ articles|length }} adet güncel ve bilgilendirici içerik bulabilirsiniz. Konuyla ilgili derinlemesine bilgi edinin." />
+<link rel="canonical" href="{{ SITEURL }}/etiket/{{ tag.slug }}/" />
+<meta property="og:title" content="#{{ tag }} {{ _('Etiketli Yazılar') }} - {{ SITENAME }}" />
+<meta
+    property="og:description"
+    content="#{{ tag }} {{ _('etiketi ile ilgili tüm yazılar. Bu etikette toplam {articles_length} yazı bulunuyor.').format(articles_length=articles|length) }}" />
+<meta property="og:type" content="website" />
+<meta property="og:url" content="{{ SITEURL }}/etiket/{{ tag.slug }}/" />
+{% endblock seo %} {% block content %}
+<div class="container pico-container">
+    <div class="tag-header pico-card pico-spacing-large">
+        <div class="tag-icon">
+            <span class="iconify" data-icon="tabler:hash" width="28" height="28"></span>
+        </div>
+        <div class="tag-info">
+            <h1 class="tag-title">#{{ tag }} {{ _('Etiketli Yazılar') }}</h1>
+            <p class="tag-count">{{ _('Bu etikete sahip {articles_length} yazı bulundu').format(articles_length=articles|length) }}</p>
+        </div>
+    </div>
+
+    <div class="articles-list">
+        {% for article in articles_page.object_list %}
+        <article class="article-card pico-card">
+            <a href="{{ SITEURL }}/{{ article.url }}" class="article-link">
+                <h2 class="article-title">{{ article.title }}</h2>
+                
+                <div class="article-meta">
+                    <time datetime="{{ article.date.isoformat() }}" class="article-date">
+                        <span class="iconify" data-icon="tabler:calendar" width="16" height="16"></span>
+                        {{ article.locale_date }}
+                    </time>
+                    {% if article.category %}
+                    <a href="{{ SITEURL }}/kategori/{{ article.category.slug }}/" class="article-category">
+                        <span class="iconify" data-icon="tabler:folder" width="16" height="16"></span>
+                        {{ article.category }}
+                    </a>
+                    {% endif %}
+                </div>
+
+                <p class="article-summary">{{ article.summary }}</p>
+            </a>
+        </article>
+        {% endfor %}
+    </div>
+
+    {% if articles_page.has_other_pages() %}
+    <div class="pagination-container">
+        {% if articles_page.has_previous() %}
+        <a
+            href="{{ SITEURL }}/{{ articles_previous_page.url }}"
+            class="btn btn-outline"
+            aria-label="{{ _('Önceki sayfa') }}">
+            <span class="iconify" data-icon="tabler:chevron-left" width="20" height="20"></span>
+            {{ _('Önceki') }}
+        </a>
+        {% endif %}
+        {% if articles_page.has_next() %}
+        <a
+            href="{{ SITEURL }}/{{ articles_next_page.url }}"
+            class="btn btn-outline"
+            aria-label="{{ _('Sonraki sayfa') }}">
+            {{ _('Sonraki') }}
+            <span class="iconify" data-icon="tabler:chevron-right" width="20" height="20"></span>
+        </a>
+        {% endif %}
+    </div>
+    {% endif %}
+</div>
+{% endblock content %}

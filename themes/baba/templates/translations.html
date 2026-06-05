@@ -1,0 +1,12 @@
+{% macro translations_for(article) %}
+<div class="translations">
+  <a class="active {{ article.lang }}" href="{{ SITEURL }}/{{ article.url }}"
+    >{{ article.lang|upper }}</a
+  >
+  {% if article.translations %} {% for translation in article.translations %}
+  <a href="{{ SITEURL }}/{{ translation.url }}" class="{{ translation.lang }}"
+    >{{ translation.lang|upper }}</a
+  >
+  {% endfor %} {% endif %}
+</div>
+{% endmacro %}

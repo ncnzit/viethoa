@@ -1,0 +1,19 @@
+{% extends "minimal.html" %} {% block content %}
+<div class="legal-container container">
+    <div class="legal-hero">
+        <div class="legal-icon-container">
+            <div class="legal-icon-ping"></div>
+            <div class="legal-icon-wrapper">
+                <span class="iconify" data-icon="tabler:settings" width="32" height="32"></span>
+            </div>
+        </div>
+        <h1 class="legal-title">{{ page.title }}</h1>
+    </div>
+
+    <div class="legal-content-wrapper">
+        <div class="legal-content pico-card pico-prose">
+            {{ page.content }}
+        </div>
+    </div>
+</div>
+{% endblock %}

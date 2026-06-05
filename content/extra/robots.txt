@@ -1,0 +1,3 @@
+User-agent: *
+Allow: /
+Sitemap: https://viethoa.nguyez.com/sitemap.xml

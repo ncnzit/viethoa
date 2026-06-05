@@ -1,0 +1,67 @@
+<footer class="site-footer container">
+  <div class="footer-content">
+    <div class="footer-section">
+      <p class="footer-copyright">
+        &copy; {{ COPYRIGHT_YEAR }} - {{ current_year }}
+        <a href="{{ SITEURL }}">{{ SITENAME }}</a>. {{ _('All rights reserved.') }}
+      </p>
+      <div class="footer-links">
+        <a href="{{ SITEURL }}/{{ CATEGORIES_URL }}" aria-label="{{ _('Go to Categories page') }}">
+          <span class="icon"><svg class="icon"><use href="/theme/images/icons.svg#folder"></use></svg></span>
+          <span class="text">{{ _('Categories') }}</span>
+          <span class="sr-only">{{ _('Categories') }}</span>
+        </a>
+        <a href="{{ SITEURL }}/{{ TAGS_URL }}" aria-label="{{ _('Go to Tags page') }}">
+          <span class="icon"><svg class="icon"><use href="/theme/images/icons.svg#tags"></use></svg></span>
+          <span class="text">{{ _('Tags') }}</span>
+          <span class="sr-only">{{ _('Tags') }}</span>
+        </a>
+        <a href="{{ SITEURL }}/{{ ARCHIVES_URL }}" aria-label="{{ _('Go to Archive page') }}">
+          <span class="icon"><svg class="icon"><use href="/theme/images/icons.svg#archive"></use></svg></span>
+          <span class="text">{{ _('Archive') }}</span>
+          <span class="sr-only">{{ _('Archive') }}</span>
+        </a>
+        <a href="{{ SITEURL }}/terms/" aria-label="{{ _('Go to Terms of Use page') }}">
+          <span class="icon"><svg class="icon"><use href="/theme/images/icons.svg#file-contract"></use></svg></span>
+          <span class="text">{{ _('Terms of Use') }}</span>
+          <span class="sr-only">{{ _('Terms of Use') }}</span>
+        </a>
+        <a href="{{ SITEURL }}/privacy-policy/" aria-label="{{ _('Go to Privacy Policy page') }}">
+          <span class="icon"><svg class="icon"><use href="/theme/images/icons.svg#shield-halved"></use></svg></span>
+          <span class="text">{{ _('Privacy') }}</span>
+          <span class="sr-only">{{ _('Privacy Policy') }}</span>
+        </a>
+        {% if FEED_ALL_ATOM %}
+        <a href="{{ FEED_DOMAIN }}/{% if FEED_ALL_ATOM_URL %}{{ FEED_ALL_ATOM_URL }}{% else %}{{ FEED_ALL_ATOM }}{% endif %}"
+          type="application/atom+xml" rel="alternate" aria-label="{{ _('Go to Atom feed') }}">
+          <span class="icon"><svg class="icon"><use href="/theme/images/icons.svg#rss"></use></svg></span>
+          <span class="text">{{ _('Atom') }}</span>
+          <span class="sr-only">{{ _('Atom Feed') }}</span>
+        </a>
+        {% endif %}
+        {% if FEED_ALL_RSS %}
+        <a href="{{ FEED_DOMAIN }}/{% if FEED_ALL_RSS_URL %}{{ FEED_ALL_RSS_URL }}{% else %}{{ FEED_ALL_RSS }}{% endif %}"
+          type="application/rss+xml" rel="alternate" aria-label="{{ _('Go to RSS feed') }}">
+          <span class="icon"><svg class="icon"><use href="/theme/images/icons.svg#wifi"></use></svg></span>
+          <span class="text">{{ _('RSS') }}</span>
+          <span class="sr-only">{{ _('RSS Feed') }}</span>
+        </a>
+        {% endif %}
+      </div>
+    </div>
+    <div class="footer-section">
+      <p class="footer-support">
+        {% if DEFAULT_LANG == 'tr' %}
+        Bağış yapamıyorsanız, <a href="https://youtube.com/@{{ SOCIAL.youtube }}" target="_blank">YouTube kanalıma</a> abone olarak destek olabilirsiniz.
+        {% else %}
+        If you can't donate, you can support by subscribing to <a href="https://youtube.com/@{{ SOCIAL.youtube }}"
+          target="_blank">my YouTube channel</a>.
+        {% endif %}
+      </p>
+    </div>
+  </div>
+  <div class="footer-bottom">
+    <p class="footer-credit">Pelican kullanılarak ❤️ ile tasarlandı</p>
+    <span style="display:none;">#nobridge</span>
+  </div>
+</footer>

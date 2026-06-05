@@ -1,0 +1,198 @@
+{% extends "base.html" %} {% block title %}{{ _('Bağış Yap') }}{% endblock title %} {%
+block head %} {{ super() }} 
+<link rel="stylesheet" type="text/css" href="{{ SITEURL }}/{{ THEME_STATIC_DIR }}/css/donate.css">
+{% endblock %} {% block seo %}
+<meta
+  name="description"
+  content="{{ _('Çalışmalarımı ve içeriklerimi desteklemek için bağış yapabilirsiniz. Papara, GitHub Sponsors ve kripto para seçenekleri ile katkıda bulunabilirsiniz.') }}"
+/>
+<link rel="canonical" href="{{ SITEURL }}/bagis/" />
+{% endblock %} {% block content %}
+<div class="donate-page pico-container">
+  <article class="donate-article">
+    <!-- Hero Bölümü -->
+    <div class="donate-container">
+      <div class="donate-headings">
+        <h1>
+          <svg class="icon" style="color: #e74c3c;"><use href="/theme/images/icons.svg#heart"></use></svg> {{ _('Bağış Yap') }}
+        </h1>
+        <p>
+          {{ _('Eğer içeriklerimi faydalı buluyorsanız ve çalışmalarımı desteklemek istiyorsanız, aşağıdaki yöntemlerle bağış yapabilirsiniz.') }}
+        </p>
+      </div>
+
+      <div class="donate-grid">
+        <!-- Neden Bağış? -->
+        <article class="donate-section pico-card">
+          <header>
+            <h2><svg class="icon"><use href="/theme/images/icons.svg#question-circle"></use></svg> {{ _('Neden Bağış?') }}</h2>
+          </header>
+          {% for item in [
+            _("Daha fazla içerik üretebiliyorum"),
+            _("Daha kaliteli eğitim videoları hazırlayabiliyorum"), 
+            _("Açık kaynak projelere daha fazla zaman ayırabiliyorum"),
+            _("Teknolojik altyapımı ve ekipmanlarımı geliştirebiliyorum"),
+            _("Topluluk için daha fazla etkinlik ve proje düzenleyebiliyorum"),
+            _("Yeni teknolojileri araştırıp deneyimlemeye daha fazla vakit ayırabiliyorum")
+          ] %}
+          <figure class="donate-figure">
+            <div class="donate-figure-grid">
+              <svg class="icon" aria-hidden="true"><use href="/theme/images/icons.svg#check"></use></svg>
+              <p>{{ item }}</p>
+            </div>
+          </figure>
+          {% endfor %}
+        </article>
+
+        <!-- Bağış Seçenekleri -->
+        <article class="donate-options pico-card">
+          <header>
+            <h2><svg class="icon"><use href="/theme/images/icons.svg#hand-holding-heart"></use></svg> {{ _('Bağış Seçenekleri') }}</h2>
+          </header>
+          <div class="donate-options-grid">
+            {% if SOCIAL.bynogame %}
+            <a
+              href="{{ SOCIAL.bynogame }}"
+              class="donate-option papara-option"
+              data-tooltip="{{ _('Hızlı ve Güvenli Bağış') }}"
+              aria-label="{{ _('Hızlı ve Güvenli Bağış') }}"
+            >
+              <article class="donate-option-card">
+                <svg class="icon" aria-hidden="true"><use href="/theme/images/icons.svg#credit-card"></use></svg>
+                <h3>ByNoGame</h3>
+                <p>{{ _('Türk lirası ile hızlı bağış') }}</p>
+              </article>
+            </a>
+            {% endif %} {% if SOCIAL.github_sponsor %}
+            <a
+              href="https://github.com/sponsors/{{ SOCIAL.github_sponsor }}"
+              class="donate-option github-option"
+              data-tooltip="{{ _('Aylık Destek') }}"
+            >
+              <article class="donate-option-card">
+                <svg class="icon" aria-hidden="true"><use href="/theme/images/icons.svg#github"></use></svg>
+                <h3>GitHub Sponsors</h3>
+                <p>{{ _('Aylık düzenli destek') }}</p>
+              </article>
+            </a>
+            {% endif %}
+          </div>
+        </article>
+      </div>
+
+      <!-- Kripto Bölümü -->
+      <article class="crypto-section pico-card">
+        <header>
+          <h2><svg class="icon"><use href="/theme/images/icons.svg#coins"></use></svg> {{ _('Kripto Para Bağışları') }}</h2>
+        </header>
+
+        <article class="crypto-notice" aria-label="{{ _('Ağ bilgisi') }}">
+          <div class="crypto-notice-content">
+            <svg class="icon"><use href="/theme/images/icons.svg#circle-info"></use></svg>
+            <div>
+              <strong> <svg class="icon"><use href="/theme/images/icons.svg#exclamation-circle"></use></svg> {{ _('Önemli:') }}</strong>
+              <span>{{ _('Tüm adresler') }} <kbd>BSC / BEP20</kbd> {{ _('ağını kullanır.') }}</span>
+              <footer>
+                {{ _('Farklı ağlar için lütfen') }}
+                <a href="/hakkimda" role="button" class="outline"
+                  >{{ _('iletişime geçin') }}</a>
+              </footer>
+            </div>
+          </div>
+        </article>
+        
+        <hr>
+       <div class="crypto-grid">
+          {% for coin in [ {'name': 'Bitcoin (BTC)', 'id': 'btc',
+          'qr_code_image': 'btc.jpg'}, {'name': 'Ethereum (ETH)', 'id': 'eth',
+          'qr_code_image': 'eth.jpg'}, {'name': 'Litecoin (LTC)', 'id': 'ltc',
+          'qr_code_image': 'lite.jpg'}, {'name': 'Dogecoin (DOGE)', 'id':
+          'doge', 'qr_code_image': 'doge.jpg'}, {'name': 'Solana (SOL)', 'id':
+          'sol', 'qr_code_image': 'sol.jpg'}, {'name': 'Binance Coin (BNB)',
+          'id': 'bnb', 'qr_code_image': 'bnb.jpg'}, {'name': 'Tether (USDT)',
+          'id': 'usdt', 'qr_code_image': 'usdt.jpg'}, {'name': 'Ripple (XRP)',
+          'id': 'xrp', 'qr_code_image': 'xrp.jpg'}, {'name': 'Basic Attention
+          Token (BAT)', 'id': 'bat', 'qr_code_image': 'bat.jpg'} ] %}
+          <figure class="crypto-figure">
+            <img
+              src="{{ SITEURL }}/images/{{ coin.qr_code_image }}"
+              alt="{{ coin.name }}"
+              loading="lazy"
+              class="crypto-qr-image"
+              onclick="openModal('modal-{{ coin.id }}')"
+            />
+            <figcaption>{{ coin.name }}</figcaption>
+
+            <dialog id="modal-{{ coin.id }}" class="crypto-modal">
+              <article class="crypto-modal-article">
+                <header class="crypto-modal-header">
+                  <button
+                    class="close"
+                    aria-label="Close dialog"
+                    onclick="closeModal('modal-{{ coin.id }}')"
+                  >
+                    <svg class="icon"><use href="/theme/images/icons.svg#xmark"></use></svg>
+                  </button>
+                  <h3>{{ coin.name }}</h3>
+                </header>
+                <img
+                  src="{{ SITEURL }}/images/{{ coin.qr_code_image }}"
+                  alt="{{ coin.name }}"
+                  class="crypto-modal-image"
+                />
+              </article>
+            </dialog>
+          </figure>
+          {% endfor %}
+        </div>
+
+        <details class="crypto-details">
+          <summary><svg class="icon"><use href="/theme/images/icons.svg#wallet"></use></svg> {{ _('Cüzdan Adresini Göster') }}</summary>
+          <div class="crypto-address-container">
+            <kbd class="crypto-address">0x012e2a56828990ef0aa97de827297456aabccc63</kbd>
+            <button
+              class="outline copy-button"
+              onclick="copyToClipboard('0x012e2a56828990ef0aa97de827297456aabccc63')"
+            >
+              <svg class="icon"><use href="/theme/images/icons.svg#copy"></use></svg> {{ _('Kopyala') }}
+            </button>
+          </div>
+        </details>
+      </article>
+    </div>
+  </article>
+</div>
+
+<script>
+  // Modal işlemleri
+  function openModal(id) {
+    document.getElementById(id).showModal();
+  }
+
+  function closeModal(id) {
+    document.getElementById(id).close();
+  }
+
+  // Modal dışı tıklama ile kapatma
+  document.querySelectorAll("dialog").forEach((dialog) => {
+    dialog.addEventListener("click", (e) => {
+      if (e.target === dialog) dialog.close();
+    });
+  });
+
+  // Kopyalama işlemi
+  function copyToClipboard(text) {
+    navigator.clipboard.writeText(text).then(() => {
+      // Kopyalama işlemi başarılı
+      const button = event.target.closest('.copy-button');
+      const originalHTML = button.innerHTML;
+      button.innerHTML = '<svg class="icon"><use href="/theme/images/icons.svg#check"></use></svg> ' + '{{ _("Kopyalandı!") }}';
+      setTimeout(() => {
+        button.innerHTML = originalHTML;
+      }, 2000);
+    }).catch(err => {
+      console.error('{{ _("Kopyalama başarısız:") }}', err);
+    });
+  }
+</script>
+{% endblock content %}
