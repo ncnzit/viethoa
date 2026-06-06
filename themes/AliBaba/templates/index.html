@@ -77,46 +77,29 @@
         <div class="section-line"></div>
     </div>
     
-    <div class="articles-feed">
+    <div class="articles-feed feed-grid">
         {% for article in articles if article.slug != featured_slug %}
         {% if loop.index0 >= 2 and loop.index0 < 8 %}
-        <article class="feed-item">
+        <article class="feed-card">
             {% set feed_thumb = article.thumbnail|default(article.image|default('')) %}
             {% if feed_thumb %}
-            <a href="{{ SITEURL }}/{{ article.url }}" class="article-thumb feed-thumb">
+            <a href="{{ SITEURL }}/{{ article.url }}" class="feed-card-thumb">
                 <img src="{{ SITEURL }}{{ feed_thumb if feed_thumb.startswith('/') else '/' ~ feed_thumb }}" alt="{{ article.title }}" loading="lazy">
             </a>
             {% endif %}
-            <div class="feed-date">
-                <span class="day">{{ article.date.strftime('%d') }}</span>
-                <span class="month">{{ article.date.strftime('%b') }}</span>
-            </div>
-            <div class="feed-content">
-                <div class="feed-meta-top">
-                    <span class="feed-cat-badge">{{ article.category }}</span>
-                    {% if article.stats %}
-                    <span class="feed-stats">
-                        <svg class="icon"><use href="/theme/images/icons.svg#clock"></use></svg>
-                        {{ article.stats.read_mins }} {% if article.lang == 'vi' %}phút{% else %}min{% endif %}
-                        <span class="stats-sep"></span>
-                        <svg class="icon"><use href="/theme/images/icons.svg#file-alt"></use></svg>
-                        {{ article.stats.wc }} {% if article.lang == 'vi' %}từ{% else %}words{% endif %}
-                    </span>
-                    {% endif %}
+            <div class="feed-card-content">
+                <div class="feed-meta">
+                    <span class="feed-cat">{{ article.category }}</span>
+                    <span class="feed-date">{{ article.date.strftime('%d/%m/%Y') }}</span>
                 </div>
                 <h3 class="feed-title">
                     <a href="{{ SITEURL }}/{{ article.url }}">{{ article.title }}</a>
-                    {% if (current_date - article.date.date()).days < 7 %}
-                    <span class="new-badge">'MỚI'</span>
-                    {% endif %}
                 </h3>
-                <p class="feed-summary">{{ article.summary|striptags|truncate(150) }}</p>
             </div>
-            <div class="feed-arrow">&rarr;</div>
         </article>
-        {% if loop.index == 2 and GOOGLE_ADSENSE and PUBLISH %}
-        <div class="feed-ad">
-            <ins class="adsbygoogle"
+        {% endif %}
+        {% endfor %}
+    </div>
                  style="display:block; min-width: 100%;"
                  data-ad-format="fluid"
                  data-ad-layout-key="-fb+5w+4e-db+86"

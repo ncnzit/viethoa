@@ -21,7 +21,7 @@ document.addEventListener('DOMContentLoaded', () => {
         }
     };
 
-    const savedTheme = localStorage.getItem('theme') || (window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light');
+    const savedTheme = localStorage.getItem('theme') || 'dark';
     html.setAttribute('data-theme', savedTheme);
     updateThemeUI(savedTheme);
 

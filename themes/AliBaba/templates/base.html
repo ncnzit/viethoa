@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="{{ DEFAULT_LANG }}" data-theme="light">
+<html lang="{{ DEFAULT_LANG }}" data-theme="dark">
 <head>
     {% block head %}
     {% include 'includes/metadata.html' %}
@@ -16,6 +16,8 @@
     <link rel="stylesheet" href="{{ SITEURL_MAIN }}/theme/static/css/viethoa-custom.css">
 
     <!-- PWA & Mobile -->
+    <link rel="icon" type="image/png" href="{{ SITEURL_MAIN }}/images/AVT-NguyeZGaming.png">
+    <link rel="apple-touch-icon" href="{{ SITEURL_MAIN }}/images/AVT-NguyeZGaming.png">
     <link rel="manifest" href="{{ SITEURL_MAIN }}/site.webmanifest">
     <meta name="apple-mobile-web-app-title" content="{{ SITENAME }}">
     <meta name="application-name" content="{{ SITENAME }}">
@@ -37,7 +39,7 @@
         <!-- Sidebar -->
         <aside class="sidebar">
             <div class="sidebar-header">
-                <h1 class="site-title"><a href="{{ SITEURL }}/" aria-label="{{ SITENAME }} - {{ _('Home') }}">{{ SITENAME }}</a></h1>
+                <h1 class="site-title"><a href="{{ SITEURL }}/" aria-label="{{ SITENAME }}"><img src="{{ SITEURL }}/images/AVT-NguyeZGaming.png" alt="{{ SITENAME }}" style="width: 150px; height: auto;"></a></h1>
                 <p class="site-tagline">{{ SITETAGLINE }}</p>
                 <div style="margin-top: 1rem; display: flex; justify-content: center;">
                     <!-- Removed lang switcher -->
@@ -123,18 +125,7 @@
 
             <footer class="site-footer">
                 <div class="footer-inner">
-                <div class="footer-copyright">
-                    <p>&copy; 2026 <strong>{{ AUTHOR }}</strong>. {{ _('Bản quyền được bảo lưu.') }}</p>
-                    <p class="footer-tech">{{ _('Xây dựng bằng Pelican') }}</p>
-                </div>
-                <div class="footer-nav">
-                    <a href="{{ SITEURL }}/{{ _('tac-gia/') }}">{{ _('Tác giả') }}</a>
-                    <a href="{{ SITEURL }}/privacy-policy/">{{ _('Chính sách bảo mật') }}</a>
-                    <a href="{{ SITEURL }}/terms/">{{ _('Điều khoản sử dụng') }}</a>
-                    <a href="{{ SITEURL }}/feeds/all.atom.xml" target="_blank">{{ _('Atom Feed') }}</a>
-                    <a href="{{ SITEURL }}/feeds/all.rss.xml" target="_blank">{{ _('RSS') }}</a>
-                    <a href="https://donate.nguyez.com" target="_blank" style="color: var(--accent); font-weight: bold;">{{ _('Ủng hộ tôi (Donate)') }}</a>
-                </div>
+                    <p>&copy; 2026 nguyez. Bản quyền được bảo lưu.</p>
                 </div>
             </footer>
         </main>

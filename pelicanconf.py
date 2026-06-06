@@ -83,10 +83,10 @@ DISPLAY_CATEGORIES_ON_MENU = False
 
 NAVBAR_LINKS = [
     {"name": "Trang chủ", "url": "/", "target": "_self", "icon": "fa-solid fa-house"},
-    {"name": "Hướng dẫn", "url": "/gioi-thieu/", "target": "_self", "icon": "fa-solid fa-book"},
-    {"name": "Game Việt hoá", "url": "/danh-muc/", "target": "_self", "icon": "fa-solid fa-gamepad"},
+    {"name": "Hướng dẫn", "url": "/gioi-thieu/", "target": "_self", "icon": "fa-solid fa-file-lines"},
+    {"name": "Game Việt hoá", "url": "/tag/viet-hoa/", "target": "_self", "icon": "fa-solid fa-gamepad"},
     {"name": "Tìm kiếm", "url": "#", "target": "_self", "icon": "fa-solid fa-search"},
-    {"name": "Thẻ", "url": "/tags/", "target": "_self", "icon": "fa-solid fa-tag"},
+    {"name": "Thẻ", "url": "/tags/", "target": "_self", "icon": "fa-solid fa-tags"},
     {"name": "Ủng hộ", "url": "https://donate.nguyez.com/", "target": "_blank", "icon": "fa-solid fa-dollar-sign", "color": "#fbbf24"},
 ]
 MENUITEMS = [
