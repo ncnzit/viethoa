@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="vi" class="dark">
+<head>
+    <meta charset="UTF-8">
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://cdn.jsdelivr.net/npm/simplemde@1.11.2/dist/simplemde.min.js"></script>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/simplemde@1.11.2/dist/simplemde.min.css">
+    <script>tailwind.config = { darkMode: 'class' }</script>
+    <style>
+        .CodeMirror { background-color: #1f2937 !important; color: #f3f4f6 !important; }
+        .CodeMirror-gutters { background-color: #111827 !important; }
+        .editor-preview { background-color: #1f2937 !important; color: #f3f4f6 !important; }
+        .editor-preview-side { background-color: #1f2937 !important; }
+    </style>
+</head>
+<body class="bg-gray-900 text-gray-100 min-h-screen">
+    <div class="container mx-auto p-8">
+        <header class="flex justify-between items-center mb-8">
+            <h1 class="text-3xl font-bold">Tạo bài viết mới</h1>
+            <a href="/" class="text-blue-400 hover:text-blue-300">← Quay lại</a>
+        </header>
+        <form method="POST" class="space-y-6">
+            <div>
+                <label class="block text-sm font-medium mb-2">Tiêu đề bài viết</label>
+                <input type="text" name="title" required class="w-full bg-gray-800 border border-gray-700 rounded-lg p-3" placeholder="Nhập tiêu đề...">
+            </div>
+            <div>
+                <label class="block text-sm font-medium mb-2">Nội dung</label>
+                <textarea name="content" id="editor" class="w-full"></textarea>
+            </div>
+            <div class="flex gap-4">
+                <button type="submit" class="bg-green-600 px-6 py-2 rounded-lg hover:bg-green-700 font-medium">Tạo bài</button>
+                <a href="/" class="bg-gray-700 px-6 py-2 rounded-lg hover:bg-gray-600 font-medium">Hủy</a>
+            </div>
+        </form>
+    </div>
+    <script>
+        var simplemde = new SimpleMDE({
+            element: document.getElementById("editor"),
+            spellChecker: false,
+            autoDownloadFontAwesome: false,
+            toolbar: ["bold", "italic", "heading", "|", "quote", "unordered-list", "ordered-list", "|", "link", "image", "|", "preview", "side-by-side", "fullscreen"]
+        });
+    </script>
+</body>
+</html>

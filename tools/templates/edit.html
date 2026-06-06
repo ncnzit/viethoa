@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html lang="vi" class="dark">
+<head>
+    <meta charset="UTF-8">
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>tailwind.config = { darkMode: 'class' }</script>
+</head>
+<body class="bg-gray-900 text-gray-100 min-h-screen">
+    <div class="container mx-auto p-8">
+        <header class="flex justify-between items-center mb-8">
+            <h1 class="text-3xl font-bold">Chỉnh sửa: {{ filename }}</h1>
+            <a href="/" class="text-blue-400 hover:text-blue-300">← Quay lại</a>
+        </header>
+        <form method="POST" class="space-y-4">
+            <textarea name="content" class="w-full h-96 bg-gray-800 border border-gray-700 rounded-lg p-4 font-mono text-sm resize-none" spellcheck="false">{{ content }}</textarea>
+            <div class="flex gap-4">
+                <button type="submit" class="bg-green-600 px-6 py-2 rounded-lg hover:bg-green-700">Lưu</button>
+                <a href="/" class="bg-gray-700 px-6 py-2 rounded-lg hover:bg-gray-600">Hủy</a>
+            </div>
+        </form>
+    </div>
+</body>
+</html>

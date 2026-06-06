@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html lang="vi" class="dark">
+<head>
+    <meta charset="UTF-8">
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>tailwind.config = { darkMode: 'class' }</script>
+</head>
+<body class="bg-gray-900 text-gray-100 min-h-screen">
+    <div class="container mx-auto p-8">
+        <header class="flex justify-between items-center mb-8">
+            <h1 class="text-3xl font-bold">Quản lý bài viết</h1>
+            <a href="/new" class="bg-blue-600 px-4 py-2 rounded-lg hover:bg-blue-700">Tạo bài mới</a>
+        </header>
+        <div class="grid gap-4">
+            {% for article in articles %}
+            <div class="bg-gray-800 p-4 rounded-lg flex justify-between items-center border border-gray-700">
+                <span>{{ article }}</span>
+                <a href="/edit/{{ article }}" class="text-blue-400 hover:text-blue-300">Sửa</a>
+            </div>
+            {% endfor %}
+        </div>
+    </div>
+</body>
+</html>
