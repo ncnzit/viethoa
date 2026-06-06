@@ -1,11 +1,10 @@
-Title: Bản dịch tiếng Việt hoàn chỉnh
-Date: 2026-05-17
+Title: Test Thông tin bản Việt hoá
+Date: 2026-06-06 22:43
 Category: Game Việt hoá
 Tags: Hướng Dẫn, Việt Hoá
-Thumbnail: /images/1.jpg
-Slug: baldurs-gate-3-viet-hoa
+Slug: test-thong-tin-ban-viet-hoa
 
-Cộng đồng dịch hoàn thiện toàn bộ nội dung game, bao gồm dialogue và mô tả.
+Bản dịch hoàn chỉnh giao diện và văn bản với font tiếng Việt tối ưu.
 
 ## Thông tin bản Việt hoá
 
@@ -25,10 +24,4 @@ Bản Việt hoá này cung cấp trải nghiệm hoàn chỉnh với:
 
 ## Liên kết tải về
 
-- [GitHub Release](https://github.com/)
-- [Nexus Mods](https://www.nexusmods.com/)
-- [Discord Server](https://discord.gg/)
-
----
-
-*Cập nhật lần cuối: 06/06/2026*
+https://youtu.be/vLrsSRHGmwk

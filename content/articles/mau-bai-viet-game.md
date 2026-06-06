@@ -3,7 +3,6 @@ Date:
 Category: Mẫu bài
 Tags: Hướng Dẫn
 Thumbnail: /images/000 AVT.png
-Slug: mau-bai-viet-game
 
 Dùng mẫu này để đăng bài game sau này.
 
