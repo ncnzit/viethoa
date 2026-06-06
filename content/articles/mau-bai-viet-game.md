@@ -1,8 +1,9 @@
 Title: Mẫu bài viết game Việt hoá
 Date: 
 Category: Mẫu bài
-Tags: Template, Hướng dẫn
+Tags: Hướng dẫn
 Thumbnail: /images/000 AVT.png
+Slug: mau-bai-viet-game
 
 Dùng mẫu này để đăng bài game sau này.
 

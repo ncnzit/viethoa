@@ -1,10 +1,8 @@
 Title: Hướng dẫn cài đặt bản Việt hoá Game RPG
 Date: 2026-06-01
 Category: Game Việt hoá
-Tags: việt hoá, hướng dẫn, rpg
 Thumbnail: /images/1.jpg
 Slug: persona-3-reload-viet-hoa
-Status: published
 
 Cách cài đặt bản Việt hoá đầy đủ cho game RPG, bao gồm UI, subtitle, và các tính năng bổ sung.
 

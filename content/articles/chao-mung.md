@@ -1,11 +1,8 @@
 Title: Chào mừng đến với Việt Hoá Game
 Date: 2026-06-06
 Category: Thông báo
-Tags: Việt hoá, Game, Tổng hợp
-Slug: chao-mung
-Author: nguyez
 Thumbnail: /images/AVT-NguyeZGaming.png
-Summary: Trang tổng hợp các bản Việt hoá game, patch, thông tin nhóm dịch và hướng dẫn cài đặt.
+Slug: chao-mung
 
 Đây là bài viết mẫu đầu tiên cho website **Việt Hoá Game**.
 

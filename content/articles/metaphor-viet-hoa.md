@@ -1,10 +1,8 @@
 Title: Việt hoá game JRPG kinh điển
 Date: 2026-05-07
 Category: Game Việt hoá
-Tags: việt hoá, jrpg, dịch thuật
 Thumbnail: /images/3.jpg
 Slug: metaphor-viet-hoa
-Status: published
 
 Bản dịch đầy đủ từ nhóm dịch thuật Việt Nam chuyên nghiệp.
 

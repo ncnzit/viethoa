@@ -1,10 +1,8 @@
 Title: Bản dịch tiếng Việt hoàn chỉnh
 Date: 2026-05-17
 Category: Game Việt hoá
-Tags: việt hoá, dịch thuật, crpg
 Thumbnail: /images/1.jpg
 Slug: baldurs-gate-3-viet-hoa
-Status: published
 
 Cộng đồng dịch hoàn thiện toàn bộ nội dung game, bao gồm dialogue và mô tả.
 

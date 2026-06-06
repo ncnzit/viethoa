@@ -1,10 +1,8 @@
 Title: UI tiếng Việt cho game đối kháng
 Date: 2026-05-12
 Category: Game Việt hoá
-Tags: việt hoá, fighting, ui
 Thumbnail: /images/2.jpg
 Slug: tekken-8-viet-hoa
-Status: published
 
 Dự án Việt hoá giao diện game đối kháng với các mod trang trí độc đáo.
 

@@ -1,7 +1,7 @@
 Title: Test thử bài viết nào
 Date: 
 Category: Game Việt hoá
-Tags: việt hoá, action-rpg, patch
+Slug: final-fantasy-16-viet-hoa
 
 Bản dịch hoàn chỉnh giao diện và văn bản với font tiếng Việt tối ưu.
 
@@ -23,4 +23,4 @@ Bản Việt hoá này cung cấp trải nghiệm hoàn chỉnh với:
 
 ## Liên kết tải về
 
-https://viethoa.nguyez.com/gioi-thieu/
+https://youtu.be/vLrsSRHGmwk
