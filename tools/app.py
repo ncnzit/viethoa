@@ -40,6 +40,7 @@ def parse_markdown(filepath):
                 elif key == 'category': metadata['category'] = val
                 elif key == 'tags': metadata['tags'] = [t.strip() for t in val.split(',') if t.strip()]
                 elif key == 'thumbnail': metadata['thumbnail'] = val
+                elif key == 'slug': metadata['slug'] = val
             else:
                 body_start = i
                 break
@@ -60,6 +61,8 @@ def write_markdown(filepath, metadata, content):
             f.write(f"Tags: {tags_str}\n")
         if metadata.get('thumbnail'):
             f.write(f"Thumbnail: {metadata.get('thumbnail', '')}\n")
+        if metadata.get('slug'):
+            f.write(f"Slug: {metadata.get('slug', '')}\n")
         f.write("\n")
         f.write(normalized_content)
 
@@ -85,18 +88,19 @@ def index():
 def new():
     if request.method == 'POST':
         title = request.form['title']
-        slug = re.sub(r'[^a-zA-Z0-9-]', '', title.lower().replace(" ", "-"))
+        slug = request.form.get('slug', '').strip() or re.sub(r'[^a-zA-Z0-9-]', '', title.lower().replace(" ", "-"))
         filepath = os.path.join(CONTENT_DIR, f"{slug}.md")
         metadata = {
             'title': title,
             'date': request.form.get('date', datetime.now().strftime('%Y-%m-%d %H:%M')).replace('T', ' '),
             'category': request.form.get('category', 'Game Việt hoá'),
             'tags': [t.strip() for t in request.form.get('tags', '').split(',') if t.strip()],
-            'thumbnail': request.form.get('thumbnail', '')
+            'thumbnail': request.form.get('thumbnail', ''),
+            'slug': slug
         }
         write_markdown(filepath, metadata, request.form['content'])
         return redirect(url_for('index'))
-    return render_template('edit.html', is_new=True, filename="", content="", metadata={'date': datetime.now().strftime('%Y-%m-%dT%H:%M')})
+    return render_template('edit.html', is_new=True, filename="", content="", metadata={'date': datetime.now().strftime('%Y-%m-%dT%H:%M'), 'slug': ''})
 
 @app.route('/edit/<filename>', methods=['GET', 'POST'])
 def edit(filename):
@@ -107,7 +111,8 @@ def edit(filename):
             'date': request.form.get('date', '').replace('T', ' '),
             'category': request.form.get('category', 'Game Việt hoá'),
             'tags': [t.strip() for t in request.form.get('tags', '').split(',') if t.strip()],
-            'thumbnail': request.form.get('thumbnail', '')
+            'thumbnail': request.form.get('thumbnail', ''),
+            'slug': request.form.get('slug', '')
         }
         write_markdown(filepath, metadata, request.form['content'])
         return redirect(url_for('index'))
@@ -129,7 +134,7 @@ def git_push():
         commit_msg = f"Admin: Content update {datetime.now().strftime('%Y-%m-%d %H:%M')}"
         subprocess.run(["git", "commit", "-m", commit_msg], cwd=repo_dir, check=True, capture_output=True)
         subprocess.run(["git", "push"], cwd=repo_dir, check=True, capture_output=True)
-        return jsonify({'status': 'success', 'message': 'Đã đẩy lên website thành công!'}), 200
+        return jsonify({'status': 'success', 'message': 'Đẩy lên website thành công! GitHub Actions đang build...'}), 200
     except subprocess.CalledProcessError as e:
         return jsonify({'status': 'error', 'message': f'Lỗi Git: {str(e)}'}), 500
     except Exception as e:
