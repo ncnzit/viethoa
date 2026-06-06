@@ -75,3 +75,26 @@
     padding-top: 1rem;
     border-top: 1px solid var(--border-color);
 }
+
+/* === Yêu cầu chỉnh layout === */
+
+/* 1. app-container max-width */
+.app-container {
+    max-width: 1400px;
+    margin: 0 auto;
+}
+
+/* 2. Ẩn page-icon trong post/page */
+.page-icon {
+    display: none !important;
+}
+
+/* 3. page-card padding responsive */
+.page-card {
+    padding: clamp(1rem, 8vw, 3rem);
+}
+
+/* 4. sidebar border 4 cạnh thay vì chỉ border-right */
+.sidebar {
+    border: 1px solid var(--border-color);
+}
