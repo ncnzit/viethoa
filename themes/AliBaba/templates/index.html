@@ -17,12 +17,6 @@
     {% if featured_article %}
     <article class="bento-card hero-bento" style="grid-area: hero;">
         <div class="bento-badge">NỔI BẬT</div>
-        {% set hero_thumb = featured_article.thumbnail|default(featured_article.image|default('')) %}
-        {% if hero_thumb %}
-        <a href="{{ SITEURL }}/{{ featured_article.url }}" class="article-thumb hero-thumb">
-            <img src="{% if hero_thumb.startswith('http') %}{{ hero_thumb }}{% else %}{{ SITEURL }}{{ hero_thumb if hero_thumb.startswith('/') else '/' ~ hero_thumb }}{% endif %}" alt="{{ featured_article.title }}" loading="lazy">
-        </a>
-        {% endif %}
         <div class="bento-content">
             <h2 class="bento-title">
                 <a href="{{ SITEURL }}/{{ featured_article.url }}">{{ featured_article.title }}</a>
