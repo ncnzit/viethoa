@@ -1,5 +1,5 @@
-Title: Giới thiệu
-Date: 2026-06-06 21:21
+Title: Hướng Dẫn
+Date: 2026-06-06 21:35
 Category: Game Việt hoá
 
 **Trang Donate:** https://donate.nguyez.com

@@ -136,6 +136,7 @@ MARKDOWN = {
         "markdown.extensions.admonition": {},
         "markdown.extensions.attr_list": {},
         "markdown.extensions.footnotes": {},
+        "markdown.extensions.nl2br": {},
     },
     "output_format": "html5",
 }
