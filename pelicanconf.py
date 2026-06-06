@@ -78,14 +78,16 @@ THEME_STATIC_PATHS = ["static"]
 TEMPLATE_EXTENSIONS = [".html.j2", ".html"]
 BROWSER_COLOR = "#ef4444"
 PYGMENTS_STYLE = "dracula"
-DISPLAY_PAGES_ON_MENU = True
-DISPLAY_CATEGORIES_ON_MENU = True
+DISPLAY_PAGES_ON_MENU = False
+DISPLAY_CATEGORIES_ON_MENU = False
 
 NAVBAR_LINKS = [
     {"name": "Trang chủ", "url": "/", "target": "_self", "icon": "fa-solid fa-house"},
-    {"name": "Danh mục", "url": "/danh-muc/", "target": "_self", "icon": "fa-solid fa-folder"},
-    {"name": "Giới thiệu", "url": "/gioi-thieu/", "target": "_self", "icon": "fa-solid fa-user"},
-    {"name": "Ủng hộ", "url": "https://donate.nguyez.com/", "target": "_blank", "icon": "fa-solid fa-dollar-sign"},
+    {"name": "Hướng dẫn", "url": "/gioi-thieu/", "target": "_self", "icon": "fa-solid fa-book"},
+    {"name": "Game Việt hoá", "url": "/danh-muc/", "target": "_self", "icon": "fa-solid fa-gamepad"},
+    {"name": "Tìm kiếm", "url": "#", "target": "_self", "icon": "fa-solid fa-search"},
+    {"name": "Thẻ", "url": "/tags/", "target": "_self", "icon": "fa-solid fa-tag"},
+    {"name": "Ủng hộ", "url": "https://donate.nguyez.com/", "target": "_blank", "icon": "fa-solid fa-dollar-sign", "color": "#fbbf24"},
 ]
 MENUITEMS = [
     ("Trang chủ", "/"),

@@ -9,7 +9,7 @@
     <!-- Fonts -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&family=JetBrains+Mono:ital,wght@0,100..800;1,100..800&family=Outfit:wght@100..900&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Nunito+Sans:ital,opsz,wght@0,6..12,200..1000;1,6..12,200..1000&display=swap" rel="stylesheet">
 
     <!-- Styles -->
     <link rel="stylesheet" href="{{ SITEURL_MAIN }}/theme/css/main.css?v=25">
@@ -48,39 +48,22 @@
                 <ul>
                     {% for item in NAVBAR_LINKS %}
                     <li>
-                        <a href="{{ SITEURL }}{{ item.url }}" aria-label="{{ _(item.name) }}">
+                        {% if item.url == '#' %}
+                        <a href="#" class="search-trigger" aria-label="{{ item.name }}">
                             <svg class="icon"><use href="/theme/images/icons.svg#{{ item.icon.split(' ')[-1].replace('fa-', '') }}"></use></svg>
-                            <span>{{ _(item.name) }}</span>
-                        </a>
-                    </li>
-                    {% endfor %}
-                    
-                    <li>
-                        <a href="{{ SITEURL }}/{{ CATEGORIES_URL|default('kategoriler/') }}">
-                            <svg class="icon"><use href="/theme/images/icons.svg#folder"></use></svg>
-                            <span>{{ 'Danh mục' }}</span>
-                        </a>
-                    </li>
-                    <li>
-                        <a href="{{ SITEURL }}/{{ TAGS_URL|default('etiketler/') }}">
-                            <svg class="icon"><use href="/theme/images/icons.svg#tags"></use></svg>
-                            <span>{{ 'Thẻ' }}</span>
-                        </a>
-                    </li>
-                    <li>
-                        <a href="{{ SITEURL }}/{{ ARCHIVES_URL|default('arsiv/') }}">
-                            <svg class="icon"><use href="/theme/images/icons.svg#archive"></use></svg>
-                            <span>{{ _('Lưu trữ') }}</span>
-                        </a>
-                    </li>
-
-                    <li>
-                        <a href="#" class="search-trigger">
-                            <svg class="icon"><use href="/theme/images/icons.svg#search"></use></svg>
-                            <span>{{ _('Tìm kiếm') }}</span>
+                            <span>{{ item.name }}</span>
                             <kbd class="search-kbd">Ctrl K</kbd>
                         </a>
+                        {% else %}
+                        <a href="{% if item.url.startswith('http') %}{{ item.url }}{% else %}{{ SITEURL }}{{ item.url }}{% endif %}"
+                           target="{{ item.target }}" aria-label="{{ item.name }}"
+                           {% if item.color %}style="color: {{ item.color }}; font-weight: 700;"{% endif %}>
+                            <svg class="icon"><use href="/theme/images/icons.svg#{{ item.icon.split(' ')[-1].replace('fa-', '') }}"></use></svg>
+                            <span>{{ item.name }}</span>
+                        </a>
+                        {% endif %}
                     </li>
+                    {% endfor %}
 
                     <li>
                         <a href="#" id="theme-toggle-btn">

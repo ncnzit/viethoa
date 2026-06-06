@@ -5,7 +5,7 @@
 {% block content %}
 <header class="list-header">
     <h1 class="list-title">{{ author }}</h1>
-    <p class="list-count">{{ _('Bu yazar tarafından {articles_length} yazı bulundu').format(articles_length=articles|length) }}</p>
+    <p class="list-count">Tìm thấy {{ articles|length }} bài viết của tác giả này.</p>
 </header>
 
 <section class="articles-list">
