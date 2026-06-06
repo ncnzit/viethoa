@@ -1,20 +1,20 @@
 /* Layout Card */
 .articles-feed.feed-grid {
     display: grid;
-    grid-template-columns: repeat(auto-fill, minmax(300px, 1fr)); /* 3 columns for wider screens */
-    gap: 2rem;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 1.5rem;
     margin-top: 1rem;
 }
 
-@media (min-width: 1024px) {
+@media (max-width: 1024px) {
     .articles-feed.feed-grid {
-        grid-template-columns: repeat(3, 1fr); /* 3 columns on large screens */
+        grid-template-columns: repeat(2, 1fr);
     }
 }
 
-@media (min-width: 768px) and (max-width: 1023px) {
+@media (max-width: 768px) {
     .articles-feed.feed-grid {
-        grid-template-columns: repeat(2, 1fr); /* 2 columns on medium screens */
+        grid-template-columns: repeat(1, 1fr);
     }
 }
 
@@ -33,7 +33,7 @@
 
 .feed-card-thumb {
     display: block;
-    height: 160px;
+    aspect-ratio: 16 / 9;
     overflow: hidden;
 }
 
@@ -48,8 +48,6 @@
 }
 
 .feed-meta {
-    display: flex;
-    justify-content: space-between;
     font-size: 0.85rem;
     color: var(--text-secondary);
     margin-bottom: 0.75rem;
@@ -59,6 +57,7 @@
     font-size: 1.1rem;
     color: var(--text-primary);
     text-decoration: none;
+    font-weight: 600;
 }
 
 /* Hero Image - Giảm chiều cao */
