@@ -1,6 +1,7 @@
 Title: Bản dịch tiếng Việt hoàn chỉnh
 Date: 2026-05-17
 Category: Game Việt hoá
+Tags: Hướng Dẫn, Việt Hoá
 Thumbnail: /images/1.jpg
 Slug: baldurs-gate-3-viet-hoa
 

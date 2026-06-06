@@ -2,7 +2,7 @@ Title: Test thử bài viết nào
 Date: 
 Category: Game Việt hoá
 Tags: Việt Hoá
-Slug: final-fantasy-16-viet-hoa
+Slug: test
 
 Bản dịch hoàn chỉnh giao diện và văn bản với font tiếng Việt tối ưu.
 
