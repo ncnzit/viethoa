@@ -103,6 +103,7 @@ FEATURED_ARTICLE = {
 
 PLUGIN_PATHS = ["plugins"]
 PLUGINS = [
+    "plugins.i18n_subsites",
     "plugins.sitemap",
     "pelican.plugins.neighbors",
     "plugins.series",

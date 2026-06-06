@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="utf-8"?>
+<feed xmlns="http://www.w3.org/2005/Atom"><title>Việt Hoá Game</title><link href="https://viethoa.nguyez.com/" rel="alternate"/><link href="https://viethoa.nguyez.com/feeds/all-vi.atom.xml" rel="self"/><id>https://viethoa.nguyez.com/</id><updated>2026-06-06T00:00:00+07:00</updated><entry><title>Chào mừng đến với Việt Hoá Game</title><link href="https://viethoa.nguyez.com/chao-mung/" rel="alternate"/><published>2026-06-06T00:00:00+07:00</published><updated>2026-06-06T00:00:00+07:00</updated><author><name>nguyez</name></author><id>tag:viethoa.nguyez.com,2026-06-06:/chao-mung/</id><summary type="html">&lt;p&gt;Trang tổng hợp các bản Việt hoá game, patch, thông tin nhóm dịch và hướng dẫn cài đặt.&lt;/p&gt;</summary><content type="html">&lt;p&gt;&amp;Dstrok;&amp;acirc;y l&amp;agrave; b&amp;agrave;i viết mẫu &amp;dstrok;ầu ti&amp;ecirc;n cho website &lt;strong&gt;Việt Ho&amp;aacute; Game&lt;/strong&gt;.&lt;/p&gt;
+&lt;p&gt;Website sẽ d&amp;ugrave;ng &amp;dstrok;ể lưu trữ v&amp;agrave; giới thiệu:&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;bản Việt ho&amp;aacute; game&lt;/li&gt;
+&lt;li&gt;th&amp;ocirc;ng tin nền tảng&lt;/li&gt;
+&lt;li&gt;trạng th&amp;aacute;i bản dịch&lt;/li&gt;
+&lt;li&gt;link tải patch&lt;/li&gt;
+&lt;li&gt;ghi ch&amp;uacute; c&amp;agrave;i &amp;dstrok;ặt&lt;/li&gt;
+&lt;li&gt;ảnh minh hoạ v&amp;agrave; thumbnail&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;Sau khi ho&amp;agrave;n thiện giao diện, b&amp;agrave;i viết mới chỉ cần tạo file Markdown trong thư mục &lt;code&gt;content/articles/&lt;/code&gt;.&lt;/p&gt;</content><category term="Thông báo"/><category term="Việt hoá"/><category term="Game"/><category term="Tổng hợp"/></entry><entry><title>Mẫu bài viết game Việt hoá</title><link href="https://viethoa.nguyez.com/mau-bai-viet-game/" rel="alternate"/><published>2026-06-06T00:00:00+07:00</published><updated>2026-06-06T00:00:00+07:00</updated><author><name>nguyez</name></author><id>tag:viethoa.nguyez.com,2026-06-06:/mau-bai-viet-game/</id><summary type="html">&lt;p&gt;Mẫu cấu trúc bài viết cho từng game Việt hoá.&lt;/p&gt;</summary><content type="html">&lt;p&gt;D&amp;ugrave;ng mẫu n&amp;agrave;y &amp;dstrok;ể &amp;dstrok;&amp;abreve;ng b&amp;agrave;i game sau n&amp;agrave;y.&lt;/p&gt;
+&lt;h2 id="thong-tin-game"&gt;Th&amp;ocirc;ng tin game&lt;a class="headerlink" href="#thong-tin-game" title="Permanent link"&gt;#&lt;/a&gt;&lt;/h2&gt;
+&lt;ul&gt;
+&lt;li&gt;T&amp;ecirc;n game: T&amp;ecirc;n game&lt;/li&gt;
+&lt;li&gt;Nền tảng: PC / PS1 / PS2 / Switch / Android&lt;/li&gt;
+&lt;li&gt;Trạng th&amp;aacute;i Việt ho&amp;aacute;: &amp;Dstrok;ang thực hiện / Ho&amp;agrave;n th&amp;agrave;nh&lt;/li&gt;
+&lt;li&gt;Phi&amp;ecirc;n bản patch: 1.0&lt;/li&gt;
+&lt;li&gt;Nh&amp;oacute;m thực hiện: T&amp;ecirc;n nh&amp;oacute;m&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h2 id="link-tai"&gt;Link tải&lt;a class="headerlink" href="#link-tai" title="Permanent link"&gt;#&lt;/a&gt;&lt;/h2&gt;
+&lt;p&gt;&amp;Dstrok;ặt link tải patch ở &amp;dstrok;&amp;acirc;y.&lt;/p&gt;
+&lt;h2 id="huong-dan-cai-at"&gt;Hướng dẫn c&amp;agrave;i &amp;dstrok;ặt&lt;a class="headerlink" href="#huong-dan-cai-at" title="Permanent link"&gt;#&lt;/a&gt;&lt;/h2&gt;
+&lt;p&gt;Viết hướng dẫn c&amp;agrave;i &amp;dstrok;ặt bản Việt ho&amp;aacute; ở &amp;dstrok;&amp;acirc;y.&lt;/p&gt;</content><category term="Mẫu bài"/><category term="Template"/><category term="Hướng dẫn"/></entry></feed>
