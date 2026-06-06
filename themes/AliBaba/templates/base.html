@@ -96,9 +96,9 @@
                 <div class="social-links">
                     {% if SOCIAL %}
                     {% for name, value in SOCIAL.items() %}
+                    {% if name != 'github' %}
                     {% set icon_id = name.replace('_sponsor', '').replace('x', 'x-twitter') %}
                     {% set href_prefix = {
-                        'github': 'https://github.com/',
                         'discord': 'https://discord.com/users/',
                         'instagram': 'https://instagram.com/',
                         'youtube': 'https://www.youtube.com/@',
@@ -115,8 +115,13 @@
                        title="{{ name }}" target="_blank" rel="noopener noreferrer">
                         <svg class="icon"><use href="/theme/images/icons.svg#{{ 'credit-card' if name == 'bynogame' else icon_id }}"></use></svg>
                     </a>
+                    {% endif %}
                     {% endfor %}
                     {% endif %}
+                    <!-- Donate Link -->
+                    <a href="https://donate.nguyez.com/" title="Donate" target="_blank" rel="noopener noreferrer">
+                        <svg class="icon"><use href="/theme/images/icons.svg#dollar-sign"></use></svg>
+                    </a>
                 </div>
             </div>
         </aside>
@@ -135,21 +140,18 @@
 
             <footer class="site-footer">
                 <div class="footer-inner">
-                    <div class="footer-copyright">
-                        <p>&copy; {{ current_year }} <strong>{{ AUTHOR }}</strong>. {{ _('Bản quyền được bảo lưu.') }}</p>
-                        <p class="footer-tech">{{ _('Xây dựng bằng') }} {{ _('Pelican') }}</p>
-                    </div>
-                    <div class="footer-nav">
-                        <a href="{{ SITEURL }}/{{ _('tac-gia/') }}">{{ _('Tác giả') }}</a>
-                        <span class="footer-sep"></span>
-                        <a href="{{ SITEURL }}/privacy-policy/">{{ _('Chính sách bảo mật') }}</a>
-                        <span class="footer-sep"></span>
-                        <a href="{{ SITEURL }}/terms/">{{ _('Điều khoản sử dụng') }}</a>
-                        <span class="footer-sep"></span>
-                        <a href="{{ SITEURL }}/feeds/all.atom.xml" target="_blank">{{ _('Atom Feed') }}</a>
-                        <span class="footer-sep"></span>
-                        <a href="{{ SITEURL }}/feeds/all.rss.xml" target="_blank">{{ _('RSS') }}</a>
-                    </div>
+                <div class="footer-copyright">
+                    <p>&copy; 2026 <strong>{{ AUTHOR }}</strong>. {{ _('Bản quyền được bảo lưu.') }}</p>
+                    <p class="footer-tech">{{ _('Xây dựng bằng Pelican') }}</p>
+                </div>
+                <div class="footer-nav">
+                    <a href="{{ SITEURL }}/{{ _('tac-gia/') }}">{{ _('Tác giả') }}</a>
+                    <a href="{{ SITEURL }}/privacy-policy/">{{ _('Chính sách bảo mật') }}</a>
+                    <a href="{{ SITEURL }}/terms/">{{ _('Điều khoản sử dụng') }}</a>
+                    <a href="{{ SITEURL }}/feeds/all.atom.xml" target="_blank">{{ _('Atom Feed') }}</a>
+                    <a href="{{ SITEURL }}/feeds/all.rss.xml" target="_blank">{{ _('RSS') }}</a>
+                    <a href="https://donate.nguyez.com" target="_blank" style="color: var(--accent); font-weight: bold;">{{ _('Ủng hộ tôi (Donate)') }}</a>
+                </div>
                 </div>
             </footer>
         </main>
