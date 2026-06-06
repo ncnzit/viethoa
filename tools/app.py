@@ -1,5 +1,6 @@
 import os
 import re
+import json
 import subprocess
 from flask import Flask, render_template, request, redirect, url_for, jsonify
 from datetime import datetime
@@ -100,7 +101,10 @@ def new():
         }
         write_markdown(filepath, metadata, request.form['content'])
         return redirect(url_for('index'))
-    return render_template('edit.html', is_new=True, filename="", content="", metadata={'date': datetime.now().strftime('%Y-%m-%dT%H:%M'), 'slug': ''})
+    all_tags = set()
+    for _, meta, _ in get_all_articles_meta():
+        for t in meta['tags']: all_tags.add(t)
+    return render_template('edit.html', is_new=True, filename="", content="", metadata={'date': datetime.now().strftime('%Y-%m-%dT%H:%M'), 'slug': ''}, all_tags=sorted(list(all_tags)))
 
 @app.route('/edit/<filename>', methods=['GET', 'POST'])
 def edit(filename):
@@ -119,7 +123,10 @@ def edit(filename):
         return redirect(url_for('index'))
     metadata, content = parse_markdown(filepath)
     if ' ' in metadata['date']: metadata['date'] = metadata['date'].replace(' ', 'T')
-    return render_template('edit.html', is_new=False, filename=filename, content=content, metadata=metadata)
+    all_tags = set()
+    for _, meta, _ in get_all_articles_meta():
+        for t in meta['tags']: all_tags.add(t)
+    return render_template('edit.html', is_new=False, filename=filename, content=content, metadata=metadata, all_tags=sorted(list(all_tags)))
 
 @app.route('/delete/<filename>', methods=['POST'])
 def delete(filename):
@@ -198,6 +205,22 @@ def delete_tag():
             if tag in meta['tags']:
                 meta['tags'] = [t for t in meta['tags'] if t != tag]
                 write_markdown(filepath, meta, content)
+    return redirect(url_for('tags'))
+
+@app.route('/tags/add', methods=['POST'])
+def add_tag():
+    new_tag = request.form['new_tag'].strip()
+    if new_tag:
+        # Lưu tag vào file JSON để dùng làm gợi ý
+        tags_file = os.path.join(os.path.dirname(__file__), 'custom_tags.json')
+        custom_tags = []
+        if os.path.exists(tags_file):
+            with open(tags_file, 'r', encoding='utf-8') as f:
+                custom_tags = json.load(f)
+        if new_tag not in custom_tags:
+            custom_tags.append(new_tag)
+            with open(tags_file, 'w', encoding='utf-8') as f:
+                json.dump(custom_tags, f, ensure_ascii=False, indent=2)
     return redirect(url_for('tags'))
 
 def get_all_articles_meta():
