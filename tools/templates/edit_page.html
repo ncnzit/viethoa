@@ -13,9 +13,17 @@
         .editor-preview { background-color: #1f2937 !important; color: #f3f4f6 !important; }
         .editor-preview-side { background-color: #1f2937 !important; border-left: 1px solid #374151 !important; }
         .CodeMirror-cursor { border-left: 1px solid #60a5fa !important; }
-        .editor-toolbar { background-color: #374151 !important; border: 1px solid #4b5563 !important; border-bottom: none !important; }
+        .editor-toolbar {
+            background-color: #374151 !important;
+            border: 1px solid #4b5563 !important;
+            border-bottom: none !important;
+            opacity: 1 !important;
+        }
         .editor-toolbar button { color: #f9fafb !important; border: none !important; }
-        .editor-toolbar button:hover, .editor-toolbar button.active { background-color: #2563eb !important; }
+        .editor-toolbar button i, .editor-toolbar a i, .editor-toolbar a::before, .editor-toolbar button::before { color: #f9fafb !important; }
+        .editor-toolbar a { color: #f9fafb !important; }
+        .editor-toolbar button:hover, .editor-toolbar button.active { background-color: #2563eb !important; border-color: #2563eb !important; }
+        .editor-toolbar i.separator { border-left: 1px solid #6b7280 !important; border-right: 1px solid #4b5563 !important; }
     </style>
 </head>
 <body class="bg-gray-950 text-gray-100 min-h-screen">
@@ -26,7 +34,10 @@
                 <a href="/" class="flex items-center gap-3 px-4 py-2 rounded-lg hover:bg-gray-800 transition">
                     <i class="fas fa-list w-4"></i> Tất cả bài viết
                 </a>
-                <a href="/pages" class="flex items-center gap-3 px-4 py-2 rounded-lg hover:bg-gray-800 transition">
+                <a href="/new" class="flex items-center gap-3 px-4 py-2 rounded-lg hover:bg-gray-800 transition">
+                    <i class="fas fa-plus w-4"></i> Tạo bài mới
+                </a>
+                <a href="/pages" class="flex items-center gap-3 px-4 py-2 rounded-lg bg-blue-600 hover:bg-blue-700 transition">
                     <i class="fas fa-file w-4"></i> Quản lý Pages
                 </a>
                 <a href="/tags" class="flex items-center gap-3 px-4 py-2 rounded-lg hover:bg-gray-800 transition">
@@ -43,7 +54,7 @@
         <main class="flex-1 overflow-auto p-8">
             <header class="mb-8 flex justify-between items-center">
                 <div>
-                    <h2 class="text-3xl font-bold">Chỉnh sửa: {{ filename }}</h2>
+                    <h2 class="text-3xl font-bold">Chỉnh sửa Page: {{ filename }}</h2>
                 </div>
                 <div class="flex items-center gap-3">
                     <a href="https://viethoa.nguyez.com/{{ metadata.get('slug', '') }}/" target="_blank" class="flex items-center gap-2 px-4 py-2 bg-green-700 hover:bg-green-600 rounded-lg text-sm transition">
@@ -81,7 +92,7 @@
     <script>
         var simplemde = new SimpleMDE({
             element: document.getElementById("editor"),
-            toolbar: ["bold", "italic", "heading", "|", "quote", "unordered-list", "|", "link", "|", "preview", "side-by-side"]
+            toolbar: ["bold", "italic", "heading", "|", "quote", "unordered-list", "ordered-list", "|", "link", "image", "|", "preview", "side-by-side", "fullscreen"]
         });
     </script>
 </body>
