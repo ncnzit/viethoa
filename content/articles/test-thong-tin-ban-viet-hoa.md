@@ -1,7 +1,7 @@
 Title: Test Thông tin bản Việt hoá
 Date: 2026-06-06 22:43
 Category: Game Việt hoá
-Tags: Hướng Dẫn, Việt Hoá
+Tags: Hướng Dẫn, Việt Hoá, Nổi Bật
 Thumbnail: https://img.youtube.com/vi/vLrsSRHGmwk/maxresdefault.jpg
 Slug: test-thong-tin-ban-viet-hoa
 
