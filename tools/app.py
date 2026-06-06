@@ -1,5 +1,6 @@
 import os
 import re
+import subprocess
 from flask import Flask, render_template, request, redirect, url_for, jsonify
 from datetime import datetime
 from werkzeug.utils import secure_filename
@@ -10,42 +11,26 @@ IMAGE_UPLOAD_FOLDER = os.path.abspath(os.path.join(os.path.dirname(__file__), '.
 PAGES_DIR = os.path.abspath(os.path.join(os.path.dirname(__file__), '..', 'content', 'pages'))
 ALLOWED_EXTENSIONS = {'png', 'jpg', 'jpeg', 'gif'}
 
-# Tạo thư mục nếu chưa có
 os.makedirs(CONTENT_DIR, exist_ok=True)
 os.makedirs(IMAGE_UPLOAD_FOLDER, exist_ok=True)
 os.makedirs(PAGES_DIR, exist_ok=True)
 
 def allowed_file(filename):
-    return '.' in filename and \
-           filename.rsplit('.', 1)[1].lower() in ALLOWED_EXTENSIONS
+    return '.' in filename and filename.rsplit('.', 1)[1].lower() in ALLOWED_EXTENSIONS
 
 def parse_markdown(filepath):
-    """Phân tích metadata và nội dung từ file Markdown"""
-    metadata = {
-        'title': '',
-        'date': '',
-        'category': 'Game Việt hoá',
-        'tags': [],
-        'thumbnail': '',
-        'slug': os.path.splitext(os.path.basename(filepath))[0]
-    }
-    
-    if not os.path.exists(filepath):
-        return metadata, ""
-
+    metadata = {'title':'','date':'','category':'Game Việt hoá','tags':[],'thumbnail':'','slug':os.path.splitext(os.path.basename(filepath))[0]}
+    if not os.path.exists(filepath): return metadata, ""
     try:
-        with open(filepath, 'r', encoding='utf-8') as f:
+        with open(filepath,'r',encoding='utf-8') as f:
             raw_content = f.read()
-        lines = raw_content.replace('\r\n', '\n').split('\n')
-        
-        # Đọc phần đầu (metadata)
+        lines = raw_content.replace('\r\n','\n').split('\n')
         body_start = 0
         for i, line in enumerate(lines):
             line_str = line.strip()
             if not line_str and i > 0:
                 body_start = i
                 break
-            
             match = re.match(r'^([a-zA-Z0-9_-]+)\s*:\s*(.*)$', line_str)
             if match:
                 key = match.group(1).lower()
@@ -58,21 +43,16 @@ def parse_markdown(filepath):
             else:
                 body_start = i
                 break
-                
         content = "\n".join(lines[body_start:])
     except Exception as e:
         content = ""
         print(f"Error parsing {filepath}: {e}")
-        
     return metadata, content.strip()
 
 def write_markdown(filepath, metadata, content):
-    """Ghi metadata và nội dung vào file Markdown"""
-    # Chuẩn hóa newline từ input form trước khi ghi
-    normalized_content = content.replace('\r\n', '\n')
-
+    normalized_content = content.replace('\r\n','\n')
     tags_str = ", ".join(metadata.get('tags', []))
-    with open(filepath, 'w', encoding='utf-8') as f:
+    with open(filepath,'w',encoding='utf-8') as f:
         f.write(f"Title: {metadata.get('title', '')}\n")
         f.write(f"Date: {metadata.get('date', datetime.now().strftime('%Y-%m-%d %H:%M'))}\n")
         f.write(f"Category: {metadata.get('category', 'Game Việt hoá')}\n")
@@ -85,8 +65,7 @@ def write_markdown(filepath, metadata, content):
 
 @app.route('/')
 def index():
-    if not os.path.exists(CONTENT_DIR):
-        os.makedirs(CONTENT_DIR, exist_ok=True)
+    if not os.path.exists(CONTENT_DIR): os.makedirs(CONTENT_DIR, exist_ok=True)
     files = [f for f in os.listdir(CONTENT_DIR) if f.endswith('.md')]
     articles_data = []
     all_tags = set()
@@ -133,7 +112,6 @@ def edit(filename):
         write_markdown(filepath, metadata, request.form['content'])
         return redirect(url_for('index'))
     metadata, content = parse_markdown(filepath)
-    # Chuyển đổi định dạng ngày cho input
     if ' ' in metadata['date']: metadata['date'] = metadata['date'].replace(' ', 'T')
     return render_template('edit.html', is_new=False, filename=filename, content=content, metadata=metadata)
 
@@ -142,6 +120,20 @@ def delete(filename):
     filepath = os.path.join(CONTENT_DIR, filename)
     if os.path.exists(filepath): os.remove(filepath)
     return redirect(url_for('index'))
+
+@app.route('/git_push', methods=['POST'])
+def git_push():
+    try:
+        repo_dir = os.path.abspath(os.path.join(os.path.dirname(__file__), '..'))
+        subprocess.run(["git", "add", "."], cwd=repo_dir, check=True, capture_output=True)
+        commit_msg = f"Admin: Content update {datetime.now().strftime('%Y-%m-%d %H:%M')}"
+        subprocess.run(["git", "commit", "-m", commit_msg], cwd=repo_dir, check=True, capture_output=True)
+        subprocess.run(["git", "push"], cwd=repo_dir, check=True, capture_output=True)
+        return jsonify({'status': 'success', 'message': 'Đã đẩy lên website thành công!'}), 200
+    except subprocess.CalledProcessError as e:
+        return jsonify({'status': 'error', 'message': f'Lỗi Git: {str(e)}'}), 500
+    except Exception as e:
+        return jsonify({'status': 'error', 'message': f'Lỗi hệ thống: {str(e)}'}), 500
 
 @app.route('/upload_image', methods=['POST'])
 def upload_image():
@@ -153,7 +145,6 @@ def upload_image():
         return jsonify({'url': f'/images/{filename}'}), 200
     return jsonify({'error': 'Invalid file'}), 400
 
-# ============== QUẢN LÝ PAGES ==============
 @app.route('/pages')
 def pages():
     files = [f for f in os.listdir(PAGES_DIR) if f.endswith('.md')]

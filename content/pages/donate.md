@@ -1,8 +1,8 @@
 Title: Trang Donate - Ủng hộ
-Date: 2026-06-06 20:46
+Date: 2026-06-06 20:49
 Category: Game Việt hoá
 
-**Trang Donate:** https://donate.nguyez.com
+**Trang Donate:** [https://donate.nguyez.com](http://https://donate.nguyez.com)
 
 Các bản Việt hóa trên kênh sẽ có **Miễn phí** và **Thu phí**
 - Miễn phí (Free) thì tải và sử dụng thoải mái.
