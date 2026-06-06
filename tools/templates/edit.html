@@ -10,14 +10,41 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <style>
         .CodeMirror { background-color: #1f2937 !important; color: #f3f4f6 !important; border: 1px solid #374151 !important; }
-        .CodeMirror-gutters { background-color: #111827 !important; }
+        .CodeMirror-gutters { background-color: #111827 !important; border-right: 1px solid #374151 !important; }
         .editor-preview { background-color: #1f2937 !important; color: #f3f4f6 !important; }
-        .editor-preview-side { background-color: #1f2937 !important; }
+        .editor-preview-side { background-color: #1f2937 !important; border-left: 1px solid #374151 !important; }
         .CodeMirror-cursor { border-left: 1px solid #60a5fa !important; }
-        .editor-toolbar { background-color: #111827 !important; border-bottom: 1px solid #374151 !important; }
-        .editor-toolbar button { color: #d1d5db !important; }
-        .editor-toolbar button:hover { background-color: #374151 !important; }
-        .editor-toolbar i { color: #d1d5db !important; }
+        /* Toolbar: nền sáng hơn + icon trắng rõ ràng */
+        .editor-toolbar {
+            background-color: #374151 !important;
+            border: 1px solid #4b5563 !important;
+            border-bottom: none !important;
+            opacity: 1 !important;
+        }
+        .editor-toolbar button {
+            color: #f9fafb !important;
+            border: none !important;
+        }
+        .editor-toolbar button i,
+        .editor-toolbar a i,
+        .editor-toolbar a::before,
+        .editor-toolbar button::before {
+            color: #f9fafb !important;
+        }
+        .editor-toolbar a {
+            color: #f9fafb !important;
+        }
+        .editor-toolbar button:hover,
+        .editor-toolbar button.active {
+            background-color: #2563eb !important;
+            border-color: #2563eb !important;
+        }
+        .editor-toolbar i.separator {
+            border-left: 1px solid #6b7280 !important;
+            border-right: 1px solid #4b5563 !important;
+        }
+        .editor-toolbar.fullscreen { background-color: #374151 !important; }
+        .editor-statusbar { color: #9ca3af !important; }
     </style>
 </head>
 <body class="bg-gray-950 text-gray-100 min-h-screen">
@@ -30,11 +57,17 @@
                     <i class="fas fa-list w-4"></i> Tất cả bài viết
                 </a>
                 <a href="/new" class="flex items-center gap-3 px-4 py-2 rounded-lg {% if is_new %}bg-blue-600{% else %}hover:bg-gray-800{% endif %} transition">
-                    <i class="fas fa-plus w-4"></i> {% if is_new %}Tạo bài mới{% else %}Tạo bài mới{% endif %}
+                    <i class="fas fa-plus w-4"></i> Tạo bài mới
+                </a>
+                <a href="/tags" class="flex items-center gap-3 px-4 py-2 rounded-lg hover:bg-gray-800 transition">
+                    <i class="fas fa-tags w-4"></i> Quản lý thẻ
                 </a>
             </nav>
-            <div class="text-xs text-gray-500 border-t border-gray-800 pt-4">
-                Việt Hoá Game Admin v1.0
+            <div class="space-y-2 border-t border-gray-800 pt-4">
+                <a href="https://viethoa.nguyez.com/" target="_blank" class="flex items-center gap-3 px-4 py-2 rounded-lg bg-green-700 hover:bg-green-600 transition text-sm">
+                    <i class="fas fa-globe w-4"></i> Xem website
+                </a>
+                <div class="text-xs text-gray-500 pt-2">Việt Hoá Game Admin v1.1</div>
             </div>
         </aside>
 
@@ -47,9 +80,16 @@
                             <h2 class="text-3xl font-bold">{% if is_new %}Tạo bài viết mới{% else %}Chỉnh sửa: {{ filename }}{% endif %}</h2>
                             <p class="text-gray-400 mt-1">{% if is_new %}Viết bài mới cho trang Việt Hoá Game{% else %}Cập nhật bài viết hiện có{% endif %}</p>
                         </div>
-                        <a href="/" class="text-gray-400 hover:text-gray-300 flex items-center gap-2">
-                            <i class="fas fa-arrow-left"></i> Quay lại
-                        </a>
+                        <div class="flex items-center gap-3">
+                            {% if not is_new %}
+                            <a href="https://viethoa.nguyez.com/{{ metadata.get('slug', '') }}/" target="_blank" class="flex items-center gap-2 px-4 py-2 bg-green-700 hover:bg-green-600 rounded-lg text-sm transition">
+                                <i class="fas fa-eye"></i> Xem bài viết
+                            </a>
+                            {% endif %}
+                            <a href="/" class="text-gray-400 hover:text-gray-300 flex items-center gap-2">
+                                <i class="fas fa-arrow-left"></i> Quay lại
+                            </a>
+                        </div>
                     </div>
                 </header>
 

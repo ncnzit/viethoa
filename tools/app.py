@@ -153,5 +153,56 @@ def delete(filename):
         os.remove(filepath)
     return redirect(url_for('index'))
 
+
+# ============== QUẢN LÝ THẺ (TAGS) ==============
+
+def get_all_articles_meta():
+    """Lấy metadata + content tất cả bài viết"""
+    files = [f for f in os.listdir(CONTENT_DIR) if f.endswith('.md')]
+    result = []
+    for f in files:
+        filepath = os.path.join(CONTENT_DIR, f)
+        meta, content = parse_markdown(filepath)
+        result.append((filepath, meta, content))
+    return result
+
+@app.route('/tags')
+def tags():
+    """Trang quản lý thẻ — đếm số bài viết mỗi thẻ"""
+    tag_counts = {}
+    for filepath, meta, content in get_all_articles_meta():
+        for t in meta['tags']:
+            tag_counts[t] = tag_counts.get(t, 0) + 1
+    # Sắp xếp theo số bài giảm dần
+    tags_sorted = sorted(tag_counts.items(), key=lambda x: (-x[1], x[0]))
+    return render_template('tags.html', tags=tags_sorted)
+
+@app.route('/tags/rename', methods=['POST'])
+def rename_tag():
+    """Đổi tên thẻ trên toàn bộ bài viết"""
+    old_tag = request.form['old_tag'].strip()
+    new_tag = request.form['new_tag'].strip()
+    if old_tag and new_tag:
+        for filepath, meta, content in get_all_articles_meta():
+            if old_tag in meta['tags']:
+                meta['tags'] = [new_tag if t == old_tag else t for t in meta['tags']]
+                # Loại bỏ trùng lặp giữ thứ tự
+                seen = set()
+                meta['tags'] = [t for t in meta['tags'] if not (t in seen or seen.add(t))]
+                write_markdown(filepath, meta, content)
+    return redirect(url_for('tags'))
+
+@app.route('/tags/delete', methods=['POST'])
+def delete_tag():
+    """Xoá thẻ khỏi toàn bộ bài viết"""
+    tag = request.form['tag'].strip()
+    if tag:
+        for filepath, meta, content in get_all_articles_meta():
+            if tag in meta['tags']:
+                meta['tags'] = [t for t in meta['tags'] if t != tag]
+                write_markdown(filepath, meta, content)
+    return redirect(url_for('tags'))
+
+
 if __name__ == '__main__':
     app.run(debug=True, port=5000)
