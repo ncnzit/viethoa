@@ -83,15 +83,17 @@ DISPLAY_CATEGORIES_ON_MENU = True
 
 NAVBAR_LINKS = [
     {"name": "Trang chủ", "url": "/", "target": "_self", "icon": "fa-solid fa-house"},
+    {"name": "Danh mục", "url": "/danh-muc/", "target": "_self", "icon": "fa-solid fa-folder"},
+    {"name": "Donate", "url": "https://donate.nguyez.com", "target": "_blank", "icon": "fa-solid fa-hand-holding-heart"},
+    {"name": "Trang chủ", "url": "/", "target": "_self", "icon": "fa-solid fa-house"},
     {"name": "Giới thiệu", "url": "/gioi-thieu/", "target": "_self", "icon": "fa-solid fa-user"},
     {"name": "Donate", "url": "https://donate.nguyez.com", "target": "_blank", "icon": "fa-solid fa-hand-holding-heart"},
 ]
 MENUITEMS = [
     ("Trang chủ", "/"),
     ("Danh mục", "/danh-muc/"),
-    ("Tags", "/tags/"),
+    ("Thẻ", "/tags/"),
     ("Lưu trữ", "/luu-tru/"),
-    ("Donate", "https://donate.nguyez.com"),
 ]
 FEATURED_ARTICLE = {
     "title": "Chào mừng đến với Việt Hoá Game",

@@ -40,7 +40,7 @@
                 <h1 class="site-title"><a href="{{ SITEURL }}/" aria-label="{{ SITENAME }} - {{ _('Home') }}">{{ SITENAME }}</a></h1>
                 <p class="site-tagline">{{ SITETAGLINE }}</p>
                 <div style="margin-top: 1rem; display: flex; justify-content: center;">
-                    {% include 'partials/lang_switcher.html' %}
+                    <!-- Removed lang switcher -->
                 </div>
             </div>
 
@@ -58,13 +58,13 @@
                     <li>
                         <a href="{{ SITEURL }}/{{ CATEGORIES_URL|default('kategoriler/') }}">
                             <svg class="icon"><use href="/theme/images/icons.svg#folder"></use></svg>
-                            <span>{{ _('Categories') }}</span>
+                            <span>{{ 'Danh mục' }}</span>
                         </a>
                     </li>
                     <li>
                         <a href="{{ SITEURL }}/{{ TAGS_URL|default('etiketler/') }}">
                             <svg class="icon"><use href="/theme/images/icons.svg#tags"></use></svg>
-                            <span>{{ _('Tags') }}</span>
+                            <span>{{ 'Thẻ' }}</span>
                         </a>
                     </li>
                     <li>
@@ -128,7 +128,7 @@
                     <svg class="icon"><use href="/theme/images/icons.svg#menu"></use></svg>
                 </button>
                 <h2 class="mobile-title" style="margin: 0 auto 0 1rem; font-size: 1.2rem;">{{ SITENAME }}</h2>
-                {% include 'partials/lang_switcher.html' %}
+                <!-- Removed lang switcher -->
             </header>
 
             {% block content %}{% endblock %}
@@ -140,7 +140,7 @@
                         <p class="footer-tech">{{ _('Pelican') }} {{ _('ile geliştirildi.') }}</p>
                     </div>
                     <div class="footer-nav">
-                        <a href="{{ SITEURL }}/{{ _('yazarlar/') }}">{{ _('Yazarlar') }}</a>
+                        <a href="{{ SITEURL }}/{{ _('yazarlar/') }}">'Tác giả'</a>
                         <span class="footer-sep"></span>
                         <a href="{{ SITEURL }}/privacy-policy/">{{ _('Gizlilik Politikası') }}</a>
                         <span class="footer-sep"></span>

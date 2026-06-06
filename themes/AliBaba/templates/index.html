@@ -7,7 +7,7 @@
     {% if FEATURED_ARTICLE %}
     {% for article in articles if article.slug == featured_slug %}
     <article class="bento-card hero-bento" style="grid-area: hero;">
-        <div class="bento-badge">{{ _('ÖNE ÇIKAN') }}</div>
+        <div class="bento-badge">NỔI BẬT</div>
         {% set hero_thumb = article.thumbnail|default(article.image|default('')) %}
         {% if hero_thumb %}
         <a href="{{ SITEURL }}/{{ article.url }}" class="article-thumb hero-thumb">
@@ -18,13 +18,13 @@
             <h2 class="bento-title">
                 <a href="{{ SITEURL }}/{{ article.url }}">{{ article.title }}</a>
                 {% if (current_date - article.date.date()).days < 7 %}
-                <span class="new-badge">{{ _('YENİ') if article.lang == 'tr' else 'NEW' }}</span>
+                <span class="new-badge">'MỚI'</span>
                 {% endif %}
             </h2>
             <div class="bento-summary">{{ article.summary }}</div>
             <div class="bento-footer">
                 <span class="bento-cat">{{ article.category }}</span>
-                <a href="{{ SITEURL }}/{{ article.url }}" class="bento-btn">{{ _('Oku') }} <span>&rarr;</span></a>
+                <a href="{{ SITEURL }}/{{ article.url }}" class="bento-btn">Đọc <span>&rarr;</span></a>
             </div>
         </div>
         <div class="bento-glow"></div>
@@ -40,7 +40,7 @@
             <h2 class="mini-title">
                 <a href="{{ SITEURL }}/{{ article.url }}">{{ article.title }}</a>
                 {% if (current_date - article.date.date()).days < 7 %}
-                <span class="new-badge">{{ _('YENİ') if article.lang == 'tr' else 'NEW' }}</span>
+                <span class="new-badge">'MỚI'</span>
                 {% endif %}
             </h2>
             <time class="mini-date">{{ article.locale_date }}</time>
@@ -51,7 +51,7 @@
 
     <div class="bento-bottom-row" style="grid-area: bottom;">
         <div class="explore-header">
-            <h2>{{ _('Keşfet') }}</h2>
+            <h2>Khám phá</h2>
             <div class="header-line"></div>
         </div>
         <div class="bento-categories">
@@ -107,7 +107,7 @@
                 <h3 class="feed-title">
                     <a href="{{ SITEURL }}/{{ article.url }}">{{ article.title }}</a>
                     {% if (current_date - article.date.date()).days < 7 %}
-                    <span class="new-badge">{{ _('YENİ') if article.lang == 'tr' else 'NEW' }}</span>
+                    <span class="new-badge">'MỚI'</span>
                     {% endif %}
                 </h3>
                 <p class="feed-summary">{{ article.summary|striptags|truncate(150) }}</p>
