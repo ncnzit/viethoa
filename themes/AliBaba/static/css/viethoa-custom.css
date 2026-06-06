@@ -98,3 +98,18 @@
 .sidebar {
     border: 1px solid var(--border-color);
 }
+
+/* 5. Content typography - Comfortaa */
+body, .app-container {
+    font-family: 'Comfortaa', cursive;
+}
+
+.article-content ul,
+.article-content ol {
+    margin: 1rem 0;
+    padding-left: 0.5rem;
+}
+
+.article-content p {
+    margin-bottom: 1rem;
+}
