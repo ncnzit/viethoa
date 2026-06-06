@@ -40,9 +40,14 @@
         <!-- Main Content -->
         <main class="flex-1 overflow-auto">
             <div class="p-8">
-                <header class="mb-8">
-                    <h2 class="text-3xl font-bold mb-2">Quản lý thẻ</h2>
-                    <p class="text-gray-400">{{ tags|length }} thẻ đang dùng</p>
+                <header class="mb-8 flex justify-between items-center">
+                    <div>
+                        <h2 class="text-3xl font-bold mb-2">Quản lý Thẻ</h2>
+                        <p class="text-gray-400">{{ tags|length }} thẻ đang dùng</p>
+                    </div>
+                    <button onclick="openAddTag()" class="px-4 py-2 bg-blue-600 hover:bg-blue-700 rounded-lg font-medium transition flex items-center gap-2">
+                        <i class="fas fa-plus"></i> Thêm Thẻ mới
+                    </button>
                 </header>
 
                 <div class="bg-gray-900 border border-gray-800 rounded-lg overflow-hidden">
@@ -95,6 +100,22 @@
         </main>
     </div>
 
+    <!-- Modal thêm thẻ mới -->
+    <div id="addTagModal" class="fixed inset-0 bg-black/60 hidden items-center justify-center z-50">
+        <div class="bg-gray-900 border border-gray-700 rounded-lg p-6 w-96">
+            <h3 class="text-xl font-bold mb-4">Thêm Thẻ mới</h3>
+            <form method="POST" action="/tags/add">
+                <label class="block text-sm font-medium mb-2">Tên thẻ</label>
+                <input type="text" name="new_tag" id="newTagInput" required autofocus class="w-full px-4 py-2 bg-gray-800 border border-gray-700 rounded-lg focus:outline-none focus:border-blue-500 mb-4">
+                <p class="text-xs text-gray-500 mb-4">Thẻ mới sẽ có sẵn khi tạo/chỉnh sửa bài viết.</p>
+                <div class="flex gap-3">
+                    <button type="submit" class="px-4 py-2 bg-blue-600 hover:bg-blue-700 rounded-lg transition">Tạo</button>
+                    <button type="button" onclick="closeAddTag()" class="px-4 py-2 bg-gray-700 hover:bg-gray-600 rounded-lg transition">Hủy</button>
+                </div>
+            </form>
+        </div>
+    </div>
+
     <!-- Modal đổi tên thẻ -->
     <div id="renameModal" class="fixed inset-0 bg-black/60 hidden items-center justify-center z-50">
         <div class="bg-gray-900 border border-gray-700 rounded-lg p-6 w-96">
@@ -113,6 +134,15 @@
     </div>
 
     <script>
+        function openAddTag() {
+            document.getElementById('addTagModal').classList.remove('hidden');
+            document.getElementById('addTagModal').classList.add('flex');
+            document.getElementById('newTagInput').focus();
+        }
+        function closeAddTag() {
+            document.getElementById('addTagModal').classList.add('hidden');
+            document.getElementById('addTagModal').classList.remove('flex');
+        }
         function openRename(tag) {
             document.getElementById('oldTagInput').value = tag;
             document.getElementById('newTagInput').value = tag;
