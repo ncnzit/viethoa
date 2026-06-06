@@ -82,7 +82,7 @@ DISPLAY_CATEGORIES_ON_MENU = False
 
 NAVBAR_LINKS = [
     {"name": "Trang chủ", "url": "/", "target": "_self", "icon": "fa-solid fa-house"},
-    {"name": "Hướng dẫn", "url": "/gioi-thieu/", "target": "_self", "icon": "fa-solid fa-file-alt"},
+    {"name": "Hướng dẫn", "url": "/huong-dan/", "target": "_self", "icon": "fa-solid fa-file-alt"},
     {"name": "Game Việt hoá", "url": "/tag/viet-hoa/", "target": "_self", "icon": "fa-solid fa-fire"},
     {"name": "Tìm kiếm", "url": "#", "target": "_self", "icon": "fa-solid fa-search"},
     {"name": "Thẻ", "url": "/tags/", "target": "_self", "icon": "fa-solid fa-tags"},
