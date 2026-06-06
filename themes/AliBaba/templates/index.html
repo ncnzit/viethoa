@@ -97,10 +97,10 @@
                     {% if article.stats %}
                     <span class="feed-stats">
                         <svg class="icon"><use href="/theme/images/icons.svg#clock"></use></svg>
-                        {{ article.stats.read_mins }} {% if article.lang == 'en' %}min{% else %}dk{% endif %}
+                        {{ article.stats.read_mins }} {% if article.lang == 'vi' %}phút{% else %}min{% endif %}
                         <span class="stats-sep"></span>
                         <svg class="icon"><use href="/theme/images/icons.svg#file-alt"></use></svg>
-                        {{ article.stats.wc }} {% if article.lang == 'en' %}words{% else %}kelime{% endif %}
+                        {{ article.stats.wc }} {% if article.lang == 'vi' %}từ{% else %}words{% endif %}
                     </span>
                     {% endif %}
                 </div>
