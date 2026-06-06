@@ -32,11 +32,21 @@ jobs:
       - name: Install dependencies
         run: pip install -r requirements.txt
 
+      - name: Install Vietnamese locale
+        run: |
+          sudo apt-get update
+          sudo apt-get install -y locales
+          sudo locale-gen vi_VN.UTF-8
+          sudo update-locale LANG=vi_VN.UTF-8
+        env:
+          LANG: vi_VN.UTF-8
+          LC_ALL: vi_VN.UTF-8
+
       - name: Build site
         env:
           PUBLISH: "true"
-          LANG: C.UTF-8
-          LC_ALL: C.UTF-8
+          LANG: vi_VN.UTF-8
+          LC_ALL: vi_VN.UTF-8
         run: pelican --settings publishconf.py --output output
 
       - name: Upload Pages artifact
