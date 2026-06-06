@@ -29,11 +29,11 @@
 {% if articles_page.has_other_pages() %}
 <nav class="pagination">
     {% if articles_page.has_previous() %}
-    <a href="{{ SITEURL }}/{{ articles_previous_page.url }}">&larr; Yeni Yazılar</a>
+    <a href="{{ SITEURL }}/{{ articles_previous_page.url }}">&larr; Yeni bài viếtlar</a>
     {% endif %}
     <span class="page-number">Sayfa {{ articles_page.number }} / {{ articles_page.paginator.num_pages }}</span>
     {% if articles_page.has_next() %}
-    <a href="{{ SITEURL }}/{{ articles_next_page.url }}">Eski Yazılar &rarr;</a>
+    <a href="{{ SITEURL }}/{{ articles_next_page.url }}">Eski bài viếtlar &rarr;</a>
     {% endif %}
 </nav>
 {% endif %}

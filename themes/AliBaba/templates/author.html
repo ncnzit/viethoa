@@ -1,6 +1,6 @@
 {% extends "base.html" %}
 
-{% block title %}{{ author }} Tarafından Yazılan Yazılar - {{ SITENAME }}{% endblock %}
+{% block title %}{{ author }} Tarafından bài viếtlan bài viếtlar - {{ SITENAME }}{% endblock %}
 
 {% block content %}
 <header class="list-header">
@@ -30,11 +30,11 @@
 {% if articles_page.has_other_pages() %}
 <nav class="pagination">
     {% if articles_page.has_previous() %}
-    <a href="{{ SITEURL }}/{{ articles_previous_page.url }}">&larr; {{ _('Yeni Yazılar') }}</a>
+    <a href="{{ SITEURL }}/{{ articles_previous_page.url }}">&larr; {{ _('Yeni bài viếtlar') }}</a>
     {% endif %}
     <span class="page-number">{{ _('Sayfa') }} {{ articles_page.number }} / {{ articles_page.paginator.num_pages }}</span>
     {% if articles_page.has_next() %}
-    <a href="{{ SITEURL }}/{{ articles_next_page.url }}">{{ _('Eski Yazılar') }} &rarr;</a>
+    <a href="{{ SITEURL }}/{{ articles_next_page.url }}">{{ _('Eski bài viếtlar') }} &rarr;</a>
     {% endif %}
 </nav>
 {% endif %}

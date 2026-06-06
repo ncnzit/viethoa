@@ -1,6 +1,6 @@
 {% extends "base.html" %}
 
-{% block title %}#{{ tag }} Etiketli Yazılar - {{ SITENAME }}{% endblock %}
+{% block title %}#{{ tag }} Etiketli bài viếtlar - {{ SITENAME }}{% endblock %}
 
 {% block content %}
 <header class="tag-hero-section">
@@ -8,13 +8,13 @@
         <span class="bento-badge">{{ _('Etiket') }}</span>
         <h1 class="bento-title">#{{ tag }}</h1>
         <p class="bento-summary">
-            {{ _('#{tag} etiketi ile ilgili tüm yazılar. Bu etikette toplam {articles_length} yazı bulunuyor.').format(tag=tag, articles_length=articles|length) }}
+            {{ _('#{tag} etiketi ile ilgili tüm bài viết. Bu etikette toplam {articles_length} yazı bulunuyor.').format(tag=tag, articles_length=articles|length) }}
         </p>
     </div>
 </header>
 
 <div class="section-header">
-    <h2 class="section-title">{{ _('Yazılar') }}</h2>
+    <h2 class="section-title">{{ _('bài viếtlar') }}</h2>
     <div class="section-line"></div>
 </div>
 
@@ -42,7 +42,7 @@
     {% if articles_page.has_previous() %}
     <a href="{{ SITEURL }}/{{ articles_previous_page.url }}" class="pagination-btn">
         <svg class="icon"><use href="/theme/images/icons.svg#arrow-left"></use></svg>
-        {{ _('Yeni Yazılar') }}
+        {{ _('Yeni bài viếtlar') }}
     </a>
     {% endif %}
     
@@ -50,7 +50,7 @@
     
     {% if articles_page.has_next() %}
     <a href="{{ SITEURL }}/{{ articles_next_page.url }}" class="pagination-btn">
-        {{ _('Eski Yazılar') }}
+        {{ _('Eski bài viếtlar') }}
         <svg class="icon"><use href="/theme/images/icons.svg#arrow-right"></use></svg>
     </a>
     {% endif %}
