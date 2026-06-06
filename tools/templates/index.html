@@ -185,21 +185,29 @@
         const btnGitPush = document.getElementById('btnGitPush');
         if (btnGitPush) {
             btnGitPush.addEventListener('click', async function() {
-                if (!confirm('Đẩy tất cả thay đổi lên website?\n(git add + commit + push)')) return;
-                const original = btnGitPush.innerHTML;
+                if (!confirm('Đẩy tất cả thay đổi lên website?')) return;
+                const orig = btnGitPush.innerHTML;
                 btnGitPush.disabled = true;
-                btnGitPush.innerHTML = '<i class="fas fa-spinner fa-spin w-4"></i> Đang đẩy...';
+                btnGitPush.innerHTML = '<i class="fas fa-spinner fa-spin"></i> Đang đẩy...';
                 try {
                     const res = await fetch('/git_push', { method: 'POST' });
                     const data = await res.json();
-                    alert(data.message);
+                    showToast(data.message, data.status);
                 } catch (e) {
-                    alert('Lỗi kết nối: ' + e);
+                    showToast('Lỗi: ' + e, 'error');
                 } finally {
                     btnGitPush.disabled = false;
-                    btnGitPush.innerHTML = original;
+                    btnGitPush.innerHTML = orig;
                 }
             });
+        }
+
+        function showToast(msg, type) {
+            const toast = document.createElement('div');
+            toast.textContent = msg;
+            toast.style.cssText = `position:fixed;bottom:2rem;right:2rem;padding:1rem 1.5rem;background:${type==='success'?'#10b981':'#ef4444'};color:white;border-radius:0.5rem;box-shadow:0 10px 25px rgba(0,0,0,0.3);z-index:9999;animation:slideIn 0.3s ease;`;
+            document.body.appendChild(toast);
+            setTimeout(() => { toast.style.animation = 'slideOut 0.3s ease'; setTimeout(() => toast.remove(), 300); }, 3000);
         }
     </script>
 </body>
