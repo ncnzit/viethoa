@@ -173,7 +173,10 @@ def pages():
 def edit_page(filename):
     filepath = os.path.join(PAGES_DIR, filename)
     if request.method == 'POST':
-        metadata = {'title': request.form['title']}
+        metadata = {
+            'title': request.form['title'],
+            'slug': request.form.get('slug', '').strip() or os.path.splitext(filename)[0]
+        }
         write_markdown(filepath, metadata, request.form['content'])
         return redirect(url_for('pages'))
     metadata, content = parse_markdown(filepath)
