@@ -1,10 +1,7 @@
-Title: Patch tiếng Việt cho game Action RPG
-Date: 2026-05-27
+Title: Test thử bài viết nào
+Date: 
 Category: Game Việt hoá
 Tags: việt hoá, action-rpg, patch
-Thumbnail: /images/2.jpg
-Slug: final-fantasy-16-viet-hoa
-Status: published
 
 Bản dịch hoàn chỉnh giao diện và văn bản với font tiếng Việt tối ưu.
 
@@ -26,10 +23,4 @@ Bản Việt hoá này cung cấp trải nghiệm hoàn chỉnh với:
 
 ## Liên kết tải về
 
-- [GitHub Release](https://github.com/)
-- [Nexus Mods](https://www.nexusmods.com/)
-- [Discord Server](https://discord.gg/)
-
----
-
-*Cập nhật lần cuối: 06/06/2026*
+https://viethoa.nguyez.com/gioi-thieu/
