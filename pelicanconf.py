@@ -57,12 +57,12 @@ CATEGORIES_SAVE_AS = "danh-muc/index.html"
 DRAFT_URL = "drafts/{slug}/"
 DRAFT_SAVE_AS = "drafts/{slug}/index.html"
 
-DEFAULT_PAGINATION = 10
+DEFAULT_PAGINATION = 18
 PAGINATION_PATTERNS = (
     (1, "{base_name}/", "{base_name}/index.html"),
     (2, "{base_name}/page/{number}/", "{base_name}/page/{number}/index.html"),
 )
-PAGINATED_TEMPLATES = {"index": None, "tag": None, "category": None, "author": None}
+PAGINATED_TEMPLATES = {"index": None, "tag": 18, "category": 18, "author": 18}
 
 FEED_DOMAIN = SITEURL
 FEED_ALL_ATOM = "feeds/all.atom.xml"
@@ -118,6 +118,7 @@ PLUGINS = [
     "plugins.related_posts",
     "plugins.baba_stats",
     "plugins.extract_linked_metadata",
+    "plugins.youtube_embed",
 ]
 SERIES_DEFAULT_INDEXING = "date"
 SERIES_PAGE_INDEXING = "title"

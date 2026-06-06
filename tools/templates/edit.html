@@ -124,6 +124,26 @@
             if (data.url) document.getElementById('thumbUrl').value = data.url;
             else alert('Lỗi upload: ' + data.error);
         }
+
+        // YouTube thumbnail extractor
+        function extractYouTubeID(url) {
+            const regex = /(?:youtube\.com\/(?:[^\/]+\/.+\/|(?:v|e(?:mbed)?)\/|.*[?&]v=)|youtu\.be\/)([^"&?\/\s]{11})/;
+            const match = url.match(regex);
+            return match ? match[1] : null;
+        }
+
+        document.getElementById('thumbUrl').addEventListener('paste', function(e) {
+            setTimeout(() => {
+                const url = e.target.value;
+                const videoID = extractYouTubeID(url);
+                if (videoID) {
+                    const thumbnail = `https://img.youtube.com/vi/${videoID}/maxresdefault.jpg`;
+                    if (confirm(`Phát hiện link YouTube!\n\nDùng ảnh thumbnail YouTube làm ảnh bài viết?\n${thumbnail}`)) {
+                        e.target.value = thumbnail;
+                    }
+                }
+            }, 100);
+        });
     </script>
 </body>
 </html>
