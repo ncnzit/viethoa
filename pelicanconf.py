@@ -9,7 +9,6 @@ SITEURL_MAIN = SITEURL
 CANONICAL_URL = "https://viethoa.nguyez.com"
 AUTHOR = "nguyez"
 SITENAME = "Việt Hoá Game"
-SITETAGLINE = "Tổng hợp các bản Việt hoá game"
 KEYWORDS = "việt hoá game, viet hoa game, patch việt hoá, game tiếng việt, nguyez"
 DESCRIPTION = "Tổng hợp các bản Việt hoá game, thông tin patch, nền tảng, trạng thái và hướng dẫn cài đặt."
 DEFAULT_DATE_FORMAT = "%d/%m/%Y"

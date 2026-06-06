@@ -7,11 +7,13 @@ from werkzeug.utils import secure_filename
 app = Flask(__name__)
 CONTENT_DIR = os.path.abspath(os.path.join(os.path.dirname(__file__), '..', 'content', 'articles'))
 IMAGE_UPLOAD_FOLDER = os.path.abspath(os.path.join(os.path.dirname(__file__), '..', 'content', 'images'))
+PAGES_DIR = os.path.abspath(os.path.join(os.path.dirname(__file__), '..', 'content', 'pages'))
 ALLOWED_EXTENSIONS = {'png', 'jpg', 'jpeg', 'gif'}
 
 # Tạo thư mục nếu chưa có
 os.makedirs(CONTENT_DIR, exist_ok=True)
 os.makedirs(IMAGE_UPLOAD_FOLDER, exist_ok=True)
+os.makedirs(PAGES_DIR, exist_ok=True)
 
 def allowed_file(filename):
     return '.' in filename and \
@@ -146,6 +148,29 @@ def upload_image():
         file.save(os.path.join(IMAGE_UPLOAD_FOLDER, filename))
         return jsonify({'url': f'/images/{filename}'}), 200
     return jsonify({'error': 'Invalid file'}), 400
+
+# ============== QUẢN LÝ PAGES ==============
+@app.route('/pages')
+def pages():
+    files = [f for f in os.listdir(PAGES_DIR) if f.endswith('.md')]
+    pages_data = []
+    for f in files:
+        filepath = os.path.join(PAGES_DIR, f)
+        meta, _ = parse_markdown(filepath)
+        meta['filename'] = f
+        pages_data.append(meta)
+    return render_template('pages.html', pages=pages_data)
+
+@app.route('/pages/edit/<filename>', methods=['GET', 'POST'])
+def edit_page(filename):
+    filepath = os.path.join(PAGES_DIR, filename)
+    if request.method == 'POST':
+        metadata = {'title': request.form['title']}
+        write_markdown(filepath, metadata, request.form['content'])
+        return redirect(url_for('pages'))
+    metadata, content = parse_markdown(filepath)
+    if ' ' in metadata.get('date', ''): metadata['date'] = metadata['date'].replace(' ', 'T')
+    return render_template('edit_page.html', filename=filename, content=content, metadata=metadata)
 
 @app.route('/tags')
 def tags():

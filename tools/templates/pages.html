@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="vi" class="dark">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>tailwind.config = { darkMode: 'class' }</script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+</head>
+<body class="bg-gray-950 text-gray-100 min-h-screen">
+    <div class="flex h-screen overflow-hidden">
+        <aside class="w-64 bg-gray-900 border-r border-gray-800 p-6 flex flex-col">
+            <h1 class="text-2xl font-bold mb-8">📝 Quản lý bài viết</h1>
+            <nav class="space-y-3 flex-1">
+                <a href="/" class="flex items-center gap-3 px-4 py-2 rounded-lg hover:bg-gray-800 transition">
+                    <i class="fas fa-list w-4"></i> Tất cả bài viết
+                </a>
+                <a href="/new" class="flex items-center gap-3 px-4 py-2 rounded-lg hover:bg-gray-800 transition">
+                    <i class="fas fa-plus w-4"></i> Tạo bài mới
+                </a>
+                <a href="/pages" class="flex items-center gap-3 px-4 py-2 rounded-lg bg-blue-600 hover:bg-blue-700 transition">
+                    <i class="fas fa-file w-4"></i> Quản lý Pages
+                </a>
+                <a href="/tags" class="flex items-center gap-3 px-4 py-2 rounded-lg hover:bg-gray-800 transition">
+                    <i class="fas fa-tags w-4"></i> Quản lý thẻ
+                </a>
+            </nav>
+            <div class="space-y-2 border-t border-gray-800 pt-4">
+                <a href="https://viethoa.nguyez.com/" target="_blank" class="flex items-center gap-3 px-4 py-2 rounded-lg bg-green-700 hover:bg-green-600 transition text-sm">
+                    <i class="fas fa-globe w-4"></i> Xem website
+                </a>
+            </div>
+        </aside>
+
+        <main class="flex-1 overflow-auto p-8">
+            <header class="mb-8">
+                <h2 class="text-3xl font-bold mb-2">Quản lý Pages</h2>
+                <p class="text-gray-400">{{ pages|length }} trang</p>
+            </header>
+
+            <div class="bg-gray-900 border border-gray-800 rounded-lg overflow-hidden">
+                <table class="w-full">
+                    <thead class="bg-gray-800 border-b border-gray-700">
+                        <tr>
+                            <th class="px-6 py-3 text-left text-sm font-semibold">Tiêu đề</th>
+                            <th class="px-6 py-3 text-left text-sm font-semibold">Slug</th>
+                            <th class="px-6 py-3 text-left text-sm font-semibold">URL</th>
+                            <th class="px-6 py-3 text-center text-sm font-semibold">Hành động</th>
+                        </tr>
+                    </thead>
+                    <tbody class="divide-y divide-gray-800">
+                        {% for page in pages %}
+                        <tr class="hover:bg-gray-800/50 transition">
+                            <td class="px-6 py-4 font-medium">{{ page.title }}</td>
+                            <td class="px-6 py-4 text-sm text-gray-400">{{ page.slug }}</td>
+                            <td class="px-6 py-4 text-sm">
+                                <a href="https://viethoa.nguyez.com/{{ page.slug }}/" target="_blank" class="text-blue-400 hover:text-blue-300 flex items-center gap-1">
+                                    <i class="fas fa-external-link-alt w-3"></i> /{{ page.slug }}/
+                                </a>
+                            </td>
+                            <td class="px-6 py-4 text-center">
+                                <a href="/pages/edit/{{ page.filename }}" class="px-3 py-1 bg-blue-600 hover:bg-blue-700 rounded text-sm transition">
+                                    <i class="fas fa-edit"></i> Sửa
+                                </a>
+                            </td>
+                        </tr>
+                        {% endfor %}
+                    </tbody>
+                </table>
+            </div>
+        </main>
+    </div>
+</body>
+</html>
