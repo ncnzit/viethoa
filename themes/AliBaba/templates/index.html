@@ -83,15 +83,25 @@
             <a href="{{ SITEURL }}/{{ article.url }}" class="feed-card-thumb">
                 <img src="{{ SITEURL }}{{ feed_thumb if feed_thumb.startswith('/') else '/' ~ feed_thumb }}" alt="{{ article.title }}" loading="lazy">
             </a>
+            {% else %}
+            <div class="feed-card-thumb" style="background: linear-gradient(135deg, #667eea 0%, #764ba2 100%); display: flex; align-items: center; justify-content: center; color: white; font-weight: bold;">
+                📁
+            </div>
             {% endif %}
             <div class="feed-card-content">
                 <div class="feed-meta">
                     <span class="feed-cat">{{ article.category }}</span>
-                    <span class="feed-date">{{ article.date.strftime('%d/%m/%Y') }}</span>
                 </div>
                 <h3 class="feed-title">
                     <a href="{{ SITEURL }}/{{ article.url }}">{{ article.title }}</a>
                 </h3>
+                {% if article.tags %}
+                <div class="feed-tags" style="font-size: 0.8rem; margin-top: 0.5rem;">
+                    {% for tag in article.tags[:3] %}
+                    <a href="{{ SITEURL }}/tag/{{ tag.slug }}/" style="display: inline-block; padding: 0.2rem 0.5rem; background: #333; border-radius: 4px; margin-right: 0.3rem; color: #aaa; text-decoration: none;">#{{ tag }}</a>
+                    {% endfor %}
+                </div>
+                {% endif %}
             </div>
         </article>
         {% endif %}
