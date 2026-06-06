@@ -1,7 +1,18 @@
 Title: Giới thiệu
-Slug: gioi-thieu
-Author: nguyez
+Date: 2026-06-06 19:47
+Category: Game Việt hoá
 
-**Việt Hoá Game** là nơi tổng hợp thông tin các bản Việt hoá game.
-
-Mục tiêu: dễ tìm, dễ đọc, dễ cập nhật.
+**Trang Donate:** https://donate.nguyez.com
+
+Các bản Việt hóa trên kênh sẽ có **Miễn phí** và **Thu phí**
+- Miễn phí (Free) thì tải và sử dụng thoải mái.
+- Game ít chữ, làm nhanh, lâu lâu mới chơi thì sẽ Free.
+- Nhiều chữ, khó kỹ thuật, thường update, có Edit sơ sẽ Thu phí.
+Thu phí sẽ đầu tư bản dịch thêm chứ không đơn thuần AI, sẽ update khi được yêu cầu. 
+
+Thu phí thì vui lòng theo trang Donate phía trên hoặc QR phía dưới để được cấp quyền truy cập.
+Mỗi game sẽ có Kênh riêng trên [Discord](https://discord.gg/v8BTMfGmMp). Bạn chỉ cần gửi ảnh hoặc nhắn tin tên đã chuyển khoản vào đúng kênh đấy kèm địa chỉ Gmail để nhận quyền truy cập file Việt hoá.
+
+**LƯU Ý:**
+*Tôi chỉ cung cấp tệp Việt hoá như bản Mod cho game. KHÔNG BAO GỒM GAME.
+Vui lòng tự chuẩn bị game bản quyền trước khi sử dụng Việt hoá.*

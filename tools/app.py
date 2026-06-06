@@ -35,7 +35,8 @@ def parse_markdown(filepath):
 
     try:
         with open(filepath, 'r', encoding='utf-8') as f:
-            lines = f.readlines()
+            raw_content = f.read()
+        lines = raw_content.replace('\r\n', '\n').split('\n')
         
         # Đọc phần đầu (metadata)
         body_start = 0
@@ -67,6 +68,9 @@ def parse_markdown(filepath):
 
 def write_markdown(filepath, metadata, content):
     """Ghi metadata và nội dung vào file Markdown"""
+    # Chuẩn hóa newline từ input form trước khi ghi
+    normalized_content = content.replace('\r\n', '\n')
+
     tags_str = ", ".join(metadata.get('tags', []))
     with open(filepath, 'w', encoding='utf-8') as f:
         f.write(f"Title: {metadata.get('title', '')}\n")
@@ -77,7 +81,7 @@ def write_markdown(filepath, metadata, content):
         if metadata.get('thumbnail'):
             f.write(f"Thumbnail: {metadata.get('thumbnail', '')}\n")
         f.write("\n")
-        f.write(content)
+        f.write(normalized_content)
 
 @app.route('/')
 def index():
