@@ -92,8 +92,13 @@
     <script>
         var simplemde = new SimpleMDE({
             element: document.getElementById("editor"),
+            spellChecker: false,
             toolbar: ["bold", "italic", "heading", "|", "quote", "unordered-list", "ordered-list", "|", "link", "image", "|", "preview", "side-by-side", "fullscreen"]
         });
+        // Tắt spellcheck native của trình duyệt trên editor
+        simplemde.codemirror.getInputField().setAttribute("spellcheck", "false");
+        simplemde.codemirror.getInputField().setAttribute("autocorrect", "off");
+        simplemde.codemirror.getInputField().setAttribute("autocapitalize", "off");
     </script>
 </body>
 </html>
