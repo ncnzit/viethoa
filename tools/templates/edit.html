@@ -48,6 +48,9 @@
                 <a href="https://viethoa.nguyez.com/" target="_blank" class="flex items-center gap-3 px-4 py-2 rounded-lg bg-green-700 hover:bg-green-600 transition text-sm">
                     <i class="fas fa-globe w-4"></i> Xem website
                 </a>
+                <button id="btnGitPush" class="w-full flex items-center gap-3 px-4 py-2 rounded-lg bg-purple-700 hover:bg-purple-600 transition text-sm">
+                    <i class="fas fa-cloud-upload-alt w-4"></i> Đẩy lên website
+                </button>
             </div>
         </aside>
 
@@ -149,6 +152,27 @@
                 }
             }, 100);
         });
+
+        // Git Push handler
+        const btnGitPush = document.getElementById('btnGitPush');
+        if (btnGitPush) {
+            btnGitPush.addEventListener('click', async function() {
+                if (!confirm('Đẩy tất cả thay đổi lên website?')) return;
+                const orig = btnGitPush.innerHTML;
+                btnGitPush.disabled = true;
+                btnGitPush.innerHTML = '<i class="fas fa-spinner fa-spin"></i> Đang đẩy...';
+                try {
+                    const res = await fetch('/git_push', { method: 'POST' });
+                    const data = await res.json();
+                    alert(data.message);
+                } catch (e) {
+                    alert('Lỗi: ' + e);
+                } finally {
+                    btnGitPush.disabled = false;
+                    btnGitPush.innerHTML = orig;
+                }
+            });
+        }
     </script>
 </body>
 </html>
