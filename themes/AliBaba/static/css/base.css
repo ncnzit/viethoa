@@ -20,8 +20,8 @@
   --selection-dark: rgba(199, 148, 0, 0.2);
 
   /* Typography */
-  --font-body: "Inter", system-ui, -apple-system, sans-serif;
-  --font-heading: "Outfit", var(--font-body);
+  --font-body: "Nunito Sans", system-ui, -apple-system, sans-serif;
+  --font-heading: "Nunito Sans", var(--font-body);
   --font-code: "JetBrains Mono", monospace;
 
   /* Fluid Typography Scale */
