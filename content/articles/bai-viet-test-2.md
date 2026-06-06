@@ -13,4 +13,4 @@ Còn đoạn này sẽ cách bằng 2 dòng để tạo <p>:
 
 Đoạn mới.
 
-Link YouTube: https://www.youtube.com/watch?v=9bZkp7q19f0
+https://www.youtube.com/watch?v=9bZkp7q19f0

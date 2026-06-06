@@ -11,6 +11,6 @@ Dòng này nên có <br> thay vì dính liền.
 
 Còn đoạn này sẽ cách bằng 2 dòng để tạo <p>:
 
-Đoạn mới.
+Đoạn mới với nội dung thêm.
 
-Link YouTube: https://www.youtube.com/watch?v=dQw4w9WgXcQ
+https://www.youtube.com/watch?v=dQw4w9WgXcQ
