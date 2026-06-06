@@ -70,14 +70,14 @@
                     <li>
                         <a href="{{ SITEURL }}/{{ ARCHIVES_URL|default('arsiv/') }}">
                             <svg class="icon"><use href="/theme/images/icons.svg#archive"></use></svg>
-                            <span>{{ _('Archives') }}</span>
+                            <span>{{ _('Lưu trữ') }}</span>
                         </a>
                     </li>
 
                     <li>
                         <a href="#" class="search-trigger">
                             <svg class="icon"><use href="/theme/images/icons.svg#search"></use></svg>
-                            <span>{{ _('Arama...') }}</span>
+                            <span>{{ _('Tìm kiếm') }}</span>
                             <kbd class="search-kbd">Ctrl K</kbd>
                         </a>
                     </li>
@@ -86,7 +86,7 @@
                         <a href="#" id="theme-toggle-btn">
                             <svg id="theme-icon-sun" class="icon" style="display: none;"><use href="/theme/images/icons.svg#sun"></use></svg>
                             <svg id="theme-icon-moon" class="icon"><use href="/theme/images/icons.svg#moon"></use></svg>
-                            <span class="theme-text">{{ _('Appearance') }}</span>
+                            <span class="theme-text">{{ _('Sáng/Tối') }}</span>
                         </a>
                     </li>
                 </ul>
@@ -161,11 +161,11 @@
     </button>
 
     <!-- Search Modal -->
-    <div id="search-modal" class="search-modal" data-search-placeholder="{{ _('Arama...') }}" data-search-no-query="{{ _('Arama sorgusu giriniz') }}" data-search-no-results="{{ _('için sonuç bulunamadı') }}">
+    <div id="search-modal" class="search-modal" data-search-placeholder="{{ _('Tìm kiếm...') }}" data-search-no-query="{{ _('Vui lòng nhập từ khóa tìm kiếm') }}" data-search-no-results="{{ _('không tìm thấy kết quả') }}">
         <div class="search-modal-content">
             <div class="search-modal-header">
                 <svg class="icon"><use href="/theme/images/icons.svg#search"></use></svg>
-                <input type="search" id="search-input" placeholder="{{ _('Arama...') }}" autocomplete="off">
+                <input type="search" id="search-input" placeholder="{{ _('Tìm kiếm...') }}" autocomplete="off">
                 <button class="search-modal-close">&times;</button>
             </div>
             <div id="search-results" class="search-results"></div>
