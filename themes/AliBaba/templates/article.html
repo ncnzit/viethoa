@@ -9,7 +9,7 @@
         {% set article_thumb = article.thumbnail|default(article.image|default('')) %}
         {% if article_thumb %}
         <figure class="article-cover">
-            <img src="{{ SITEURL }}{{ article_thumb if article_thumb.startswith('/') else '/' ~ article_thumb }}" alt="{{ article.title }}" loading="eager">
+            <img src="{% if article_thumb.startswith('http') %}{{ article_thumb }}{% else %}{{ SITEURL }}{{ article_thumb if article_thumb.startswith('/') else '/' ~ article_thumb }}{% endif %}" alt="{{ article.title }}" loading="eager">
         </figure>
         {% endif %}
     </header>

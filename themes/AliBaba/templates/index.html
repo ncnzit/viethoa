@@ -11,7 +11,7 @@
         {% set hero_thumb = article.thumbnail|default(article.image|default('')) %}
         {% if hero_thumb %}
         <a href="{{ SITEURL }}/{{ article.url }}" class="article-thumb hero-thumb">
-            <img src="{{ SITEURL }}{{ hero_thumb if hero_thumb.startswith('/') else '/' ~ hero_thumb }}" alt="{{ article.title }}" loading="lazy">
+            <img src="{% if hero_thumb.startswith('http') %}{{ hero_thumb }}{% else %}{{ SITEURL }}{{ hero_thumb if hero_thumb.startswith('/') else '/' ~ hero_thumb }}{% endif %}" alt="{{ article.title }}" loading="lazy">
         </a>
         {% endif %}
         <div class="bento-content">
@@ -81,7 +81,7 @@
             {% set feed_thumb = article.thumbnail|default(article.image|default('')) %}
             {% if feed_thumb %}
             <a href="{{ SITEURL }}/{{ article.url }}" class="feed-card-thumb">
-                <img src="{{ SITEURL }}{{ feed_thumb if feed_thumb.startswith('/') else '/' ~ feed_thumb }}" alt="{{ article.title }}" loading="lazy">
+                <img src="{% if feed_thumb.startswith('http') %}{{ feed_thumb }}{% else %}{{ SITEURL }}{{ feed_thumb if feed_thumb.startswith('/') else '/' ~ feed_thumb }}{% endif %}" alt="{{ article.title }}" loading="lazy">
             </a>
             {% else %}
             <div class="feed-card-thumb" style="background: linear-gradient(135deg, #667eea 0%, #764ba2 100%); display: flex; align-items: center; justify-content: center; color: white; font-weight: bold;">

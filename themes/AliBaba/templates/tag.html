@@ -14,7 +14,7 @@
         {% set thumb = article.thumbnail|default(article.image|default('')) %}
         {% if thumb %}
         <a href="{{ SITEURL }}/{{ article.url }}" class="feed-card-thumb">
-            <img src="{{ SITEURL }}{{ thumb if thumb.startswith('/') else '/' ~ thumb }}" alt="{{ article.title }}" loading="lazy">
+            <img src="{% if thumb.startswith('http') %}{{ thumb }}{% else %}{{ SITEURL }}{{ thumb if thumb.startswith('/') else '/' ~ thumb }}{% endif %}" alt="{{ article.title }}" loading="lazy">
         </a>
         {% else %}
         <div class="feed-card-thumb" style="background: linear-gradient(135deg, #667eea 0%, #764ba2 100%); display: flex; align-items: center; justify-content: center; color: white; font-weight: bold;">
