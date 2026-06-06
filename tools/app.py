@@ -59,7 +59,7 @@ def parse_markdown(filepath):
                 body_start = i
                 break
                 
-        content = "".join(lines[body_start:])
+        content = "\n".join(lines[body_start:])
     except Exception as e:
         content = ""
         print(f"Error parsing {filepath}: {e}")
