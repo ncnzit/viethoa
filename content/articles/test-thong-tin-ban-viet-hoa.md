@@ -2,6 +2,7 @@ Title: Test Thông tin bản Việt hoá
 Date: 2026-06-06 22:43
 Category: Game Việt hoá
 Tags: Hướng Dẫn, Việt Hoá
+Thumbnail: https://img.youtube.com/vi/vLrsSRHGmwk/maxresdefault.jpg
 Slug: test-thong-tin-ban-viet-hoa
 
 Bản dịch hoàn chỉnh giao diện và văn bản với font tiếng Việt tối ưu.
@@ -22,6 +23,5 @@ Bản Việt hoá này cung cấp trải nghiệm hoàn chỉnh với:
 3. Khởi động lại game
 4. Chọn ngôn ngữ Việt trong settings
 
-## Liên kết tải về
-
+## Liên kết tải về Testttttttttttt
 https://youtu.be/vLrsSRHGmwk
