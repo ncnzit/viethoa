@@ -106,9 +106,10 @@ def new():
 def edit(filename):
     filepath = os.path.join(CONTENT_DIR, filename)
     if request.method == 'POST':
+        original_meta, _ = parse_markdown(filepath)
         metadata = {
             'title': request.form['title'],
-            'date': request.form.get('date', '').replace('T', ' '),
+            'date': request.form.get('date', '').replace('T', ' ') or original_meta.get('date', datetime.now().strftime('%Y-%m-%d %H:%M')),
             'category': request.form.get('category', 'Game Việt hoá'),
             'tags': [t.strip() for t in request.form.get('tags', '').split(',') if t.strip()],
             'thumbnail': request.form.get('thumbnail', ''),
