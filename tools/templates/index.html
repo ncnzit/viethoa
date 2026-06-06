@@ -2,23 +2,175 @@
 <html lang="vi" class="dark">
 <head>
     <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <script src="https://cdn.tailwindcss.com"></script>
     <script>tailwind.config = { darkMode: 'class' }</script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
 </head>
-<body class="bg-gray-900 text-gray-100 min-h-screen">
-    <div class="container mx-auto p-8">
-        <header class="flex justify-between items-center mb-8">
-            <h1 class="text-3xl font-bold">Quản lý bài viết</h1>
-            <a href="/new" class="bg-blue-600 px-4 py-2 rounded-lg hover:bg-blue-700">Tạo bài mới</a>
-        </header>
-        <div class="grid gap-4">
-            {% for article in articles %}
-            <div class="bg-gray-800 p-4 rounded-lg flex justify-between items-center border border-gray-700">
-                <span>{{ article }}</span>
-                <a href="/edit/{{ article }}" class="text-blue-400 hover:text-blue-300">Sửa</a>
+<body class="bg-gray-950 text-gray-100 min-h-screen">
+    <div class="flex h-screen overflow-hidden">
+        <!-- Sidebar -->
+        <aside class="w-64 bg-gray-900 border-r border-gray-800 p-6 flex flex-col">
+            <h1 class="text-2xl font-bold mb-8">📝 Quản lý bài viết</h1>
+            <nav class="space-y-3 flex-1">
+                <a href="/" class="flex items-center gap-3 px-4 py-2 rounded-lg bg-blue-600 hover:bg-blue-700 transition">
+                    <i class="fas fa-list w-4"></i> Tất cả bài viết
+                </a>
+                <a href="/new" class="flex items-center gap-3 px-4 py-2 rounded-lg hover:bg-gray-800 transition">
+                    <i class="fas fa-plus w-4"></i> Tạo bài mới
+                </a>
+            </nav>
+            <div class="text-xs text-gray-500 border-t border-gray-800 pt-4">
+                Việt Hoá Game Admin v1.0
             </div>
-            {% endfor %}
-        </div>
+        </aside>
+
+        <!-- Main Content -->
+        <main class="flex-1 overflow-auto">
+            <div class="p-8">
+                <header class="mb-8">
+                    <h2 class="text-3xl font-bold mb-2">Quản lý bài viết</h2>
+                    <p class="text-gray-400">{{ articles|length }} bài viết</p>
+                </header>
+
+                <!-- Filters -->
+                <div class="bg-gray-900 border border-gray-800 rounded-lg p-6 mb-6">
+                    <div class="grid grid-cols-1 md:grid-cols-4 gap-4">
+                        <div>
+                            <label class="block text-sm font-medium mb-2">Tìm kiếm tiêu đề</label>
+                            <input type="text" id="searchInput" placeholder="Nhập tiêu đề..." class="w-full px-3 py-2 bg-gray-800 border border-gray-700 rounded-lg focus:outline-none focus:border-blue-500">
+                        </div>
+                        <div>
+                            <label class="block text-sm font-medium mb-2">Lọc theo thẻ</label>
+                            <select id="tagFilter" class="w-full px-3 py-2 bg-gray-800 border border-gray-700 rounded-lg focus:outline-none focus:border-blue-500">
+                                <option value="">Tất cả thẻ</option>
+                                {% for tag in tags %}
+                                <option value="{{ tag }}">{{ tag }}</option>
+                                {% endfor %}
+                            </select>
+                        </div>
+                        <div>
+                            <label class="block text-sm font-medium mb-2">Lọc theo tháng-năm</label>
+                            <input type="month" id="monthFilter" class="w-full px-3 py-2 bg-gray-800 border border-gray-700 rounded-lg focus:outline-none focus:border-blue-500">
+                        </div>
+                        <div>
+                            <label class="block text-sm font-medium mb-2">Sắp xếp</label>
+                            <select id="sortFilter" class="w-full px-3 py-2 bg-gray-800 border border-gray-700 rounded-lg focus:outline-none focus:border-blue-500">
+                                <option value="recent">Mới nhất</option>
+                                <option value="oldest">Cũ nhất</option>
+                                <option value="title">Tiêu đề A-Z</option>
+                            </select>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Articles Table -->
+                <div class="bg-gray-900 border border-gray-800 rounded-lg overflow-hidden">
+                    <table class="w-full">
+                        <thead class="bg-gray-800 border-b border-gray-700">
+                            <tr>
+                                <th class="px-6 py-3 text-left text-sm font-semibold">Tiêu đề</th>
+                                <th class="px-6 py-3 text-left text-sm font-semibold">Danh mục</th>
+                                <th class="px-6 py-3 text-left text-sm font-semibold">Thẻ</th>
+                                <th class="px-6 py-3 text-left text-sm font-semibold">Ngày đăng</th>
+                                <th class="px-6 py-3 text-left text-sm font-semibold">URL</th>
+                                <th class="px-6 py-3 text-center text-sm font-semibold">Hành động</th>
+                            </tr>
+                        </thead>
+                        <tbody id="articlesTable" class="divide-y divide-gray-800">
+                            {% for article in articles %}
+                            <tr class="hover:bg-gray-800/50 transition article-row" data-title="{{ article.title }}" data-tags="{{ article.tags|join(',') }}" data-date="{{ article.date[:7] }}">
+                                <td class="px-6 py-4 font-medium truncate max-w-xs" title="{{ article.title }}">{{ article.title }}</td>
+                                <td class="px-6 py-4 text-sm text-gray-400">{{ article.category }}</td>
+                                <td class="px-6 py-4">
+                                    <div class="flex flex-wrap gap-1">
+                                        {% for tag in article.tags[:2] %}
+                                        <span class="px-2 py-1 bg-blue-900 text-blue-200 text-xs rounded">{{ tag }}</span>
+                                        {% endfor %}
+                                        {% if article.tags|length > 2 %}
+                                        <span class="text-xs text-gray-500">+{{ article.tags|length - 2 }}</span>
+                                        {% endif %}
+                                    </div>
+                                </td>
+                                <td class="px-6 py-4 text-sm text-gray-400">{{ article.date[:10] }}</td>
+                                <td class="px-6 py-4 text-sm">
+                                    <a href="https://viethoa.nguyez.com/{{ article.slug }}/" target="_blank" class="text-blue-400 hover:text-blue-300 flex items-center gap-1">
+                                        <i class="fas fa-external-link-alt w-3"></i>
+                                        /{{ article.slug }}/
+                                    </a>
+                                </td>
+                                <td class="px-6 py-4 text-center">
+                                    <div class="flex gap-2 justify-center">
+                                        <a href="/edit/{{ article.filename }}" class="px-3 py-1 bg-blue-600 hover:bg-blue-700 rounded text-sm transition flex items-center gap-1">
+                                            <i class="fas fa-edit w-3"></i> Sửa
+                                        </a>
+                                        <form method="POST" action="/delete/{{ article.filename }}" class="inline" onsubmit="return confirm('Xoá bài viết này?');">
+                                            <button type="submit" class="px-3 py-1 bg-red-600 hover:bg-red-700 rounded text-sm transition flex items-center gap-1">
+                                                <i class="fas fa-trash w-3"></i> Xoá
+                                            </button>
+                                        </form>
+                                    </div>
+                                </td>
+                            </tr>
+                            {% endfor %}
+                        </tbody>
+                    </table>
+                    {% if articles|length == 0 %}
+                    <div class="px-6 py-12 text-center text-gray-500">
+                        <i class="fas fa-inbox text-4xl mb-4 block"></i>
+                        Chưa có bài viết nào. <a href="/new" class="text-blue-400 hover:text-blue-300">Tạo bài mới</a>
+                    </div>
+                    {% endif %}
+                </div>
+            </div>
+        </main>
     </div>
+
+    <script>
+        // Lọc & tìm kiếm real-time
+        const searchInput = document.getElementById('searchInput');
+        const tagFilter = document.getElementById('tagFilter');
+        const monthFilter = document.getElementById('monthFilter');
+        const sortFilter = document.getElementById('sortFilter');
+        const rows = document.querySelectorAll('.article-row');
+
+        function filterRows() {
+            const searchTerm = searchInput.value.toLowerCase();
+            const selectedTag = tagFilter.value;
+            const selectedMonth = monthFilter.value;
+            
+            let visibleRows = [];
+            
+            rows.forEach(row => {
+                const title = row.dataset.title.toLowerCase();
+                const tags = row.dataset.tags.split(',');
+                const date = row.dataset.date;
+                
+                const matchSearch = title.includes(searchTerm);
+                const matchTag = !selectedTag || tags.includes(selectedTag);
+                const matchMonth = !selectedMonth || date === selectedMonth;
+                
+                if (matchSearch && matchTag && matchMonth) {
+                    row.style.display = '';
+                    visibleRows.push(row);
+                } else {
+                    row.style.display = 'none';
+                }
+            });
+            
+            // Sắp xếp
+            const sortType = sortFilter.value;
+            if (sortType === 'title') {
+                visibleRows.sort((a, b) => a.dataset.title.localeCompare(b.dataset.title, 'vi'));
+            } else if (sortType === 'oldest') {
+                visibleRows.sort((a, b) => new Date(a.dataset.date) - new Date(b.dataset.date));
+            }
+        }
+        
+        searchInput.addEventListener('input', filterRows);
+        tagFilter.addEventListener('change', filterRows);
+        monthFilter.addEventListener('change', filterRows);
+        sortFilter.addEventListener('change', filterRows);
+    </script>
 </body>
 </html>

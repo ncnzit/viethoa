@@ -2,22 +2,135 @@
 <html lang="vi" class="dark">
 <head>
     <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <script src="https://cdn.tailwindcss.com"></script>
     <script>tailwind.config = { darkMode: 'class' }</script>
+    <script src="https://cdn.jsdelivr.net/npm/simplemde@1.11.2/dist/simplemde.min.js"></script>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/simplemde@1.11.2/dist/simplemde.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        .CodeMirror { background-color: #1f2937 !important; color: #f3f4f6 !important; border: 1px solid #374151 !important; }
+        .CodeMirror-gutters { background-color: #111827 !important; }
+        .editor-preview { background-color: #1f2937 !important; color: #f3f4f6 !important; }
+        .editor-preview-side { background-color: #1f2937 !important; }
+        .CodeMirror-cursor { border-left: 1px solid #60a5fa !important; }
+        .editor-toolbar { background-color: #111827 !important; border-bottom: 1px solid #374151 !important; }
+        .editor-toolbar button { color: #d1d5db !important; }
+        .editor-toolbar button:hover { background-color: #374151 !important; }
+        .editor-toolbar i { color: #d1d5db !important; }
+    </style>
 </head>
-<body class="bg-gray-900 text-gray-100 min-h-screen">
-    <div class="container mx-auto p-8">
-        <header class="flex justify-between items-center mb-8">
-            <h1 class="text-3xl font-bold">Chỉnh sửa: {{ filename }}</h1>
-            <a href="/" class="text-blue-400 hover:text-blue-300">← Quay lại</a>
-        </header>
-        <form method="POST" class="space-y-4">
-            <textarea name="content" class="w-full h-96 bg-gray-800 border border-gray-700 rounded-lg p-4 font-mono text-sm resize-none" spellcheck="false">{{ content }}</textarea>
-            <div class="flex gap-4">
-                <button type="submit" class="bg-green-600 px-6 py-2 rounded-lg hover:bg-green-700">Lưu</button>
-                <a href="/" class="bg-gray-700 px-6 py-2 rounded-lg hover:bg-gray-600">Hủy</a>
+<body class="bg-gray-950 text-gray-100 min-h-screen">
+    <div class="flex h-screen overflow-hidden">
+        <!-- Sidebar -->
+        <aside class="w-64 bg-gray-900 border-r border-gray-800 p-6 flex flex-col">
+            <h1 class="text-2xl font-bold mb-8">📝 Quản lý bài viết</h1>
+            <nav class="space-y-3 flex-1">
+                <a href="/" class="flex items-center gap-3 px-4 py-2 rounded-lg hover:bg-gray-800 transition">
+                    <i class="fas fa-list w-4"></i> Tất cả bài viết
+                </a>
+                <a href="/new" class="flex items-center gap-3 px-4 py-2 rounded-lg {% if is_new %}bg-blue-600{% else %}hover:bg-gray-800{% endif %} transition">
+                    <i class="fas fa-plus w-4"></i> {% if is_new %}Tạo bài mới{% else %}Tạo bài mới{% endif %}
+                </a>
+            </nav>
+            <div class="text-xs text-gray-500 border-t border-gray-800 pt-4">
+                Việt Hoá Game Admin v1.0
             </div>
-        </form>
+        </aside>
+
+        <!-- Main Content -->
+        <main class="flex-1 overflow-auto">
+            <div class="p-8">
+                <header class="mb-8">
+                    <div class="flex justify-between items-center">
+                        <div>
+                            <h2 class="text-3xl font-bold">{% if is_new %}Tạo bài viết mới{% else %}Chỉnh sửa: {{ filename }}{% endif %}</h2>
+                            <p class="text-gray-400 mt-1">{% if is_new %}Viết bài mới cho trang Việt Hoá Game{% else %}Cập nhật bài viết hiện có{% endif %}</p>
+                        </div>
+                        <a href="/" class="text-gray-400 hover:text-gray-300 flex items-center gap-2">
+                            <i class="fas fa-arrow-left"></i> Quay lại
+                        </a>
+                    </div>
+                </header>
+
+                <!-- Editor Form -->
+                <form method="POST" class="space-y-6">
+                    <!-- Metadata Row -->
+                    <div class="grid grid-cols-1 lg:grid-cols-3 gap-4">
+                        <div>
+                            <label class="block text-sm font-medium mb-2">
+                                <i class="fas fa-heading w-4"></i> Tiêu đề
+                            </label>
+                            <input type="text" name="title" value="{{ metadata.get('title', '') }}" required class="w-full px-4 py-2 bg-gray-900 border border-gray-700 rounded-lg focus:outline-none focus:border-blue-500 focus:ring-1 focus:ring-blue-500">
+                        </div>
+                        <div>
+                            <label class="block text-sm font-medium mb-2">
+                                <i class="fas fa-folder w-4"></i> Danh mục
+                            </label>
+                            <input type="text" name="category" value="{{ metadata.get('category', 'Game Việt hoá') }}" class="w-full px-4 py-2 bg-gray-900 border border-gray-700 rounded-lg focus:outline-none focus:border-blue-500 focus:ring-1 focus:ring-blue-500">
+                        </div>
+                        <div>
+                            <label class="block text-sm font-medium mb-2">
+                                <i class="fas fa-calendar w-4"></i> Ngày đăng
+                            </label>
+                            <input type="datetime-local" name="date" value="{{ metadata.get('date', '').replace(' ', 'T') if metadata.get('date') else '' }}" class="w-full px-4 py-2 bg-gray-900 border border-gray-700 rounded-lg focus:outline-none focus:border-blue-500 focus:ring-1 focus:ring-blue-500">
+                        </div>
+                    </div>
+
+                    <!-- Tags & Thumbnail Row -->
+                    <div class="grid grid-cols-1 lg:grid-cols-2 gap-4">
+                        <div>
+                            <label class="block text-sm font-medium mb-2">
+                                <i class="fas fa-tags w-4"></i> Thẻ (ngăn cách bằng dấu phẩy)
+                            </label>
+                            <input type="text" name="tags" value="{{ metadata.get('tags', [])|join(', ') }}" class="w-full px-4 py-2 bg-gray-900 border border-gray-700 rounded-lg focus:outline-none focus:border-blue-500 focus:ring-1 focus:ring-blue-500" placeholder="việt hoá, action-rpg, patch">
+                        </div>
+                        <div>
+                            <label class="block text-sm font-medium mb-2">
+                                <i class="fas fa-image w-4"></i> Thumbnail (/images/...)
+                            </label>
+                            <input type="text" name="thumbnail" value="{{ metadata.get('thumbnail', '') }}" class="w-full px-4 py-2 bg-gray-900 border border-gray-700 rounded-lg focus:outline-none focus:border-blue-500 focus:ring-1 focus:ring-blue-500" placeholder="/images/1.jpg">
+                        </div>
+                    </div>
+
+                    <!-- Markdown Editor -->
+                    <div>
+                        <label class="block text-sm font-medium mb-2">
+                            <i class="fas fa-pen w-4"></i> Nội dung Markdown
+                        </label>
+                        <textarea name="content" id="editor" class="w-full">{{ content }}</textarea>
+                    </div>
+
+                    <!-- Action Buttons -->
+                    <div class="flex gap-4 pt-6 border-t border-gray-800">
+                        <button type="submit" class="flex items-center gap-2 px-6 py-3 bg-blue-600 hover:bg-blue-700 rounded-lg font-medium transition">
+                            <i class="fas fa-save w-4"></i> {% if is_new %}Tạo bài viết{% else %}Lưu thay đổi{% endif %}
+                        </button>
+                        <a href="/" class="flex items-center gap-2 px-6 py-3 bg-gray-800 hover:bg-gray-700 rounded-lg font-medium transition">
+                            <i class="fas fa-times w-4"></i> Hủy
+                        </a>
+                    </div>
+                </form>
+            </div>
+        </main>
     </div>
+
+    <script>
+        var simplemde = new SimpleMDE({
+            element: document.getElementById("editor"),
+            spellChecker: false,
+            autoDownloadFontAwesome: false,
+            showIcons: ["code", "table", "strikethrough"],
+            hideIcons: ["guide", "preview"],
+            toolbar: [
+                "bold", "italic", "strikethrough", "|",
+                "heading", "heading-smaller", "heading-larger", "|",
+                "quote", "unordered-list", "ordered-list", "|",
+                "link", "image", "table", "horizontal-rule", "|",
+                "code", "code-block", "|",
+                "preview", "side-by-side", "fullscreen"
+            ]
+        });
+    </script>
 </body>
 </html>

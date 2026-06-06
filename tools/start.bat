@@ -5,26 +5,38 @@ cd /d "%~dp0"
 REM Kiểm tra python
 python --version >nul 2>&1
 if errorlevel 1 (
-    echo Python chưa được cài đặt! Vui lòng cài Python trước.
+    echo Python chưa được cài đặt! Vui lòng cài Python từ https://python.org
     pause
     exit /b 1
 )
 
-REM Cài đặt requirements (chỉ cần cài Flask 1 lần)
+REM Tạo virtual environment nếu chưa có
 if not exist "venv" (
     echo Tạo virtual environment...
     python -m venv venv
 )
+
+REM Kích hoạt venv
 call venv\Scripts\activate.bat
 
-REM Kiểm tra Flask
+REM Cài đặt Flask
 pip list | findstr Flask >nul 2>&1
 if errorlevel 1 (
     echo Cài đặt Flask...
-    pip install Flask
+    pip install Flask -q
 )
 
-echo Đang khởi động quản lý bài viết...
+echo.
+echo ====================================================
+echo Đang khởi động Quản lý bài viết Việt Hoá Game
+echo ====================================================
+echo.
+echo Trình duyệt sẽ tự mở http://localhost:5000
+echo Nhấn Ctrl+C trong terminal để dừng server
+echo.
+timeout /t 2
+
+REM Mở trình duyệt và chạy Flask
 start http://localhost:5000
 python app.py
 
