@@ -99,9 +99,24 @@
     border: 1px solid var(--border-color);
 }
 
-/* 5. Content typography - Comfortaa */
+/* 5. Content typography - Reddit Sans */
 body, .app-container {
-    font-family: 'Comfortaa', cursive;
+    font-family: 'Reddit Sans', sans-serif;
+    font-weight: 300;
+}
+
+.sidebar-nav, .sidebar-nav a, nav a {
+    font-family: 'Reddit Sans', sans-serif;
+    font-weight: 400;
+}
+
+h1, h2, h3, h4, h5, h6,
+.site-title,
+.feed-title a,
+.page-title,
+.article-title {
+    font-family: 'Reddit Sans', sans-serif;
+    font-weight: 600;
 }
 
 .article-content ul,
