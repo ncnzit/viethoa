@@ -18,13 +18,13 @@
             <h2 class="bento-title">
                 <a href="{{ SITEURL }}/{{ article.url }}">{{ article.title }}</a>
                 {% if (current_date - article.date.date()).days < 7 %}
-                <span class="new-badge">'MỚI'</span>
+                <span class="new-badge">MỚI</span>
                 {% endif %}
             </h2>
             <div class="bento-summary">{{ article.summary }}</div>
             <div class="bento-footer">
                 <span class="bento-cat">{{ article.category }}</span>
-                <a href="{{ SITEURL }}/{{ article.url }}" class="bento-btn">Đọc <span>&rarr;</span></a>
+                <a href="{{ SITEURL }}/{{ article.url }}" class="bento-btn">Đọc <span>→</span></a>
             </div>
         </div>
         <div class="bento-glow"></div>
@@ -40,7 +40,7 @@
             <h2 class="mini-title">
                 <a href="{{ SITEURL }}/{{ article.url }}">{{ article.title }}</a>
                 {% if (current_date - article.date.date()).days < 7 %}
-                <span class="new-badge">'MỚI'</span>
+                <span class="new-badge">MỚI</span>
                 {% endif %}
             </h2>
             <time class="mini-date">{{ article.locale_date }}</time>
@@ -58,10 +58,7 @@
             {% for category, cat_articles in categories|sort %}
             {% if loop.index0 < 4 %}
             <a href="{{ SITEURL }}/{{ category.url }}" class="cat-pill">
-                <span class="cat-pill-icon">
-                    {% set cat_name = category|string|lower %}
-                    {% if 'linux' in cat_name %}🐧{% elif 'python' in cat_name %}🐍{% elif 'web' in cat_name %}🌐{% else %}📁{% endif %}
-                </span>
+                <span class="cat-pill-icon">📁</span>
                 <span class="cat-pill-name">{{ category }}</span>
                 <span class="cat-pill-count">{{ cat_articles|length }}</span>
             </a>
@@ -73,7 +70,7 @@
 
 <section class="feed-section">
     <div class="section-header">
-        <h2 class="section-title">{{ _('Tất cả bài viết') }}</h2>
+        <h2 class="section-title">Tất cả bài viết</h2>
         <div class="section-line"></div>
     </div>
     
@@ -100,20 +97,9 @@
         {% endif %}
         {% endfor %}
     </div>
-                 style="display:block; min-width: 100%;"
-                 data-ad-format="fluid"
-                 data-ad-layout-key="-fb+5w+4e-db+86"
-                 data-ad-client="{{ GOOGLE_ADSENSE }}"
-                 data-ad-slot="4390516236"></ins>
-            <script>(adsbygoogle = window.adsbygoogle || []).push({});</script>
-        </div>
-        {% endif %}
-        {% endif %}
-        {% endfor %}
-    </div>
     
     <div class="feed-more">
-        <a href="{{ SITEURL }}/{{ _('luu-tru/') }}" class="outline-button">{{ _('Xem lưu trữ') }}</a>
+        <a href="{{ SITEURL }}/luu-tru/" class="outline-button">Xem lưu trữ</a>
     </div>
 </section>
 {% endblock %}

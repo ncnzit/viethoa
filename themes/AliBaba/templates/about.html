@@ -1,13 +1,13 @@
 {% extends "base.html" %}
 
-{% block title %}Hakkımda - {{ SITENAME }}{% endblock %}
+{% block title %}Giới thiệu - {{ SITENAME }}{% endblock %}
 
 {% block content %}
 <article class="about-page">
     <header class="about-header">
         <div class="about-hero">
             <img src="{{ SITEURL }}/images/16064131.jpeg" alt="Avatar" class="about-avatar">
-            <h1 class="about-title">{{ _('Yücel Toluyağ Kimdir ?') }}</h1>
+            <h1 class="about-title">Giới thiệu</h1>
         </div>
     </header>
 
@@ -18,7 +18,7 @@
         
         <aside class="about-sidebar">
             <div class="about-card">
-                <h3>{{ _('İletişim') }}</h3>
+                <h3>Liên hệ</h3>
                 <ul class="about-social-list">
                     {% for platform, username in SOCIAL.items() %}
                         {% set href_map = {
