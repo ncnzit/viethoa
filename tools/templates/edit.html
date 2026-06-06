@@ -56,9 +56,7 @@
 
         <main class="flex-1 overflow-auto p-8">
             <header class="mb-8 flex justify-between items-center">
-                <div>
-                    <h2 class="text-3xl font-bold">{% if is_new %}Tạo bài viết mới{% else %}Chỉnh sửa: {{ filename }}{% endif %}</h2>
-                </div>
+                <h2 class="text-3xl font-bold">{% if is_new %}Tạo bài viết mới{% else %}Chỉnh sửa: {{ filename }}{% endif %}</h2>
                 <div class="flex items-center gap-3">
                     {% if not is_new %}
                     <a href="https://viethoa.nguyez.com/{{ metadata.get('slug', '') }}/" target="_blank" class="flex items-center gap-2 px-4 py-2 bg-green-700 hover:bg-green-600 rounded-lg text-sm transition">
@@ -72,45 +70,54 @@
             </header>
 
             <form method="POST" class="space-y-6">
-                <div class="grid grid-cols-1 lg:grid-cols-3 gap-4">
-                    <div>
-                        <label class="block text-sm font-medium mb-2">Tiêu đề</label>
-                        <input type="text" name="title" value="{{ metadata.get('title', '') }}" required class="w-full px-4 py-2 bg-gray-900 border border-gray-700 rounded-lg focus:outline-none focus:border-blue-500">
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-6 bg-gray-900 p-6 rounded-xl border border-gray-800">
+                    <div class="space-y-4">
+                        <div>
+                            <label class="block text-sm font-medium mb-1 text-gray-400">Tiêu đề</label>
+                            <input type="text" name="title" id="titleInput" value="{{ metadata.get('title', '') }}" required class="w-full px-4 py-2 bg-gray-800 border border-gray-700 rounded-lg focus:ring-2 focus:ring-blue-500 outline-none">
+                        </div>
+                        <div>
+                            <label class="block text-sm font-medium mb-1 text-gray-400">Slug (URL)</label>
+                            <input type="text" name="slug" id="slugInput" value="{{ metadata.get('slug', '') }}" class="w-full px-4 py-2 bg-gray-800 border border-gray-700 rounded-lg focus:ring-2 focus:ring-blue-500 outline-none" placeholder="tự động tạo nếu để trống">
+                        </div>
+                        <div>
+                            <label class="block text-sm font-medium mb-1 text-gray-400">Danh mục</label>
+                            <input type="text" name="category" value="{{ metadata.get('category', 'Game Việt hoá') }}" class="w-full px-4 py-2 bg-gray-800 border border-gray-700 rounded-lg focus:ring-2 focus:ring-blue-500 outline-none">
+                        </div>
                     </div>
-                    <div>
-                        <label class="block text-sm font-medium mb-2">Danh mục</label>
-                        <input type="text" name="category" value="{{ metadata.get('category', 'Game Việt hoá') }}" class="w-full px-4 py-2 bg-gray-900 border border-gray-700 rounded-lg focus:outline-none focus:border-blue-500">
-                    </div>
-                    <div>
-                        <label class="block text-sm font-medium mb-2">Ngày đăng</label>
-                        <input type="datetime-local" name="date" value="{{ metadata.get('date', '') }}" class="w-full px-4 py-2 bg-gray-900 border border-gray-700 rounded-lg focus:outline-none focus:border-blue-500">
-                    </div>
-                    <div>
-                        <label class="block text-sm font-medium mb-2">Slug (URL)</label>
-                        <input type="text" name="slug" value="{{ metadata.get('slug', '') }}" required class="w-full px-4 py-2 bg-gray-900 border border-gray-700 rounded-lg focus:outline-none focus:border-blue-500">
-                    </div>
-                </div>
-
-                <div class="grid grid-cols-1 lg:grid-cols-2 gap-4">
-                    <div>
-                        <label class="block text-sm font-medium mb-2">Thẻ (ngăn cách bằng dấu phẩy)</label>
-                        <input type="text" name="tags" value="{{ metadata.get('tags', [])|join(', ') }}" class="w-full px-4 py-2 bg-gray-900 border border-gray-700 rounded-lg focus:outline-none focus:border-blue-500">
-                    </div>
-                    <div>
-                        <label class="block text-sm font-medium mb-2">Thumbnail</label>
-                        <div class="flex gap-2">
-                            <input type="text" id="thumbUrl" name="thumbnail" value="{{ metadata.get('thumbnail', '') }}" class="flex-1 px-4 py-2 bg-gray-900 border border-gray-700 rounded-lg focus:outline-none focus:border-blue-500">
-                            <input type="file" id="fileInput" class="hidden" onchange="uploadFile()">
-                            <button type="button" onclick="document.getElementById('fileInput').click()" class="px-4 py-2 bg-gray-700 hover:bg-gray-600 rounded-lg">
-                                <i class="fas fa-upload"></i>
-                            </button>
+                    <div class="space-y-4">
+                        <div>
+                            <label class="block text-sm font-medium mb-1 text-gray-400">Ngày đăng</label>
+                            <input type="datetime-local" name="date" value="{{ metadata.get('date', '') }}" class="w-full px-4 py-2 bg-gray-800 border border-gray-700 rounded-lg focus:ring-2 focus:ring-blue-500 outline-none">
+                        </div>
+                        <div>
+                            <label class="block text-sm font-medium mb-1 text-gray-400">Thumbnail</label>
+                            <div class="flex gap-2">
+                                <input type="text" id="thumbUrl" name="thumbnail" value="{{ metadata.get('thumbnail', '') }}" class="flex-1 px-4 py-2 bg-gray-800 border border-gray-700 rounded-lg focus:ring-2 focus:ring-blue-500 outline-none">
+                                <input type="file" id="fileInput" class="hidden" onchange="uploadFile()">
+                                <button type="button" onclick="document.getElementById('fileInput').click()" class="px-4 py-2 bg-gray-700 hover:bg-gray-600 rounded-lg transition"><i class="fas fa-upload"></i></button>
+                            </div>
+                        </div>
+                        <div>
+                            <label class="block text-sm font-medium mb-1 text-gray-400">Thẻ</label>
+                            <input type="text" id="tagInput" name="tags" value="{{ metadata.get('tags', [])|join(', ') }}" class="w-full px-4 py-2 bg-gray-800 border border-gray-700 rounded-lg focus:ring-2 focus:ring-blue-500 outline-none">
+                            <div class="mt-2 flex flex-wrap gap-2">
+                                {% for tag in all_tags %}
+                                <button type="button" onclick="addTag('{{ tag }}')" class="text-xs px-2 py-1 bg-gray-800 hover:bg-gray-700 border border-gray-700 rounded transition">{{ tag }}</button>
+                                {% endfor %}
+                            </div>
                         </div>
                     </div>
                 </div>
 
                 <textarea name="content" id="editor" class="w-full">{{ content }}</textarea>
 
-                <button type="submit" class="px-8 py-3 bg-blue-600 hover:bg-blue-700 rounded-lg font-bold">Lưu thay đổi</button>
+                <div class="flex items-center gap-4">
+                    <button type="submit" class="px-8 py-3 bg-blue-600 hover:bg-blue-700 rounded-lg font-bold transition flex items-center gap-2">
+                        <i class="fas fa-save"></i> Lưu thay đổi
+                    </button>
+                    <div id="statusMsg" class="text-sm font-medium"></div>
+                </div>
             </form>
         </main>
     </div>
@@ -121,67 +128,58 @@
             spellChecker: false,
             toolbar: ["bold", "italic", "heading", "|", "quote", "unordered-list", "ordered-list", "|", "link", "image", "|", "preview", "side-by-side", "fullscreen"]
         });
-        // Tắt spellcheck native của trình duyệt trên editor
         simplemde.codemirror.getInputField().setAttribute("spellcheck", "false");
-        simplemde.codemirror.getInputField().setAttribute("autocorrect", "off");
-        simplemde.codemirror.getInputField().setAttribute("autocapitalize", "off");
 
-        async function uploadFile() {
-            const fileInput = document.getElementById('fileInput');
-            if (!fileInput.files.length) return;
-            const formData = new FormData();
-            formData.append('file', fileInput.files[0]);
-            const response = await fetch('/upload_image', { method: 'POST', body: formData });
-            const data = await response.json();
-            if (data.url) document.getElementById('thumbUrl').value = data.url;
-            else alert('Lỗi upload: ' + data.error);
-        }
-
-        // YouTube thumbnail extractor
-        function extractYouTubeID(url) {
-            const regex = /(?:youtube\.com\/(?:[^\/]+\/.+\/|(?:v|e(?:mbed)?)\/|.*[?&]v=)|youtu\.be\/)([^"&?\/\s]{11})/;
-            const match = url.match(regex);
-            return match ? match[1] : null;
-        }
-
-        document.getElementById('thumbUrl').addEventListener('paste', function(e) {
-            setTimeout(() => {
-                const url = e.target.value;
-                const videoID = extractYouTubeID(url);
-                if (videoID) {
-                    const thumbnail = `https://img.youtube.com/vi/${videoID}/maxresdefault.jpg`;
-                    if (confirm(`Phát hiện link YouTube!\n\nDùng ảnh thumbnail YouTube làm ảnh bài viết?\n${thumbnail}`)) {
-                        e.target.value = thumbnail;
-                    }
-                }
-            }, 100);
-        });
-
-        // Git Push handler
-        const btnGitPush = document.getElementById('btnGitPush');
-        if (btnGitPush) {
-            btnGitPush.addEventListener('click', async function() {
-                if (!confirm('Đẩy tất cả thay đổi lên website?')) return;
-                const orig = btnGitPush.innerHTML;
-                btnGitPush.disabled = true;
-                btnGitPush.innerHTML = '<i class="fas fa-spinner fa-spin"></i> Đang đẩy...';
-                try {
-                    const res = await fetch('/git_push', { method: 'POST' });
-                    const data = await res.json();
-                    showToast(data.message, data.status);
-                } catch (e) {
-                    showToast('Lỗi: ' + e, 'error');
-                } finally {
-                    btnGitPush.disabled = false;
-                    btnGitPush.innerHTML = orig;
-                }
+        // Auto Slug
+        const titleInput = document.getElementById('titleInput');
+        const slugInput = document.getElementById('slugInput');
+        if (titleInput && slugInput && !slugInput.value) {
+            titleInput.addEventListener('input', function() {
+                const slug = titleInput.value.toLowerCase()
+                    .normalize('NFD').replace(/[\u0300-\u036f]/g, '') // Bỏ dấu tiếng Việt
+                    .replace(/[đĐ]/g, 'd')
+                    .replace(/([^0-9a-z-\s])/g, '')
+                    .replace(/(\s+)/g, '-')
+                    .replace(/-+/g, '-')
+                    .replace(/^-+|-+$/g, '');
+                slugInput.value = slug;
             });
         }
 
+        function addTag(tag) {
+            const input = document.getElementById('tagInput');
+            let tags = input.value.split(',').map(t => t.trim()).filter(t => t);
+            if (!tags.includes(tag)) {
+                tags.push(tag);
+                input.value = tags.join(', ');
+            }
+        }
+
+        async function uploadFile() {
+            const fileInput = document.getElementById('fileInput');
+            const formData = new FormData();
+            formData.append('file', fileInput.files[0]);
+            const res = await fetch('/upload_image', { method: 'POST', body: formData });
+            const data = await res.json();
+            if (data.url) document.getElementById('thumbUrl').value = data.url;
+        }
+
+        const btnGitPush = document.getElementById('btnGitPush');
+        btnGitPush.addEventListener('click', async () => {
+            if (!confirm('Đẩy lên website?')) return;
+            btnGitPush.disabled = true;
+            btnGitPush.innerHTML = '<i class="fas fa-spinner fa-spin"></i> Đang đẩy...';
+            const res = await fetch('/git_push', { method: 'POST' });
+            const data = await res.json();
+            showToast(data.message, data.status);
+            btnGitPush.disabled = false;
+            btnGitPush.innerHTML = '<i class="fas fa-cloud-upload-alt w-4"></i> Đẩy lên website';
+        });
+
         function showToast(msg, type) {
             const toast = document.createElement('div');
+            toast.className = `fixed bottom-8 right-8 px-6 py-3 rounded-lg shadow-2xl z-50 text-white font-medium ${type==='success'?'bg-emerald-600':'bg-rose-600'}`;
             toast.textContent = msg;
-            toast.style.cssText = `position:fixed;bottom:2rem;right:2rem;padding:1rem 1.5rem;background:${type==='success'?'#10b981':'#ef4444'};color:white;border-radius:0.5rem;box-shadow:0 10px 25px rgba(0,0,0,0.3);z-index:9999;`;
             document.body.appendChild(toast);
             setTimeout(() => toast.remove(), 3000);
         }
