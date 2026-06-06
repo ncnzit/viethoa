@@ -75,47 +75,17 @@
                         </a>
                     </li>
                 </ul>
-                <div class="sidebar-extra-nav" style="margin-top: 100%; border-top: 1px solid var(--border-color); padding-top: 0; padding-bottom: 2rem;">
-                    <ul style="font-size: 0.95rem; padding-left: 1rem; color: #aaa; list-style: none;">
+            </nav>
+
+            <div class="sidebar-footer">
+                <div class="sidebar-extra-nav" style="border-top: 1px solid var(--border-color); padding-top: 1rem; margin-top: auto;">
+                    <ul style="font-size: 0.95rem; padding: 0 1rem; color: #aaa; list-style: none;">
                         <li style="margin-bottom: 0;"><a href="https://youtube.com/@ncn1992vn" style="color: inherit; text-decoration: none;">▶️ Youtube</a></li>
                         <li style="margin-bottom: 0;"><a href="https://voz.vn/t/523389" style="color: inherit; text-decoration: none;">📖 Forum Game</a></li>
                         <li style="margin-bottom: 0;"><a href="https://discord.gg/v8BTMfGmMp" style="color: inherit; text-decoration: none;">🗂️ Discord</a></li>
                         <li style="margin-bottom: 0;"><a href="https://discord.com/invite/qtPaVRehHv" style="color: inherit; text-decoration: none;">🗨️ Discord Messages</a></li>
                         <li style="margin-bottom: 0;"><a href="mailto:ncn1992vn@gmail.com" style="color: inherit; text-decoration: none;">📨 Contact Email</a></li>
                     </ul>
-                </div>
-            </nav>
-
-            <div class="sidebar-footer">
-                <div class="social-links">
-                    {% if SOCIAL %}
-                    {% for name, value in SOCIAL.items() %}
-                    {% if name != 'github' %}
-                    {% set icon_id = name.replace('_sponsor', '').replace('x', 'x-twitter') %}
-                    {% set href_prefix = {
-                        'discord': 'https://discord.com/users/',
-                        'instagram': 'https://instagram.com/',
-                        'youtube': 'https://www.youtube.com/@',
-                        'twitch': 'https://twitch.tv/',
-                        'kick': 'https://kick.com/',
-                        'github_sponsor': 'https://github.com/sponsors/',
-                        'bluesky': 'https://bsky.app/profile/',
-                        'reddit': 'https://www.reddit.com/user/',
-                        'x': 'https://x.com/',
-                        'mastodon': 'https://' + (MASTODON.instance if MASTODON else 'mastodon.social') + '/@'
-                    }.get(name, '') %}
-                    
-                    <a href="{% if name == 'bynogame' %}{{ value }}{% elif name == 'mastodon' %}{{ href_prefix }}{{ MASTODON.username if MASTODON else value }}{% else %}{{ href_prefix }}{{ value }}{% endif %}" 
-                       title="{{ name }}" target="_blank" rel="noopener noreferrer">
-                        <svg class="icon"><use href="/theme/images/icons.svg#{{ 'credit-card' if name == 'bynogame' else icon_id }}"></use></svg>
-                    </a>
-                    {% endif %}
-                    {% endfor %}
-                    {% endif %}
-                    <!-- Donate Link -->
-                    <a href="https://donate.nguyez.com/" title="Donate" target="_blank" rel="noopener noreferrer">
-                        <svg class="icon"><use href="/theme/images/icons.svg#dollar-sign"></use></svg>
-                    </a>
                 </div>
             </div>
         </aside>
