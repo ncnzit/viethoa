@@ -1,20 +1,20 @@
 {% extends "base.html" %}
 
-{% block title %}{{ category }} Kategorisindeki bài viếtlar - {{ SITENAME }}{% endblock %}
+{% block title %}{{ category }} - {{ SITENAME }}{% endblock %}
 
 {% block content %}
 <header class="category-hero-section">
     <div class="bento-card hero-bento">
-        <span class="bento-badge">{{ _('Kategori') }}</span>
+        <span class="bento-badge">Danh mục</span>
         <h1 class="bento-title">{{ category }}</h1>
         <p class="bento-summary">
-            {{ _('{category} kategorisindeki tüm bài viết. Bu kategoride {articles_length} adet yazı bulabilirsiniz.').format(category=category, articles_length=articles|length) }}
+            Danh mục {{ category }} với {{ articles|length }} bài viết.
         </p>
     </div>
 </header>
 
 <div class="section-header">
-    <h2 class="section-title">{{ _('bài viếtlar') }}</h2>
+    <h2 class="section-title">Tất cả bài viết</h2>
     <div class="section-line"></div>
 </div>
 
@@ -41,15 +41,15 @@
     {% if articles_page.has_previous() %}
     <a href="{{ SITEURL }}/{{ articles_previous_page.url }}" class="pagination-btn">
         <svg class="icon"><use href="/theme/images/icons.svg#arrow-left"></use></svg>
-        {{ _('Yeni bài viếtlar') }}
+        Bài mới hơn
     </a>
     {% endif %}
     
-    <span class="page-indicator">{{ _('Sayfa') }} {{ articles_page.number }} / {{ articles_page.paginator.num_pages }}</span>
+    <span class="page-indicator">Trang {{ articles_page.number }} / {{ articles_page.paginator.num_pages }}</span>
     
     {% if articles_page.has_next() %}
     <a href="{{ SITEURL }}/{{ articles_next_page.url }}" class="pagination-btn">
-        {{ _('Eski bài viếtlar') }}
+        Bài cũ hơn
         <svg class="icon"><use href="/theme/images/icons.svg#arrow-right"></use></svg>
     </a>
     {% endif %}

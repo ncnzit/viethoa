@@ -46,8 +46,8 @@
         <div class="outdated-warning">
             <svg class="icon"><use href="/theme/images/icons.svg#circle-info"></use></svg>
             <span>
-                {% if article.lang == 'tr' %}
-                    Bu makale 2 yıldan daha eski. Bazı bilgiler güncelliğini yitirmiş olabilir.
+                {% if article.lang == 'vi' %}
+                    Bài viết này đã hơn 2 năm. Một số thông tin có thể đã lỗi thời.
                 {% else %}
                     This article is older than 2 years. Some information might be outdated.
                 {% endif %}
@@ -267,7 +267,7 @@
             <a href="{{ SITEURL }}/{{ article.prev_article.url }}" class="nav-card prev">
                 <div class="nav-label">
                     <svg class="icon"><use href="/theme/images/icons.svg#chevron-left"></use></svg>
-                    {{ _('Önceki bài viết') if article.lang == 'tr' else _('Previous Post') }}
+                    {{ _('Bài trước') if article.lang == 'vi' else _('Previous Post') }}
                 </div>
                 <h3 class="nav-title">{{ article.prev_article.title }}</h3>
             </a>
@@ -278,7 +278,7 @@
             {% if article.next_article %}
             <a href="{{ SITEURL }}/{{ article.next_article.url }}" class="nav-card next">
                 <div class="nav-label">
-                    {{ _('Sonraki bài viết') if article.lang == 'tr' else _('Next Post') }}
+                    {{ _('Bài sau') if article.lang == 'vi' else _('Next Post') }}
                     <svg class="icon"><use href="/theme/images/icons.svg#chevron-right"></use></svg>
                 </div>
                 <h3 class="nav-title">{{ article.next_article.title }}</h3>

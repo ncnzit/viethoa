@@ -68,21 +68,11 @@
 <meta name="description" content="{{ page.summary|striptags|truncate(160) }}" />
 <meta property="og:description" content="{{ page.summary|striptags|truncate(160) }}" />
 {% elif category %}
-    {% if DEFAULT_LANG == 'tr' %}
-        <meta name="description" content="{{ category }} kategorisindeki tüm bài viết ve makaleler. {{ SITENAME }} blogunda bu kategoriye ait güncel ve detaylı içerikler bulabilirsiniz." />
-        <meta property="og:description" content="{{ category }} kategorisindeki tüm bài viết ve makaleler. {{ SITENAME }} blogunda bu kategoriye ait güncel ve detaylı içerikler bulabilirsiniz." />
-    {% else %}
-        <meta name="description" content="Explore all articles and posts in the {{ category }} category on {{ SITENAME }} blog." />
-        <meta property="og:description" content="Explore all articles and posts in the {{ category }} category on {{ SITENAME }} blog." />
-    {% endif %}
+        <meta name="description" content="Danh mục {{ category }} - Các bài viết Việt hoá game trên {{ SITENAME }}." />
+        <meta property="og:description" content="Danh mục {{ category }} - Các bài viết Việt hoá game trên {{ SITENAME }}." />
 {% elif tag %}
-    {% if DEFAULT_LANG == 'tr' %}
-        <meta name="description" content="#{{ tag }} etiketi ile ilgili tüm bài viết ve rehberler. {{ SITENAME }} blogunda bu etikete sahip güncel ve bilgilendirici içerikler bulabilirsiniz." />
-        <meta property="og:description" content="#{{ tag }} etiketi ile ilgili tüm bài viết ve rehberler. {{ SITENAME }} blogunda bu etikete sahip güncel ve bilgilendirici içerikler bulabilirsiniz." />
-    {% else %}
-        <meta name="description" content="Discover all articles and guides related to the #{{ tag }} tag on {{ SITENAME }} blog." />
-        <meta property="og:description" content="Discover all articles and guides related to the #{{ tag }} tag on {{ SITENAME }} blog." />
-    {% endif %}
+        <meta name="description" content="#{{ tag }} - Các bài viết Việt hoá game với thẻ này trên {{ SITENAME }}." />
+        <meta property="og:description" content="#{{ tag }} - Các bài viết Việt hoá game với thẻ này trên {{ SITENAME }}." />
 {% else %}
     <meta name="description" content="{{ DESCRIPTION }}" />
     <meta property="og:description" content="{{ DESCRIPTION }}" />
