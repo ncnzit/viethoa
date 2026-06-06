@@ -1,5 +1,5 @@
 Title: Giới thiệu
-Date: 2026-06-06 21:12
+Date: 2026-06-06 21:21
 Category: Game Việt hoá
 
 **Trang Donate:** https://donate.nguyez.com
@@ -18,4 +18,3 @@ Mỗi game sẽ có Kênh riêng trên [Discord](https://discord.gg/v8BTMfGmMp).
 Vui lòng tự chuẩn bị game bản quyền trước khi sử dụng Việt hoá.*
 
 https://youtu.be/vLrsSRHGmwk
-[https://youtu.be/vLrsSRHGmwk](https://youtu.be/vLrsSRHGmwk)

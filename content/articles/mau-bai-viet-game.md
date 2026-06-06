@@ -1,11 +1,8 @@
 Title: Mẫu bài viết game Việt hoá
-Date: 2026-06-06
+Date: 
 Category: Mẫu bài
 Tags: Template, Hướng dẫn
-Slug: mau-bai-viet-game
-Author: nguyez
 Thumbnail: /images/000 AVT.png
-Summary: Mẫu cấu trúc bài viết cho từng game Việt hoá.
 
 Dùng mẫu này để đăng bài game sau này.
 
@@ -19,7 +16,7 @@ Dùng mẫu này để đăng bài game sau này.
 
 ## Link tải
 
-Đặt link tải patch ở đây.
+https://viethoa.nguyez.com/gioi-thieu/
 
 ## Hướng dẫn cài đặt
 
