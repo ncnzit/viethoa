@@ -1,7 +1,8 @@
-Title: Bài viết test 9 - Test9
+Title: Bài viết test 9 - Test99
 Date: 2026-06-06 23:03
 Category: Game Việt hoá
 Tags: test, youtube
+Thumbnail: https://img.youtube.com/vi/astISOttCQ0/maxresdefault.jpg
 Slug: bai-viet-test-9
 
 Đây là bài viết test số 9.

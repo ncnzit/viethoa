@@ -1,7 +1,8 @@
-Title: Bài viết test 8 - Test8
+Title: Bài viết test 8 - Test88
 Date: 2026-06-06 23:03
 Category: Game Việt hoá
 Tags: test, youtube
+Thumbnail: https://img.youtube.com/vi/FTQbiNvZqaY/maxresdefault.jpg
 Slug: bai-viet-test-8
 
 Đây là bài viết test số 8.

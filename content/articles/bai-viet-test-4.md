@@ -1,7 +1,8 @@
-Title: Bài viết test 4 - TestTool
+Title: Bài viết test 4 - TestTool 4
 Date: 2026-06-06 23:03
 Category: Game Việt hoá
 Tags: test, youtube
+Thumbnail: https://img.youtube.com/vi/hY7m5jjJ9mM/maxresdefault.jpg
 Slug: bai-viet-test-4
 
 Đây là bài viết test số 4.

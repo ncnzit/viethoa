@@ -1,7 +1,8 @@
-Title: Bài viết test 5 - Rambling
+Title: Bài viết test 5 - Rambling5
 Date: 2026-06-06 23:03
 Category: Game Việt hoá
 Tags: test, youtube
+Thumbnail: https://img.youtube.com/vi/eBGIQ7ZuuiU/maxresdefault.jpg
 Slug: bai-viet-test-5
 
 Đây là bài viết test số 5.

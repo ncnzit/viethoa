@@ -2,6 +2,7 @@ Title: Bài viết test 2 - KienTrucSu
 Date: 2026-06-06 23:03
 Category: Game Việt hoá
 Tags: test, youtube
+Thumbnail: https://img.youtube.com/vi/9bZkp7q19f0/maxresdefault.jpg
 Slug: bai-viet-test-2
 
 Đây là bài viết test số 2.

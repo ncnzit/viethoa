@@ -1,7 +1,8 @@
-Title: Bài viết test 1 - Atlantis
+Title: Bài viết test 1 - Atlantis1
 Date: 2026-06-06 23:03
 Category: Game Việt hoá
 Tags: test, youtube
+Thumbnail: https://img.youtube.com/vi/dQw4w9WgXcQ/maxresdefault.jpg
 Slug: bai-viet-test-1
 
 Đây là bài viết test số 1.
