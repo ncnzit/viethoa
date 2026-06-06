@@ -32,12 +32,11 @@ def embed_youtube(content):
         
         for line in lines:
             stripped = line.strip()
-            # Kiểm tra xem dòng có phải là link YouTube thuần không (không phải trong Markdown link)
-            if stripped.startswith('http') and 'youtube.com' in stripped or 'youtu.be' in stripped:
+            # Match mọi link YouTube không nằm trong thẻ HTML <a>
+            if 'youtube.com' in stripped or 'youtu.be' in stripped:
                 match = YOUTUBE_REGEX.search(stripped)
-                if match:
+                if match and not stripped.startswith('<a'):
                     video_id = match.group(1)
-                    # Thay thế link bằng embed
                     new_lines.append(EMBED_TEMPLATE.format(video_id=video_id))
                     continue
             new_lines.append(line)

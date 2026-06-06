@@ -2,39 +2,43 @@
 
 {% block content %}
 <section class="home-bento" aria-label="Trang chủ nổi bật">
-    {% set featured_slug = FEATURED_ARTICLE.slug if FEATURED_ARTICLE else '' %}
+    {% set featured_article = None %}
+    {% for article in articles %}
+        {% if article.tags and article.tags|map(attribute='name')|list|first == 'Nổi Bật' %}
+            {% set featured_article = article %}
+            {% break %}
+        {% endif %}
+    {% endfor %}
     
-    {% if FEATURED_ARTICLE %}
-    {% for article in articles if article.slug == featured_slug %}
+    {% if featured_article %}
     <article class="bento-card hero-bento" style="grid-area: hero;">
         <div class="bento-badge">NỔI BẬT</div>
-        {% set hero_thumb = article.thumbnail|default(article.image|default('')) %}
+        {% set hero_thumb = featured_article.thumbnail|default(featured_article.image|default('')) %}
         {% if hero_thumb %}
-        <a href="{{ SITEURL }}/{{ article.url }}" class="article-thumb hero-thumb">
-            <img src="{% if hero_thumb.startswith('http') %}{{ hero_thumb }}{% else %}{{ SITEURL }}{{ hero_thumb if hero_thumb.startswith('/') else '/' ~ hero_thumb }}{% endif %}" alt="{{ article.title }}" loading="lazy">
+        <a href="{{ SITEURL }}/{{ featured_article.url }}" class="article-thumb hero-thumb">
+            <img src="{% if hero_thumb.startswith('http') %}{{ hero_thumb }}{% else %}{{ SITEURL }}{{ hero_thumb if hero_thumb.startswith('/') else '/' ~ hero_thumb }}{% endif %}" alt="{{ featured_article.title }}" loading="lazy">
         </a>
         {% endif %}
         <div class="bento-content">
             <h2 class="bento-title">
-                <a href="{{ SITEURL }}/{{ article.url }}">{{ article.title }}</a>
-                {% if (current_date - article.date.date()).days < 7 %}
+                <a href="{{ SITEURL }}/{{ featured_article.url }}">{{ featured_article.title }}</a>
+                {% if (current_date - featured_article.date.date()).days < 7 %}
                 <span class="new-badge">MỚI</span>
                 {% endif %}
             </h2>
-            <div class="bento-summary">{{ article.summary }}</div>
+            <div class="bento-summary">{{ featured_article.summary }}</div>
             <div class="bento-footer">
-                <span class="bento-cat">{{ article.category }}</span>
-                <a href="{{ SITEURL }}/{{ article.url }}" class="bento-btn">Đọc <span>→</span></a>
+                <span class="bento-cat">{{ featured_article.category }}</span>
+                <a href="{{ SITEURL }}/{{ featured_article.url }}" class="bento-btn">Đọc <span>→</span></a>
             </div>
         </div>
         <div class="bento-glow"></div>
     </article>
-    {% endfor %}
     {% endif %}
 
     <div class="bento-side-column" style="grid-area: side;">
         {% set latest_count = namespace(value=0) %}
-        {% for article in articles if article.slug != featured_slug and latest_count.value < 2 %}
+        {% for article in articles if (not featured_article or article.slug != featured_article.slug) and latest_count.value < 2 %}
         <article class="bento-card mini-bento">
             <span class="mini-cat">{{ article.category }}</span>
             <h2 class="mini-title">
