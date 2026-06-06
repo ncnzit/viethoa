@@ -36,8 +36,8 @@ echo Nhấn Ctrl+C trong terminal để dừng server
 echo.
 timeout /t 2
 
-REM Mở trình duyệt và chạy Flask
+REM Mở trình duyệt và chạy Flask (ẩn console)
+echo Đang chạy ngầm...
 start http://localhost:5000
-python app.py
-
-pause
+start /b venv\Scripts\pythonw.exe app.py
+exit
