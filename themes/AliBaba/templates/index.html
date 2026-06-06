@@ -2,13 +2,17 @@
 
 {% block content %}
 <section class="home-bento" aria-label="Trang chủ nổi bật">
-    {% set featured_article = None %}
+    {% set featured_ns = namespace(article=None) %}
     {% for article in articles %}
-        {% if article.tags and article.tags|map(attribute='name')|list|first == 'Nổi Bật' %}
-            {% set featured_article = article %}
-            {% break %}
+        {% if featured_ns.article is none and article.tags %}
+            {% for tag in article.tags %}
+                {% if tag.name == 'Nổi Bật' and featured_ns.article is none %}
+                    {% set featured_ns.article = article %}
+                {% endif %}
+            {% endfor %}
         {% endif %}
     {% endfor %}
+    {% set featured_article = featured_ns.article %}
     
     {% if featured_article %}
     <article class="bento-card hero-bento" style="grid-area: hero;">
