@@ -2,9 +2,20 @@ import os
 import re
 from flask import Flask, render_template, request, redirect, url_for, jsonify
 from datetime import datetime
+from werkzeug.utils import secure_filename
 
 app = Flask(__name__)
 CONTENT_DIR = os.path.abspath(os.path.join(os.path.dirname(__file__), '..', 'content', 'articles'))
+IMAGE_UPLOAD_FOLDER = os.path.abspath(os.path.join(os.path.dirname(__file__), '..', 'content', 'images'))
+ALLOWED_EXTENSIONS = {'png', 'jpg', 'jpeg', 'gif'}
+
+# Tạo thư mục nếu chưa có
+os.makedirs(CONTENT_DIR, exist_ok=True)
+os.makedirs(IMAGE_UPLOAD_FOLDER, exist_ok=True)
+
+def allowed_file(filename):
+    return '.' in filename and \
+           filename.rsplit('.', 1)[1].lower() in ALLOWED_EXTENSIONS
 
 def parse_markdown(filepath):
     """Phân tích metadata và nội dung từ file Markdown"""
@@ -16,7 +27,6 @@ def parse_markdown(filepath):
         'thumbnail': '',
         'slug': os.path.splitext(os.path.basename(filepath))[0]
     }
-    content_lines = []
     
     if not os.path.exists(filepath):
         return metadata, ""
@@ -26,32 +36,23 @@ def parse_markdown(filepath):
             lines = f.readlines()
         
         # Đọc phần đầu (metadata)
-        in_metadata = True
         body_start = 0
         for i, line in enumerate(lines):
             line_str = line.strip()
             if not line_str and i > 0:
-                # Dòng trống đầu tiên kết thúc metadata
                 body_start = i
                 break
             
-            # Cắt các metadata fields
             match = re.match(r'^([a-zA-Z0-9_-]+)\s*:\s*(.*)$', line_str)
             if match:
                 key = match.group(1).lower()
                 val = match.group(2).strip()
-                if key == 'title':
-                    metadata['title'] = val
-                elif key == 'date':
-                    metadata['date'] = val
-                elif key == 'category':
-                    metadata['category'] = val
-                elif key == 'tags':
-                    metadata['tags'] = [t.strip() for t in val.split(',') if t.strip()]
-                elif key == 'thumbnail':
-                    metadata['thumbnail'] = val
+                if key == 'title': metadata['title'] = val
+                elif key == 'date': metadata['date'] = val
+                elif key == 'category': metadata['category'] = val
+                elif key == 'tags': metadata['tags'] = [t.strip() for t in val.split(',') if t.strip()]
+                elif key == 'thumbnail': metadata['thumbnail'] = val
             else:
-                # Nếu gặp dòng không phải metadata format, coi như bắt đầu body
                 body_start = i
                 break
                 
@@ -73,128 +74,98 @@ def write_markdown(filepath, metadata, content):
             f.write(f"Tags: {tags_str}\n")
         if metadata.get('thumbnail'):
             f.write(f"Thumbnail: {metadata.get('thumbnail', '')}\n")
-        f.write("\n")  # Dòng trống phân cách
+        f.write("\n")
         f.write(content)
 
 @app.route('/')
 def index():
     if not os.path.exists(CONTENT_DIR):
         os.makedirs(CONTENT_DIR, exist_ok=True)
-        
     files = [f for f in os.listdir(CONTENT_DIR) if f.endswith('.md')]
     articles_data = []
-    
-    # Gom danh sách tags để hiển thị bộ lọc
     all_tags = set()
-    
     for f in files:
         filepath = os.path.join(CONTENT_DIR, f)
-        # Lấy thời gian chỉnh sửa file cuối cùng
         mtime = os.path.getmtime(filepath)
         mod_date = datetime.fromtimestamp(mtime).strftime('%Y-%m-%d %H:%M')
-        
         meta, _ = parse_markdown(filepath)
         meta['filename'] = f
         meta['mod_date'] = mod_date
         articles_data.append(meta)
-        
-        for t in meta['tags']:
-            all_tags.add(t)
-            
-    # Sắp xếp bài mới nhất lên đầu dựa trên thời gian sửa đổi (mtime)
+        for t in meta['tags']: all_tags.add(t)
     articles_data.sort(key=lambda x: x['mod_date'], reverse=True)
-    
     return render_template('index.html', articles=articles_data, tags=sorted(list(all_tags)))
 
 @app.route('/new', methods=['GET', 'POST'])
 def new():
     if request.method == 'POST':
         title = request.form['title']
-        slug = request.form.get('slug', title.lower().replace(" ", "-"))
-        slug = re.sub(r'[^a-zA-Z0-9-]', '', slug)  # clean slug
-        
+        slug = re.sub(r'[^a-zA-Z0-9-]', '', title.lower().replace(" ", "-"))
         filepath = os.path.join(CONTENT_DIR, f"{slug}.md")
         metadata = {
             'title': title,
-            'date': request.form.get('date', datetime.now().strftime('%Y-%m-%d %H:%M')),
+            'date': request.form.get('date', datetime.now().strftime('%Y-%m-%d %H:%M')).replace('T', ' '),
             'category': request.form.get('category', 'Game Việt hoá'),
             'tags': [t.strip() for t in request.form.get('tags', '').split(',') if t.strip()],
             'thumbnail': request.form.get('thumbnail', '')
         }
-        content = request.form['content']
-        write_markdown(filepath, metadata, content)
+        write_markdown(filepath, metadata, request.form['content'])
         return redirect(url_for('index'))
-        
-    return render_template('edit.html', is_new=True, filename="", content="", metadata={})
+    return render_template('edit.html', is_new=True, filename="", content="", metadata={'date': datetime.now().strftime('%Y-%m-%dT%H:%M')})
 
 @app.route('/edit/<filename>', methods=['GET', 'POST'])
 def edit(filename):
     filepath = os.path.join(CONTENT_DIR, filename)
     if request.method == 'POST':
-        title = request.form['title']
         metadata = {
-            'title': title,
-            'date': request.form.get('date', datetime.now().strftime('%Y-%m-%d %H:%M')),
+            'title': request.form['title'],
+            'date': request.form.get('date', '').replace('T', ' '),
             'category': request.form.get('category', 'Game Việt hoá'),
             'tags': [t.strip() for t in request.form.get('tags', '').split(',') if t.strip()],
             'thumbnail': request.form.get('thumbnail', '')
         }
-        content = request.form['content']
-        write_markdown(filepath, metadata, content)
+        write_markdown(filepath, metadata, request.form['content'])
         return redirect(url_for('index'))
-        
     metadata, content = parse_markdown(filepath)
+    # Chuyển đổi định dạng ngày cho input
+    if ' ' in metadata['date']: metadata['date'] = metadata['date'].replace(' ', 'T')
     return render_template('edit.html', is_new=False, filename=filename, content=content, metadata=metadata)
 
 @app.route('/delete/<filename>', methods=['POST'])
 def delete(filename):
     filepath = os.path.join(CONTENT_DIR, filename)
-    if os.path.exists(filepath):
-        os.remove(filepath)
+    if os.path.exists(filepath): os.remove(filepath)
     return redirect(url_for('index'))
 
-
-# ============== QUẢN LÝ THẺ (TAGS) ==============
-
-def get_all_articles_meta():
-    """Lấy metadata + content tất cả bài viết"""
-    files = [f for f in os.listdir(CONTENT_DIR) if f.endswith('.md')]
-    result = []
-    for f in files:
-        filepath = os.path.join(CONTENT_DIR, f)
-        meta, content = parse_markdown(filepath)
-        result.append((filepath, meta, content))
-    return result
+@app.route('/upload_image', methods=['POST'])
+def upload_image():
+    if 'file' not in request.files: return jsonify({'error': 'No file'}), 400
+    file = request.files['file']
+    if file and allowed_file(file.filename):
+        filename = secure_filename(file.filename)
+        file.save(os.path.join(IMAGE_UPLOAD_FOLDER, filename))
+        return jsonify({'url': f'/images/{filename}'}), 200
+    return jsonify({'error': 'Invalid file'}), 400
 
 @app.route('/tags')
 def tags():
-    """Trang quản lý thẻ — đếm số bài viết mỗi thẻ"""
     tag_counts = {}
     for filepath, meta, content in get_all_articles_meta():
-        for t in meta['tags']:
-            tag_counts[t] = tag_counts.get(t, 0) + 1
-    # Sắp xếp theo số bài giảm dần
-    tags_sorted = sorted(tag_counts.items(), key=lambda x: (-x[1], x[0]))
-    return render_template('tags.html', tags=tags_sorted)
+        for t in meta['tags']: tag_counts[t] = tag_counts.get(t, 0) + 1
+    return render_template('tags.html', tags=sorted(tag_counts.items(), key=lambda x: (-x[1], x[0])))
 
 @app.route('/tags/rename', methods=['POST'])
 def rename_tag():
-    """Đổi tên thẻ trên toàn bộ bài viết"""
-    old_tag = request.form['old_tag'].strip()
-    new_tag = request.form['new_tag'].strip()
-    if old_tag and new_tag:
+    old, new = request.form['old_tag'].strip(), request.form['new_tag'].strip()
+    if old and new:
         for filepath, meta, content in get_all_articles_meta():
-            if old_tag in meta['tags']:
-                meta['tags'] = [new_tag if t == old_tag else t for t in meta['tags']]
-                # Loại bỏ trùng lặp giữ thứ tự
-                seen = set()
-                meta['tags'] = [t for t in meta['tags'] if not (t in seen or seen.add(t))]
+            if old in meta['tags']:
+                meta['tags'] = list(set([new if t == old else t for t in meta['tags']]))
                 write_markdown(filepath, meta, content)
     return redirect(url_for('tags'))
 
 @app.route('/tags/delete', methods=['POST'])
 def delete_tag():
-    """Xoá thẻ khỏi toàn bộ bài viết"""
     tag = request.form['tag'].strip()
     if tag:
         for filepath, meta, content in get_all_articles_meta():
@@ -203,6 +174,9 @@ def delete_tag():
                 write_markdown(filepath, meta, content)
     return redirect(url_for('tags'))
 
+def get_all_articles_meta():
+    files = [f for f in os.listdir(CONTENT_DIR) if f.endswith('.md')]
+    return [(os.path.join(CONTENT_DIR, f), *parse_markdown(os.path.join(CONTENT_DIR, f))) for f in files]
 
 if __name__ == '__main__':
     app.run(debug=True, port=5000)

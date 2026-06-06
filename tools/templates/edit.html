@@ -4,7 +4,6 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <script src="https://cdn.tailwindcss.com"></script>
-    <script>tailwind.config = { darkMode: 'class' }</script>
     <script src="https://cdn.jsdelivr.net/npm/simplemde@1.11.2/dist/simplemde.min.js"></script>
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/simplemde@1.11.2/dist/simplemde.min.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
@@ -14,42 +13,21 @@
         .editor-preview { background-color: #1f2937 !important; color: #f3f4f6 !important; }
         .editor-preview-side { background-color: #1f2937 !important; border-left: 1px solid #374151 !important; }
         .CodeMirror-cursor { border-left: 1px solid #60a5fa !important; }
-        /* Toolbar: nền sáng hơn + icon trắng rõ ràng */
         .editor-toolbar {
             background-color: #374151 !important;
             border: 1px solid #4b5563 !important;
             border-bottom: none !important;
             opacity: 1 !important;
         }
-        .editor-toolbar button {
-            color: #f9fafb !important;
-            border: none !important;
-        }
-        .editor-toolbar button i,
-        .editor-toolbar a i,
-        .editor-toolbar a::before,
-        .editor-toolbar button::before {
-            color: #f9fafb !important;
-        }
-        .editor-toolbar a {
-            color: #f9fafb !important;
-        }
-        .editor-toolbar button:hover,
-        .editor-toolbar button.active {
-            background-color: #2563eb !important;
-            border-color: #2563eb !important;
-        }
-        .editor-toolbar i.separator {
-            border-left: 1px solid #6b7280 !important;
-            border-right: 1px solid #4b5563 !important;
-        }
-        .editor-toolbar.fullscreen { background-color: #374151 !important; }
-        .editor-statusbar { color: #9ca3af !important; }
+        .editor-toolbar button { color: #f9fafb !important; border: none !important; }
+        .editor-toolbar button i, .editor-toolbar a i, .editor-toolbar a::before, .editor-toolbar button::before { color: #f9fafb !important; }
+        .editor-toolbar a { color: #f9fafb !important; }
+        .editor-toolbar button:hover, .editor-toolbar button.active { background-color: #2563eb !important; border-color: #2563eb !important; }
+        .editor-toolbar i.separator { border-left: 1px solid #6b7280 !important; border-right: 1px solid #4b5563 !important; }
     </style>
 </head>
 <body class="bg-gray-950 text-gray-100 min-h-screen">
     <div class="flex h-screen overflow-hidden">
-        <!-- Sidebar -->
         <aside class="w-64 bg-gray-900 border-r border-gray-800 p-6 flex flex-col">
             <h1 class="text-2xl font-bold mb-8">📝 Quản lý bài viết</h1>
             <nav class="space-y-3 flex-1">
@@ -67,110 +45,82 @@
                 <a href="https://viethoa.nguyez.com/" target="_blank" class="flex items-center gap-3 px-4 py-2 rounded-lg bg-green-700 hover:bg-green-600 transition text-sm">
                     <i class="fas fa-globe w-4"></i> Xem website
                 </a>
-                <div class="text-xs text-gray-500 pt-2">Việt Hoá Game Admin v1.1</div>
             </div>
         </aside>
 
-        <!-- Main Content -->
-        <main class="flex-1 overflow-auto">
-            <div class="p-8">
-                <header class="mb-8">
-                    <div class="flex justify-between items-center">
-                        <div>
-                            <h2 class="text-3xl font-bold">{% if is_new %}Tạo bài viết mới{% else %}Chỉnh sửa: {{ filename }}{% endif %}</h2>
-                            <p class="text-gray-400 mt-1">{% if is_new %}Viết bài mới cho trang Việt Hoá Game{% else %}Cập nhật bài viết hiện có{% endif %}</p>
-                        </div>
-                        <div class="flex items-center gap-3">
-                            {% if not is_new %}
-                            <a href="https://viethoa.nguyez.com/{{ metadata.get('slug', '') }}/" target="_blank" class="flex items-center gap-2 px-4 py-2 bg-green-700 hover:bg-green-600 rounded-lg text-sm transition">
-                                <i class="fas fa-eye"></i> Xem bài viết
-                            </a>
-                            {% endif %}
-                            <a href="/" class="text-gray-400 hover:text-gray-300 flex items-center gap-2">
-                                <i class="fas fa-arrow-left"></i> Quay lại
-                            </a>
-                        </div>
-                    </div>
-                </header>
+        <main class="flex-1 overflow-auto p-8">
+            <header class="mb-8 flex justify-between items-center">
+                <div>
+                    <h2 class="text-3xl font-bold">{% if is_new %}Tạo bài viết mới{% else %}Chỉnh sửa: {{ filename }}{% endif %}</h2>
+                </div>
+                <div class="flex items-center gap-3">
+                    {% if not is_new %}
+                    <a href="https://viethoa.nguyez.com/{{ metadata.get('slug', '') }}/" target="_blank" class="flex items-center gap-2 px-4 py-2 bg-green-700 hover:bg-green-600 rounded-lg text-sm transition">
+                        <i class="fas fa-eye"></i> Xem bài viết
+                    </a>
+                    {% endif %}
+                    <a href="/" class="text-gray-400 hover:text-gray-300 flex items-center gap-2">
+                        <i class="fas fa-arrow-left"></i> Quay lại
+                    </a>
+                </div>
+            </header>
 
-                <!-- Editor Form -->
-                <form method="POST" class="space-y-6">
-                    <!-- Metadata Row -->
-                    <div class="grid grid-cols-1 lg:grid-cols-3 gap-4">
-                        <div>
-                            <label class="block text-sm font-medium mb-2">
-                                <i class="fas fa-heading w-4"></i> Tiêu đề
-                            </label>
-                            <input type="text" name="title" value="{{ metadata.get('title', '') }}" required class="w-full px-4 py-2 bg-gray-900 border border-gray-700 rounded-lg focus:outline-none focus:border-blue-500 focus:ring-1 focus:ring-blue-500">
-                        </div>
-                        <div>
-                            <label class="block text-sm font-medium mb-2">
-                                <i class="fas fa-folder w-4"></i> Danh mục
-                            </label>
-                            <input type="text" name="category" value="{{ metadata.get('category', 'Game Việt hoá') }}" class="w-full px-4 py-2 bg-gray-900 border border-gray-700 rounded-lg focus:outline-none focus:border-blue-500 focus:ring-1 focus:ring-blue-500">
-                        </div>
-                        <div>
-                            <label class="block text-sm font-medium mb-2">
-                                <i class="fas fa-calendar w-4"></i> Ngày đăng
-                            </label>
-                            <input type="datetime-local" name="date" value="{{ metadata.get('date', '').replace(' ', 'T') if metadata.get('date') else '' }}" class="w-full px-4 py-2 bg-gray-900 border border-gray-700 rounded-lg focus:outline-none focus:border-blue-500 focus:ring-1 focus:ring-blue-500">
-                        </div>
-                    </div>
-
-                    <!-- Tags & Thumbnail Row -->
-                    <div class="grid grid-cols-1 lg:grid-cols-2 gap-4">
-                        <div>
-                            <label class="block text-sm font-medium mb-2">
-                                <i class="fas fa-tags w-4"></i> Thẻ (ngăn cách bằng dấu phẩy)
-                            </label>
-                            <input type="text" name="tags" value="{{ metadata.get('tags', [])|join(', ') }}" class="w-full px-4 py-2 bg-gray-900 border border-gray-700 rounded-lg focus:outline-none focus:border-blue-500 focus:ring-1 focus:ring-blue-500" placeholder="việt hoá, action-rpg, patch">
-                        </div>
-                        <div>
-                            <label class="block text-sm font-medium mb-2">
-                                <i class="fas fa-image w-4"></i> Thumbnail (/images/...)
-                            </label>
-                            <input type="text" name="thumbnail" value="{{ metadata.get('thumbnail', '') }}" class="w-full px-4 py-2 bg-gray-900 border border-gray-700 rounded-lg focus:outline-none focus:border-blue-500 focus:ring-1 focus:ring-blue-500" placeholder="/images/1.jpg">
-                        </div>
-                    </div>
-
-                    <!-- Markdown Editor -->
+            <form method="POST" class="space-y-6">
+                <div class="grid grid-cols-1 lg:grid-cols-3 gap-4">
                     <div>
-                        <label class="block text-sm font-medium mb-2">
-                            <i class="fas fa-pen w-4"></i> Nội dung Markdown
-                        </label>
-                        <textarea name="content" id="editor" class="w-full">{{ content }}</textarea>
+                        <label class="block text-sm font-medium mb-2">Tiêu đề</label>
+                        <input type="text" name="title" value="{{ metadata.get('title', '') }}" required class="w-full px-4 py-2 bg-gray-900 border border-gray-700 rounded-lg focus:outline-none focus:border-blue-500">
                     </div>
+                    <div>
+                        <label class="block text-sm font-medium mb-2">Danh mục</label>
+                        <input type="text" name="category" value="{{ metadata.get('category', 'Game Việt hoá') }}" class="w-full px-4 py-2 bg-gray-900 border border-gray-700 rounded-lg focus:outline-none focus:border-blue-500">
+                    </div>
+                    <div>
+                        <label class="block text-sm font-medium mb-2">Ngày đăng</label>
+                        <input type="datetime-local" name="date" value="{{ metadata.get('date', '') }}" class="w-full px-4 py-2 bg-gray-900 border border-gray-700 rounded-lg focus:outline-none focus:border-blue-500">
+                    </div>
+                </div>
 
-                    <!-- Action Buttons -->
-                    <div class="flex gap-4 pt-6 border-t border-gray-800">
-                        <button type="submit" class="flex items-center gap-2 px-6 py-3 bg-blue-600 hover:bg-blue-700 rounded-lg font-medium transition">
-                            <i class="fas fa-save w-4"></i> {% if is_new %}Tạo bài viết{% else %}Lưu thay đổi{% endif %}
-                        </button>
-                        <a href="/" class="flex items-center gap-2 px-6 py-3 bg-gray-800 hover:bg-gray-700 rounded-lg font-medium transition">
-                            <i class="fas fa-times w-4"></i> Hủy
-                        </a>
+                <div class="grid grid-cols-1 lg:grid-cols-2 gap-4">
+                    <div>
+                        <label class="block text-sm font-medium mb-2">Thẻ (ngăn cách bằng dấu phẩy)</label>
+                        <input type="text" name="tags" value="{{ metadata.get('tags', [])|join(', ') }}" class="w-full px-4 py-2 bg-gray-900 border border-gray-700 rounded-lg focus:outline-none focus:border-blue-500">
                     </div>
-                </form>
-            </div>
+                    <div>
+                        <label class="block text-sm font-medium mb-2">Thumbnail</label>
+                        <div class="flex gap-2">
+                            <input type="text" id="thumbUrl" name="thumbnail" value="{{ metadata.get('thumbnail', '') }}" class="flex-1 px-4 py-2 bg-gray-900 border border-gray-700 rounded-lg focus:outline-none focus:border-blue-500">
+                            <input type="file" id="fileInput" class="hidden" onchange="uploadFile()">
+                            <button type="button" onclick="document.getElementById('fileInput').click()" class="px-4 py-2 bg-gray-700 hover:bg-gray-600 rounded-lg">
+                                <i class="fas fa-upload"></i>
+                            </button>
+                        </div>
+                    </div>
+                </div>
+
+                <textarea name="content" id="editor" class="w-full">{{ content }}</textarea>
+
+                <button type="submit" class="px-8 py-3 bg-blue-600 hover:bg-blue-700 rounded-lg font-bold">Lưu thay đổi</button>
+            </form>
         </main>
     </div>
 
     <script>
         var simplemde = new SimpleMDE({
             element: document.getElementById("editor"),
-            spellChecker: false,
-            autoDownloadFontAwesome: false,
-            showIcons: ["code", "table", "strikethrough"],
-            hideIcons: ["guide", "preview"],
-            toolbar: [
-                "bold", "italic", "strikethrough", "|",
-                "heading", "heading-smaller", "heading-larger", "|",
-                "quote", "unordered-list", "ordered-list", "|",
-                "link", "image", "table", "horizontal-rule", "|",
-                "code", "code-block", "|",
-                "preview", "side-by-side", "fullscreen"
-            ]
+            toolbar: ["bold", "italic", "heading", "|", "quote", "unordered-list", "ordered-list", "|", "link", "image", "|", "preview", "side-by-side", "fullscreen"]
         });
+
+        async function uploadFile() {
+            const fileInput = document.getElementById('fileInput');
+            if (!fileInput.files.length) return;
+            const formData = new FormData();
+            formData.append('file', fileInput.files[0]);
+            const response = await fetch('/upload_image', { method: 'POST', body: formData });
+            const data = await response.json();
+            if (data.url) document.getElementById('thumbUrl').value = data.url;
+            else alert('Lỗi upload: ' + data.error);
+        }
     </script>
 </body>
 </html>
