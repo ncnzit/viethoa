@@ -49,9 +49,9 @@
     text-decoration: none;
 }
 
-/* Reduce Hero Image Height */
+/* Hero Image - Giảm chiều cao */
 .hero-thumb {
-    max-height: 300px;
+    max-height: 150px !important;
 }
 .hero-thumb img {
     object-fit: cover;

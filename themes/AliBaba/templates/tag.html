@@ -8,21 +8,36 @@
     <p class="list-count">Tìm thấy {{ articles|length }} bài viết với thẻ này.</p>
 </header>
 
-<section class="articles-feed">
+<section class="articles-feed feed-grid">
     {% for article in articles_page.object_list %}
-    <a href="{{ SITEURL }}/{{ article.url }}" class="feed-item">
-        <div class="feed-date">
-            <span class="day">{{ article.date.strftime('%d') }}</span>
-            <span class="month">{{ article.locale_date.split()[1] if article.locale_date.split()|length > 1 else article.date.strftime('%b') }}</span>
+    <article class="feed-card">
+        {% set thumb = article.thumbnail|default(article.image|default('')) %}
+        {% if thumb %}
+        <a href="{{ SITEURL }}/{{ article.url }}" class="feed-card-thumb">
+            <img src="{{ SITEURL }}{{ thumb if thumb.startswith('/') else '/' ~ thumb }}" alt="{{ article.title }}" loading="lazy">
+        </a>
+        {% else %}
+        <div class="feed-card-thumb" style="background: linear-gradient(135deg, #667eea 0%, #764ba2 100%); display: flex; align-items: center; justify-content: center; color: white; font-weight: bold;">
+            📁
         </div>
-        <div class="feed-content">
-            <h2 class="feed-title">{{ article.title }}</h2>
-            <p class="feed-summary">{{ article.summary|striptags|truncate(160) }}</p>
+        {% endif %}
+        <div class="feed-card-content">
+            <div class="feed-meta">
+                <span class="feed-cat">{{ article.category }}</span>
+                <span class="feed-date">{{ article.date.strftime('%d/%m/%Y') }}</span>
+            </div>
+            <h3 class="feed-title">
+                <a href="{{ SITEURL }}/{{ article.url }}">{{ article.title }}</a>
+            </h3>
+            {% if article.tags %}
+            <div class="feed-tags" style="font-size: 0.8rem; margin-top: 0.5rem;">
+                {% for tag in article.tags[:3] %}
+                <a href="{{ SITEURL }}/tag/{{ tag.slug }}/" style="display: inline-block; padding: 0.2rem 0.5rem; background: #333; border-radius: 4px; margin-right: 0.3rem; color: #aaa; text-decoration: none;">#{{ tag }}</a>
+                {% endfor %}
+            </div>
+            {% endif %}
         </div>
-        <div class="feed-arrow">
-            <svg class="icon"><use href="/theme/images/icons.svg#arrow-right"></use></svg>
-        </div>
-    </a>
+    </article>
     {% endfor %}
 </section>
 
