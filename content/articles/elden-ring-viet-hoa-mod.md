@@ -1,11 +1,12 @@
-Title: Elden Ring - Mod Việt hoá từ Nexus Mods
+Title: Mod Việt hoá từ cộng đồng
 Date: 2026-05-22
 Category: Game Việt hoá
-Tags: việt hoá, elden-ring, action, fromsoftware
+Tags: việt hoá, mod, cộng đồng
+Thumbnail: /images/3.jpg
 Slug: elden-ring-viet-hoa-mod
 Status: published
 
-Hướng dẫn cài đặt mod Việt hoá Elden Ring từ Nexus, hỗ trợ cả NPC dialogue và item description.
+Hướng dẫn cài đặt mod Việt hoá từ cộng đồng, hỗ trợ dialogue và mô tả item.
 
 ## Thông tin bản Việt hoá
 

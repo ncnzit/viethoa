@@ -1,9 +1,21 @@
 /* Layout Card */
-.feed-grid {
+.articles-feed.feed-grid {
     display: grid;
-    grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+    grid-template-columns: repeat(auto-fill, minmax(300px, 1fr)); /* 3 columns for wider screens */
     gap: 2rem;
     margin-top: 1rem;
+}
+
+@media (min-width: 1024px) {
+    .articles-feed.feed-grid {
+        grid-template-columns: repeat(3, 1fr); /* 3 columns on large screens */
+    }
+}
+
+@media (min-width: 768px) and (max-width: 1023px) {
+    .articles-feed.feed-grid {
+        grid-template-columns: repeat(2, 1fr); /* 2 columns on medium screens */
+    }
 }
 
 .feed-card {

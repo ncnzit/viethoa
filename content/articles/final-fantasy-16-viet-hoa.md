@@ -1,11 +1,12 @@
-Title: Final Fantasy XVI - Patch Việt hoá UI
+Title: Patch tiếng Việt cho game Action RPG
 Date: 2026-05-27
 Category: Game Việt hoá
-Tags: việt hoá, final-fantasy, action-rpg, square-enix
+Tags: việt hoá, action-rpg, patch
+Thumbnail: /images/2.jpg
 Slug: final-fantasy-16-viet-hoa
 Status: published
 
-Bản dịch hoàn toàn giao diện cho Final Fantasy XVI với font tiếng Việt tối ưu.
+Bản dịch hoàn chỉnh giao diện và văn bản với font tiếng Việt tối ưu.
 
 ## Thông tin bản Việt hoá
 

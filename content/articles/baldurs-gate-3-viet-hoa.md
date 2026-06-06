@@ -1,11 +1,12 @@
-Title: Baldur's Gate 3 - Bản dịch tiếng Việt đầy đủ
+Title: Bản dịch tiếng Việt hoàn chỉnh
 Date: 2026-05-17
 Category: Game Việt hoá
-Tags: việt hoá, baldurs-gate, crpg, larian
+Tags: việt hoá, dịch thuật, crpg
+Thumbnail: /images/1.jpg
 Slug: baldurs-gate-3-viet-hoa
 Status: published
 
-Cộng đồng dịch hoàn chỉnh Baldur's Gate 3, bao gồm toàn bộ dialogue, item, và spell description.
+Cộng đồng dịch hoàn thiện toàn bộ nội dung game, bao gồm dialogue và mô tả.
 
 ## Thông tin bản Việt hoá
 

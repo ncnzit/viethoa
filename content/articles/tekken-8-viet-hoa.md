@@ -1,11 +1,12 @@
-Title: Tekken 8 - UI tiếng Việt và mod chibi
+Title: UI tiếng Việt cho game đối kháng
 Date: 2026-05-12
 Category: Game Việt hoá
-Tags: việt hoá, tekken, fighting, bandai-namco
+Tags: việt hoá, fighting, ui
+Thumbnail: /images/2.jpg
 Slug: tekken-8-viet-hoa
 Status: published
 
-Dự án Việt hoá giao diện Tekken 8 kết hợp với các mod trang trí độc đáo.
+Dự án Việt hoá giao diện game đối kháng với các mod trang trí độc đáo.
 
 ## Thông tin bản Việt hoá
 

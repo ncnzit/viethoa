@@ -1,11 +1,12 @@
-Title: Persona 3 Reload - Bản Việt hoá hoàn chỉnh
+Title: Hướng dẫn cài đặt bản Việt hoá Game RPG
 Date: 2026-06-01
 Category: Game Việt hoá
-Tags: việt hoá, persona, jrpg, atlus
+Tags: việt hoá, hướng dẫn, rpg
+Thumbnail: /images/1.jpg
 Slug: persona-3-reload-viet-hoa
 Status: published
 
-Hướng dẫn cài đặt bản Việt hoá đầy đủ cho Persona 3 Reload, bao gồm UI, subtitle, và voice.
+Cách cài đặt bản Việt hoá đầy đủ cho game RPG, bao gồm UI, subtitle, và các tính năng bổ sung.
 
 ## Thông tin bản Việt hoá
 
