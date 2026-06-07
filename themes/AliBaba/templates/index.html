@@ -16,13 +16,9 @@
     
     {% if featured_article %}
     <article class="bento-card hero-bento" style="grid-area: hero;">
-        <div class="bento-badge">NỔI BẬT</div>
         <div class="bento-content">
             <h2 class="bento-title">
                 <a href="{{ SITEURL }}/{{ featured_article.url }}">{{ featured_article.title }}</a>
-                {% if (current_date - featured_article.date.date()).days < 7 %}
-                <span class="new-badge">MỚI</span>
-                {% endif %}
             </h2>
             <div class="bento-summary">{{ featured_article.summary }}</div>
             <div class="bento-footer">
