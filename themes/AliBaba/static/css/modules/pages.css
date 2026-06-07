@@ -112,7 +112,7 @@
     background: var(--accent);
     color: #000 !important;
     transform: translateX(8px);
-    box-shadow: 0 5px 15px rgba(199, 148, 0, 0.3);
+    box-shadow: 0 5px 15px rgba(47, 186, 33, 0.3);
   }
 
   .about-social-item:hover i {

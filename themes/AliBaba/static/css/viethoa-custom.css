@@ -118,16 +118,17 @@ h1, h2, h3, h4, h5, h6,
 .article-title {
     font-family: 'Reddit Sans', sans-serif;
     font-weight: 600;
-    font-size: clamp(1.3rem, 3vw, 1.8rem) !important;
 }
 
-/* 6. Reduce article heading sizes by ~28% */
-.article-content h1 { font-size: clamp(1.8rem, 4vw, 2.6rem) !important; }
-.article-content h2 { font-size: clamp(1.5rem, 3.2vw, 2.1rem) !important; }
-.article-content h3 { font-size: clamp(1.25rem, 2.6vw, 1.7rem) !important; }
-.article-content h4 { font-size: clamp(1.05rem, 2vw, 1.35rem) !important; }
-.article-content h5 { font-size: clamp(0.95rem, 1.8vw, 1.1rem) !important; }
-.article-content h6 { font-size: clamp(0.85rem, 1.6vw, 0.9rem) !important; }
+.article-title { font-size: 2.8rem !important; }
+
+/* 6. Article heading sizes */
+.article-content h1 { font-size: 2.3rem !important; }
+.article-content h2 { font-size: 2rem !important; }
+.article-content h3 { font-size: 1.8rem !important; }
+.article-content h4,
+.article-content h5,
+.article-content h6 { font-size: 1.5rem !important; }
 
 /* 7. Hero card square shape - limit height to width */
 .hero-bento { aspect-ratio: 1 / 1; max-height: 500px; }
@@ -144,6 +145,9 @@ h1, h2, h3, h4, h5, h6,
     font-family: 'Courier New', monospace;
     font-size: 0.9em;
 }
+
+/* 8b. Article link color - green theme */
+.article-content a { color: #2FBA21 !important; }
 
 /* 9. Heading underlines - all levels get accent line */
 .article-content h2::after,

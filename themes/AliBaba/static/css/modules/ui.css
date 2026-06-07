@@ -131,7 +131,7 @@
 
   .search-modal-header svg {
     color: var(--accent);
-    filter: drop-shadow(0 0 8px rgba(201, 148, 0, 0.3));
+    filter: drop-shadow(0 0 8px rgba(47, 186, 33, 0.3));
   }
 
   #search-input {
@@ -187,8 +187,8 @@
   }
 
   .search-item:hover {
-    background: rgba(201, 148, 0, 0.08);
-    border-color: rgba(201, 148, 0, 0.2);
+    background: rgba(47, 186, 33, 0.08);
+    border-color: rgba(47, 186, 33, 0.2);
     transform: translateX(8px);
   }
 
@@ -217,7 +217,7 @@
   }
 
   .search-results mark {
-    background: rgba(201, 148, 0, 0.3);
+    background: rgba(47, 186, 33, 0.3);
     color: var(--fg);
     border-radius: 4px;
     padding: 0 4px;
@@ -265,7 +265,7 @@
     color: var(--accent-fg);
     border-color: var(--accent);
     transform: translateY(-5px) scale(1.1);
-    box-shadow: 0 15px 30px rgba(199, 148, 0, 0.3);
+    box-shadow: 0 15px 30px rgba(47, 186, 33, 0.3);
   }
 
   /* --- Modern Site Footer --- */
@@ -273,7 +273,7 @@
     margin-top: 8rem;
     padding: 4rem 2rem;
     border-top: 1px solid var(--border);
-    background: linear-gradient(to bottom, transparent, rgba(199, 148, 0, 0.02));
+    background: linear-gradient(to bottom, transparent, rgba(47, 186, 33, 0.02));
   }
 
   .footer-inner {
@@ -443,7 +443,7 @@
 
   .pagination-btn:hover {
     border-color: var(--accent);
-    background: rgba(199, 148, 0, 0.05);
+    background: rgba(47, 186, 33, 0.05);
     transform: translateY(-3px);
     box-shadow: 0 10px 20px rgba(0, 0, 0, 0.1);
   }

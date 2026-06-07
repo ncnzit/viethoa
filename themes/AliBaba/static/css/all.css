@@ -292,8 +292,8 @@
   }
 
   [data-theme="dark"] .hero-card {
-    box-shadow: 0 0 30px rgba(201, 148, 0, 0.05); /* Subtle gold glow */
-    border-color: rgba(201, 148, 0, 0.2);
+    box-shadow: 0 0 30px rgba(47, 186, 33, 0.05); /* Subtle gold glow */
+    border-color: rgba(47, 186, 33, 0.2);
   }
 
   .hero-card:hover {
@@ -1138,7 +1138,7 @@
 
   .translation-link.active {
     color: var(--accent);
-    background: rgba(201, 148, 0, 0.1);
+    background: rgba(47, 186, 33, 0.1);
   }
 
   [data-theme="light"] .translation-link.active {
@@ -1231,7 +1231,7 @@
   }
 
   .related-post-item:hover {
-    background: rgba(201, 148, 0, 0.05);
+    background: rgba(47, 186, 33, 0.05);
     transform: translateX(8px);
   }
 
@@ -1412,7 +1412,7 @@
 }
 
 mark {
-    background: rgba(201, 148, 0, 0.2);
+    background: rgba(47, 186, 33, 0.2);
     color: var(--accent);
     border-radius: 2px;
     padding: 0 2px;
@@ -1635,7 +1635,7 @@ mark {
 
 .edit-link-btn:hover {
     color: var(--accent);
-    background: rgba(201, 148, 0, 0.05);
+    background: rgba(47, 186, 33, 0.05);
     border-color: var(--accent);
     transform: translateY(-2px);
 }
@@ -1659,7 +1659,7 @@ mark {
 .support-icon {
     width: 54px;
     height: 54px;
-    background: rgba(201, 148, 0, 0.1);
+    background: rgba(47, 186, 33, 0.1);
     color: var(--accent);
     border-radius: 15px;
     display: flex;
@@ -1698,7 +1698,7 @@ mark {
 
 .support-btn:hover {
     transform: scale(1.05);
-    box-shadow: 0 5px 15px rgba(201, 148, 0, 0.3);
+    box-shadow: 0 5px 15px rgba(47, 186, 33, 0.3);
 }
 
 /* Author & Support Wrapper */
