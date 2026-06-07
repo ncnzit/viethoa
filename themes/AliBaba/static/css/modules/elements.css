@@ -1,4 +1,11 @@
 @layer components {
+  /* Strikethrough styling */
+  .article-content del {
+    text-decoration: line-through !important;
+    opacity: 0.7;
+    color: inherit;
+  }
+
   /* Premium Lists in Article Content */
   .article-content ul, 
   .article-content ol {
