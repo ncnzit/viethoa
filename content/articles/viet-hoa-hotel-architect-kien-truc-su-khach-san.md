@@ -8,7 +8,9 @@ Slug: viet-hoa-hotel-architect-kien-truc-su-khach-san
 # Hotel Architect
 [https://store.steampowered.com/app/1602000/Hotel_Architect](https://store.steampowered.com/app/1602000/Hotel_Architect?curator_clanid=43692802)
 
-Sau 1 thời gian thì game đã ra mắt chính thức bản 1.0 nên cũng Việt hoá và chơi lại, vừa chơi vừa check chất lượng và chỉnh sửa.
+
+Sau một thời gian Early Access thì game đã ra mắt chính thức bản 1.0 nên cũng Việt hoá và chơi lại, vừa chơi vừa check chất lượng và chỉnh sửa.
+
 Người chơi sẽ đóng vai một Kiến Trúc Sư chuyên gia thiết kế và vận hành khách sạn ở khắp các nơi trên thế giới, từ bờ biển xanh mát, núi tuyết băng giá cho đến sa mạc nóng bỏng của Las Vegas, mỗi vùng đất, mỗi nhóm khách hàng riêng, và đều phải thiết kế để vận hành chuẩn chỉ.
 
 ## Hướng dẫn cài đặt Việt hoá
