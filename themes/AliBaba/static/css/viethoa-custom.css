@@ -132,6 +132,35 @@ h1, h2, h3, h4, h5, h6,
 /* 7. Hero card square shape - limit height to width */
 .hero-bento { aspect-ratio: 1 / 1; max-height: 500px; }
 
+/* 8. Markdown text styling */
+.article-content strong { font-weight: 700; }
+.article-content em { font-style: italic; }
+.article-content del { text-decoration: line-through; opacity: 0.7; }
+.article-content code { 
+    background: rgba(100, 200, 100, 0.15);
+    color: #4ade80;
+    padding: 0.2rem 0.5rem;
+    border-radius: 4px;
+    font-family: 'Courier New', monospace;
+    font-size: 0.9em;
+}
+
+/* 9. Heading underlines - all levels get accent line */
+.article-content h2::after,
+.article-content h3::after,
+.article-content h4::after,
+.article-content h5::after,
+.article-content h6::after {
+    content: "";
+    position: absolute;
+    bottom: -0.5rem;
+    left: 0;
+    width: 3rem;
+    height: 3px;
+    background: var(--accent-dark);
+    border-radius: 2px;
+}
+
 .article-content ul,
 .article-content ol {
     margin: 1rem 0;
