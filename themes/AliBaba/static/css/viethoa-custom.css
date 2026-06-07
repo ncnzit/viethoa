@@ -214,3 +214,11 @@ h1, h2, h3, h4, h5, h6,
 .article-content li { 
     margin-bottom: 0.75rem !important;
 }
+
+/* 13. Code block transparent background */
+.article-content .highlight,
+.article-content pre,
+.article-content .highlight pre {
+    background: transparent !important;
+    border: 1px solid rgba(255, 255, 255, 0.1) !important;
+}
