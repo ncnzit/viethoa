@@ -21,18 +21,18 @@ Còn đoạn này cách 2 Enter → phải là thẻ <p> mới.
 ### Heading 3 - Tiêu đề cấp 3
 
 Danh sách không thứ tự (unordered list):
-- Mục thứ nhất
-- Mục thứ hai
-  - Mục con (lùi vào)
-  - Mục con thứ hai
-- Mục thứ ba
+* Mục thứ nhất
+* Mục thứ hai
+* * Mục con (lùi vào)
+* * Mục con thứ hai
+* Mục thứ ba
 
 #### Heading 4 - Tiêu đề cấp 4
 
 Danh sách có thứ tự (ordered list):
 1. Bước một
 2. Bước hai
-3. Bước ba
+3.Bước ba
 
 ##### Heading 5 - Tiêu đề cấp 5
 
