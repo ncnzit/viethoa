@@ -84,8 +84,8 @@ NAVBAR_LINKS = [
     {"name": "Trang chủ", "url": "/", "target": "_self", "icon": "fa-solid fa-house"},
     {"name": "Hướng dẫn", "url": "/huong-dan/", "target": "_self", "icon": "fa-solid fa-file-alt"},
     {"name": "Game Việt hoá", "url": "/tag/viet-hoa/", "target": "_self", "icon": "fa-solid fa-fire"},
+    {"name": "Discord", "url": "https://discord.gg/v8BTMfGmMp", "target": "_blank", "icon": "fa-brands fa-discord"},
     {"name": "Tìm kiếm", "url": "#", "target": "_self", "icon": "fa-solid fa-search"},
-    {"name": "Thẻ", "url": "/tags/", "target": "_self", "icon": "fa-solid fa-tags"},
     {"name": "Ủng hộ", "url": "https://donate.nguyez.com/", "target": "_blank", "icon": "fa-solid fa-heart", "color": "#fbbf24"},
 ]
 MENUITEMS = [
