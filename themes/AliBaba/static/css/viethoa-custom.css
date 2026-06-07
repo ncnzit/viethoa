@@ -128,6 +128,9 @@ h1, h2, h3, h4, h5, h6,
 .article-content h5 { font-size: clamp(0.95rem, 1.8vw, 1.1rem) !important; }
 .article-content h6 { font-size: clamp(0.85rem, 1.6vw, 0.9rem) !important; }
 
+/* 7. Hero card square shape - limit height to width */
+.hero-bento { aspect-ratio: 1 / 1; max-height: 500px; }
+
 .article-content ul,
 .article-content ol {
     margin: 1rem 0;
