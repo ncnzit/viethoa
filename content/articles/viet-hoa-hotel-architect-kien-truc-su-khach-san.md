@@ -1,7 +1,7 @@
 Title: (Việt hoá) Hotel Architect - Kiến Trúc Sư Khách Sạn
 Date: 2026-06-07 13:16
 Category: Game Việt hoá
-Tags: Việt Hoá, Thu Phí, Xây Dựng - Quản Lý
+Tags: Việt Hoá, Thu Phí, Xây Dựng - Quản Lý, Unreal Engine
 Thumbnail: https://img.youtube.com/vi/-ZpItRPRMNA/maxresdefault.jpg
 Slug: viet-hoa-hotel-architect-kien-truc-su-khach-san
 
