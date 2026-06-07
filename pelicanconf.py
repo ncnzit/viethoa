@@ -133,7 +133,8 @@ MARKDOWN = {
         "markdown.extensions.codehilite": {"css_class": "highlight"},
         "markdown.extensions.toc": {"permalink": "#"},
         "markdown.extensions.admonition": {},
-        "markdown.extensions.nl2br": {},
+        "markdown.extensions.attr_list": {},
+        "markdown.extensions.footnotes": {},
     },
     "output_format": "html5",
 }
