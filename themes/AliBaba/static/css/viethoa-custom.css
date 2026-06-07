@@ -171,8 +171,8 @@ h1, h2, h3, h4, h5, h6,
 .article-content h5, .article-content h6 {
     color: #b7e2b3;
     position: relative;
-    margin-top: 2rem !important; /* Đồng bộ margin-top cho tất cả headings */
-    margin-bottom: 1rem !important; /* Đồng bộ margin-bottom cho tất cả headings */
+    margin-top: 2rem !important;
+    margin-bottom: 1.5rem !important;
 }
 
 .article-content h1::after {
@@ -222,3 +222,6 @@ h1, h2, h3, h4, h5, h6,
     background: transparent !important;
     border: 1px solid rgba(255, 255, 255, 0.1) !important;
 }
+
+/* 14. Blockquote paragraph compact */
+.article-content blockquote p { margin-bottom: 0 !important; }
