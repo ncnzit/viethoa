@@ -26,10 +26,16 @@ Danh sách không thứ tự (unordered list):
 * * Mục con (lùi vào)
 * * Mục con thứ hai
 * Mục thứ ba
+- Mục thứ nhất
+- Mục thứ hai
+- - Mục con (lùi vào)
+- - Mục con thứ hai
+- Mục thứ ba
 
 #### Heading 4 - Tiêu đề cấp 4
 
 Danh sách có thứ tự (ordered list):
+1. 1. Bước một
 1. Bước một
 2. Bước hai
 3.Bước ba
