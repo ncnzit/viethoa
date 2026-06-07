@@ -1,6 +1,7 @@
 Title: Trang Donate - Ủng hộ
-Date: 2026-06-06 20:49
+Date: 2026-06-07 14:12
 Category: Game Việt hoá
+Slug: donate
 
 **Trang Donate:** [https://donate.nguyez.com](http://https://donate.nguyez.com)
 
