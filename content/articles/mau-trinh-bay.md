@@ -1,9 +1,9 @@
 Title: Mẫu trình bày Markdown
 Date: 2026-06-06 23:03
 Category: Thông báo
-Tags: hướng dẫn
+Tags: Xây dựng - Quản lý - Chiến lược, Chiến Thuật - Theo lượt (Turn-Based), Phiêu lưu - Giải đố - Nhẹ nhàng, Sinh tồn - Thế giới mở - Khám phá, Hành động - Nhập vai - Chiến đấu, Game Trung Quốc
+Thumbnail: https://img.youtube.com/vi/dQw4w9WgXcQ/maxresdefault.jpg
 Slug: mau-trinh-bay
-Summary: Bài viết mẫu chứa đầy đủ các thẻ Markdown để kiểm tra bố cục trình bày.
 
 # Heading 1 - Tiêu đề lớn nhất
 
