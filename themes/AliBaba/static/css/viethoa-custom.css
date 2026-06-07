@@ -118,6 +118,7 @@ h1, h2, h3, h4, h5, h6,
 .article-title {
     font-family: 'Reddit Sans', sans-serif;
     font-weight: 600;
+    font-size: clamp(1.3rem, 3vw, 1.8rem) !important;
 }
 
 /* 6. Reduce article heading sizes by ~28% */
