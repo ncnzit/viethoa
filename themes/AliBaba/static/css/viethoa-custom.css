@@ -136,7 +136,7 @@ h1, h2, h3, h4, h5, h6,
 /* 8. Markdown text styling */
 .article-content strong { font-weight: 700; }
 .article-content em { font-style: italic; }
-.article-content del { text-decoration: line-through; opacity: 0.7; }
+.article-content del { text-decoration: line-through !important; opacity: 0.7; }
 .article-content code { 
     background: rgba(100, 200, 100, 0.15);
     color: #4ade80;
@@ -165,12 +165,50 @@ h1, h2, h3, h4, h5, h6,
     border-radius: 2px;
 }
 
-.article-content ul,
-.article-content ol {
-    margin: 1rem 0;
-    padding-left: 0.5rem;
+/* 10. Heading color & H1 underline */
+.article-content h1, .article-content h2,
+.article-content h3, .article-content h4,
+.article-content h5, .article-content h6 {
+    color: #b7e2b3;
+    position: relative;
 }
 
-.article-content p {
-    margin-bottom: 1rem;
+.article-content h1::after {
+    content: "";
+    position: absolute;
+    bottom: -0.5rem;
+    left: 0;
+    width: 3rem;
+    height: 3px;
+    background: var(--accent-dark);
+    border-radius: 2px;
+}
+
+/* 11. Article Title color */
+.article-title { color: #2FBA21 !important; }
+
+/* 12. List styling - Improved spacing & bullets */
+.article-content ul,
+.article-content ol {
+    margin-top: 1.5rem !important;
+    margin-bottom: 1.5rem !important;
+    padding-left: 2rem !important;
+    line-height: 1.8 !important;
+    color: var(--fg) !important;
+}
+
+.article-content ul {
+    list-style-type: disc !important;
+}
+
+.article-content ul ul {
+    list-style-type: circle !important;
+}
+
+.article-content ol {
+    list-style-type: decimal !important;
+}
+
+.article-content li { 
+    margin-bottom: 0.75rem !important;
 }
