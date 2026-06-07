@@ -129,13 +129,10 @@ FORMATTED_FIELDS = ["summary", "content"]
 
 MARKDOWN = {
     "extension_configs": {
+        "markdown.extensions.extra": {},  # Includes strikethrough, fenced_code, tables, etc.
         "markdown.extensions.codehilite": {"css_class": "highlight"},
-        "markdown.extensions.fenced_code": {},
-        "markdown.extensions.tables": {},
         "markdown.extensions.toc": {"permalink": "#"},
         "markdown.extensions.admonition": {},
-        "markdown.extensions.attr_list": {},
-        "markdown.extensions.footnotes": {},
         "markdown.extensions.nl2br": {},
     },
     "output_format": "html5",
