@@ -14,7 +14,7 @@ Tải về giải nén vào thư mục game.
 Lưu ý phải đúng phiên bản `v1.1.1` như Video dưới.
 Link tải: [nhấn vào đây để tải về](https://drive.google.com/drive/folders/1uhGKRtMaJAPDRg_e1UsR0dMWHiqTn4Vg?usp=drive_link)
 
-> Bản Việt hoá chia sẻ Miễn Phí. Anh em có thể Donate ủng hộ kênh.
-> Chi tiết xem ở https://discord.com/channels/759398214586597406/1481216554996862997
+> Bản Việt hoá chia sẻ Miễn Phí. Anh em có thể [Donate](https://donate.nguyez.com/) ủng hộ kênh.
+> Chi tiết xem ở [[Discord]](https://discord.com/channels/759398214586597406/1481216554996862997)
 
 https://youtu.be/wTZF39E4aC0
