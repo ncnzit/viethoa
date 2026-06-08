@@ -6,6 +6,7 @@ Slug: donate
 **Trang Donate:** [https://donate.nguyez.com](http://https://donate.nguyez.com)
 
 Các bản Việt hóa trên kênh sẽ có **Miễn phí** và **Thu phí**
+
 - Miễn phí (Free) thì tải và sử dụng thoải mái.
 - Game ít chữ, làm nhanh, lâu lâu mới chơi thì sẽ Free.
 - Nhiều chữ, khó kỹ thuật, thường update, có Edit sơ sẽ Thu phí.
