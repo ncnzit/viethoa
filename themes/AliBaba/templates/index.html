@@ -29,7 +29,7 @@
     
     <div class="articles-feed feed-grid">
         {% for article in articles %}
-        {% if loop.index0 < 8 %}
+        {% if loop.index0 < 18 %}
         <article class="feed-card">
             {% set feed_thumb = article.thumbnail|default(article.image|default('')) %}
             {% if feed_thumb %}
