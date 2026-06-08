@@ -1,52 +1,7 @@
 {% extends "base.html" %}
 
 {% block content %}
-<section class="home-bento" aria-label="Trang chủ nổi bật">
-    {% set featured_ns = namespace(article=None) %}
-    {% for article in articles %}
-        {% if featured_ns.article is none and article.tags %}
-            {% for tag in article.tags %}
-                {% if tag.name == 'Nổi Bật' and featured_ns.article is none %}
-                    {% set featured_ns.article = article %}
-                {% endif %}
-            {% endfor %}
-        {% endif %}
-    {% endfor %}
-    {% set featured_article = featured_ns.article %}
-    
-    {% if featured_article %}
-    <article class="bento-card hero-bento" style="grid-area: hero;">
-        <div class="bento-content">
-            <h2 class="bento-title">
-                <a href="{{ SITEURL }}/{{ featured_article.url }}">{{ featured_article.title }}</a>
-            </h2>
-            <div class="bento-summary">{{ featured_article.summary }}</div>
-            <div class="bento-footer">
-                <span class="bento-cat">{{ featured_article.category }}</span>
-                <a href="{{ SITEURL }}/{{ featured_article.url }}" class="bento-btn">Đọc <span>→</span></a>
-            </div>
-        </div>
-        <div class="bento-glow"></div>
-    </article>
-    {% endif %}
-
-    <div class="bento-side-column" style="grid-area: side;">
-        {% set latest_count = namespace(value=0) %}
-        {% for article in articles if (not featured_article or article.slug != featured_article.slug) and latest_count.value < 2 %}
-        <article class="bento-card mini-bento">
-            <span class="mini-cat">{{ article.category }}</span>
-            <h2 class="mini-title">
-                <a href="{{ SITEURL }}/{{ article.url }}">{{ article.title }}</a>
-                {% if (current_date - article.date.date()).days < 7 %}
-                <span class="new-badge">MỚI</span>
-                {% endif %}
-            </h2>
-            <time class="mini-date">{{ article.locale_date }}</time>
-            {% set latest_count.value = latest_count.value + 1 %}
-        </article>
-        {% endfor %}
-    </div>
-
+<section class="home-bento" aria-label="Trang chủ nổi bật">  
     <div class="bento-bottom-row" style="grid-area: bottom;">
         <div class="explore-header">
             <h2>Khám phá</h2>
@@ -73,8 +28,8 @@
     </div>
     
     <div class="articles-feed feed-grid">
-        {% for article in articles if article.slug != featured_slug %}
-        {% if loop.index0 >= 2 and loop.index0 < 8 %}
+        {% for article in articles %}
+        {% if loop.index0 < 8 %}
         <article class="feed-card">
             {% set feed_thumb = article.thumbnail|default(article.image|default('')) %}
             {% if feed_thumb %}

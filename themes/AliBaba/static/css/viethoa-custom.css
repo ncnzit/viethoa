@@ -229,3 +229,7 @@ h1, h2, h3, h4, h5, h6,
 
 /* 14. Blockquote paragraph compact */
 .article-content blockquote p { margin-bottom: 0 !important; }
+
+/* 15. Homepage layout tweaks */
+section.feed-section .section-header { margin-top: 0; }
+main.main-content .home-bento { gap: 0rem; }
