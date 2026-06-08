@@ -12,6 +12,7 @@ Các bản Việt hóa trên kênh sẽ có **Miễn phí** và **Thu phí**
 
 Thu phí sẽ đầu tư bản dịch thêm chứ không đơn thuần AI, sẽ update khi được yêu cầu.
 Thu phí thì vui lòng theo trang Donate phía trên hoặc QR phía dưới để được cấp quyền truy cập.
+
 Mỗi game sẽ có Kênh riêng trên [[Discord](https://discord.gg/v8BTMfGmMp)]. Bạn chỉ cần gửi ảnh hoặc nhắn tin tên đã chuyển khoản vào đúng kênh đấy kèm địa chỉ Gmail để nhận quyền truy cập file Việt hoá.
 
 > **LƯU Ý:**
