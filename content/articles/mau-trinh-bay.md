@@ -76,8 +76,6 @@ Link: [Việt Hoá Game](https://viethoa.nguyez.com)
 
 YouTube embed (link độc lập 1 dòng):
 
-https://www.youtube.com/watch?v=dQw4w9WgXcQ
-
 https://youtu.be/a9tYzlQrCSU
 
 Ảnh từ URL:
